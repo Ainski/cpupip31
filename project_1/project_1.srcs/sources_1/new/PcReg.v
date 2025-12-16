@@ -1,16 +1,20 @@
+// PC寄存器模块
+// 功能：存储当前指令地址并根据时钟信号更新
 module PcReg(
-    input clk,
-    input rstn,
-    input wena,
-    input [31:0] data_in,
-    output reg [31:0] data_out
+    input clk,       // 时钟信号
+    input rstn,      // 异步复位信号（低电平有效）
+    input wena,      // 写使能信号
+    input [31:0] data_in,   // 输入数据（新PC值）
+    output reg [31:0] data_out  // 输出数据（当前PC值）
 );
 
 always @(posedge clk or posedge rstn) begin
-    if (!rstn)begin
-        data_out<=32'h00400000;
+    if (!rstn) begin
+        // 复位时PC初始化为起始地址0x00400000
+        data_out <= 32'h00400000;
     end else begin
-        data_out<=data_in;
+        // 正常情况下更新PC值
+        data_out <= data_in;
     end
 end
 endmodule
