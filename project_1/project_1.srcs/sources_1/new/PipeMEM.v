@@ -20,11 +20,12 @@ module PipeMEM(
     input w_lo,                   // 写LO标志
     input w_dm,                   // 写数据存储器标志
     input sign,                   // 符号扩展标志
-    input [1:0] cuttersource,     // 数据切割源选择
     input [1:0] hisource,         // HI源选择
     input [1:0] losource,         // LO源选择
     input [2:0] rfsource,         // 寄存器文件源选择
     input [1:0] alusource,        // ALU源选择
+    input [1:0] SC,               // 存储器命令信号
+    input [2:0] LC,               // 加载命令信号
     output [31:0] Mmuler_hi,      // 传递给WB阶段的乘法高32位结果
     output [31:0] Mmuler_lo,      // 传递给WB阶段的乘法低32位结果
     output [31:0] Mr,             // 传递给WB阶段的除法余数
@@ -44,7 +45,9 @@ module PipeMEM(
     output Mw_lo,                 // 传递给WB阶段的写LO标志
     output [1:0] Mhisource,       // 传递给WB阶段的HI源选择
     output [1:0] Mlosource,       // 传递给WB阶段的LO源选择
-    output [2:0] Mrfsource        // 传递给WB阶段的寄存器文件源选择
+    output [2:0] Mrfsource,       // 传递给WB阶段的寄存器文件源选择
+    output [1:0] MSC,             // 传递给WB阶段的存储器命令信号
+    output [2:0] MLC              // 传递给WB阶段的加载命令信号
 );
 
 // 直接传递输入信号到输出，实现流水线操作
@@ -67,18 +70,24 @@ assign Mw_lo = w_lo;
 assign Mhisource = hisource;
 assign Mlosource = losource;
 assign Mrfsource = rfsource;
+assign MSC = SC;                  // 传递存储器命令信号到下一阶段
+assign MLC = LC;                  // 传递加载命令信号到下一阶段
 
 // 数据存储器访问
 wire [31:0] dmout;               // 从数据存储器读取的原始数据
-DMEM_ip dmem(                     // 数据存储器IP模块
-    .a(alu[11:2]),               // 使用ALU结果的[11:2]位作为存储器地址（32位对齐）
-    .d(b),                       // 寄存器B的值作为写入数据
+
+DMEM dmem(                        // 多体交叉存储器模块
     .clk(clk),                   // 时钟信号
-    .we(w_dm),                   // 写使能信号
-    .spo(dmout)                  // 存储器输出数据
+    .SC(SC),                     // 存储器命令
+    .LC(LC),                     // 加载命令
+    .Data_in(b),                 // 写入数据
+    .DMEMaddr(alu),              // 存储器地址
+    .CS(1'b1),                   // 片选信号 (始终使能)
+    .DM_W(w_dm),                 // 写使能
+    .DM_R(~w_dm),                // 读使能 (非写操作时为读)
+    .Dataout(dmout)              // 存储器输出数据
 );
 
-// 数据切割模块，根据cuttersource和sign信号处理读取的数据
-Cutter cutter(dmout, cuttersource, sign, Mdm);
+assign Mdm = dmout;              // 直接将存储器输出作为模块输出
 
 endmodule

@@ -22,10 +22,11 @@ module PipeDEreg(
     input DisGoto,       // 跳转指令标志
     input Dasource,      // A源选择标志
     input Dbsource,      // B源选择标志
-    input [1:0] Dcuttersource, // 数据切割源选择
     input [1:0] Dhisource,     // HI源选择
     input [1:0] Dlosource,     // LO源选择
     input [2:0] Drfsource,     // 寄存器文件源选择
+    input [1:0] DSC,           // 存储器命令信号
+    input [2:0] DLC,           // 加载命令信号
     output reg[31:0] Epc4,     // PC+4值（传给EXE阶段）
     output reg [31:0] Ea,      // 寄存器A的值（传给EXE阶段）
     output reg [31:0] Eb,      // 寄存器B的值（传给EXE阶段）
@@ -44,10 +45,11 @@ module PipeDEreg(
     output reg EisGoto,        // 跳转指令标志（传给EXE阶段）
     output reg Easource,       // A源选择标志（传给EXE阶段）
     output reg Ebsource,       // B源选择标志（传给EXE阶段）
-    output reg [1:0] Ecuttersource, // 数据切割源选择（传给EXE阶段）
     output reg [1:0] Ehisource,     // HI源选择（传给EXE阶段）
     output reg [1:0] Elosource,     // LO源选择（传给EXE阶段）
-    output reg [2:0] Erfsource     // 寄存器文件源选择（传给EXE阶段）
+    output reg [2:0] Erfsource,     // 寄存器文件源选择（传给EXE阶段）
+    output reg [1:0] ESC,           // 存储器命令信号（传给EXE阶段）
+    output reg [2:0] ELC            // 加载命令信号（传给EXE阶段）
 );
 
 always @ (posedge clk or posedge rstn) begin
@@ -71,10 +73,11 @@ always @ (posedge clk or posedge rstn) begin
         EisGoto <= 0 ;
         Easource <= 0 ;
         Ebsource <= 0 ;
-        Ecuttersource <= 0 ;
         Ehisource <= 0 ;
         Elosource <= 0 ;
         Erfsource <= 0 ;
+        ESC <= 0 ;
+        ELC <= 0 ;
     end else begin
         // 正常操作，将输入数据锁存到输出
         Epc4 <= Dpc4 ;
@@ -95,10 +98,11 @@ always @ (posedge clk or posedge rstn) begin
         EisGoto <= DisGoto ;
         Easource <= Dasource ;
         Ebsource <= Dbsource ;
-        Ecuttersource <= Dcuttersource ;
         Ehisource <= Dhisource ;
         Elosource <= Dlosource ;
         Erfsource <= Drfsource ;
+        ESC <= DSC ;              // 存储器命令信号
+        ELC <= DLC ;              // 加载命令信号
     end
 end
 

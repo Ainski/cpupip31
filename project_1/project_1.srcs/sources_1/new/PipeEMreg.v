@@ -22,10 +22,11 @@ module PipeEMreg(
     input Ew_hi,                // 写HI标志（来自EX阶段）
     input Ew_lo,                // 写LO标志（来自EX阶段）
     input Ew_dm,                // 写数据存储器标志（来自EX阶段）
-    input [1:0] Ecuttersource,  // 数据切割源选择（来自EX阶段）
     input [1:0] Ehisource,      // HI源选择（来自EX阶段）
     input [1:0] Elosource,      // LO源选择（来自EX阶段）
     input [2:0] Erfsource,      // 寄存器文件源选择（来自EX阶段）
+    input [1:0] ESC,            // 存储器命令信号（来自EX阶段）
+    input [2:0] ELC,            // 加载命令信号（来自EX阶段）
 
     output reg [31:0] Mmuler_hi, // 乘法高32位结果（传给MEM阶段）
     output reg [31:0] Mmuler_lo, // 乘法低32位结果（传给MEM阶段）
@@ -45,10 +46,11 @@ module PipeEMreg(
     output reg Mw_hi,            // 写HI标志（传给MEM阶段）
     output reg Mw_lo,            // 写LO标志（传给MEM阶段）
     output reg Mw_dn,            // 写数据存储器标志（传给MEM阶段）
-    output reg [1:0] Mcuttersource, // 数据切割源选择（传给MEM阶段）
     output reg [1:0] Mhisource,     // HI源选择（传给MEM阶段）
     output reg [1:0] Mlosource,     // LO源选择（传给MEM阶段）
-    output reg [2:0] Mrfsource     // 寄存器文件源选择（传给MEM阶段）
+    output reg [2:0] Mrfsource,     // 寄存器文件源选择（传给MEM阶段）
+    output reg [1:0] MSC,            // 存储器命令信号（传给MEM阶段）
+    output reg [2:0] MLC            // 加载命令信号（传给MEM阶段）
 );
 
 always @(posedge clk) begin
@@ -72,10 +74,11 @@ always @(posedge clk) begin
         Mw_hi <= 0;
         Mw_lo <= 0;
         Mw_dn <= 0;
-        Mcuttersource <= 0;
         Mhisource <= 0;
         Mlosource <= 0;
         Mrfsource <= 0;
+        MSC <= 0;
+        MLC <= 0;
     end else begin
         // 正常操作，将输入数据锁存到输出
         Mpc4 <= Epc4;
@@ -96,10 +99,11 @@ always @(posedge clk) begin
         Mw_hi <= Ew_hi;
         Mw_lo <= Ew_lo;
         Mw_dn <= Ew_dm;
-        Mcuttersource <= Ecuttersource;
         Mhisource <= Ehisource;
         Mlosource <= Elosource;
         Mrfsource <= Erfsource;
+        MSC <= ESC;              // 存储器命令信号
+        MLC <= ELC;              // 加载命令信号
     end
 end
 

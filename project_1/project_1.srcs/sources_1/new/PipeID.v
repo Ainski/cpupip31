@@ -58,6 +58,8 @@ module PipeID(
     output [1:0] losource,        // LO源选择输出
     output [2:0] rfsource,        // 寄存器文件源选择输出
     output [1:0] pcsource,        // PC源选择输出
+    output [1:0] SC,              // 存储器命令信号输出
+    output [2:0] LC,              // 加载命令信号输出
     output stall,                 // 流水线暂停信号输出
     output isGoto,                // 跳转指令标志输出
     output [31:0] reg28           // 特殊寄存器输出（可能是$gp寄存器）
@@ -67,13 +69,13 @@ module PipeID(
 (* MARK_DEBUG="true" *) wire[5:0] op, func;              // 操作码和功能码
 (* MARK_DEBUG="true" *) wire [4:0] rsc, rtc, rdc, mf;    // 寄存器源和目标编号
 (* MARK_DEBUG="true" *) wire [15:0] ext16;               // 16位扩展值
-(* MARK_DEBUG="true" *) wire [1:0] fwda, fwdb;           // 数据前递选择信号
+// (* MARK_DEBUG="true" *) wire [1:0] fwda, fwdb;           // 数据前递选择信号
 (* MARK_DEBUG="true" *) wire sign_ext;                    // 符号扩展标志
 (* MARK_DEBUG="true" *) wire mfc0, mtc0, eret, teq, bre, sys, beq, bne, bgez;  // 指令类型标志
 (* MARK_DEBUG="true" *) wire isBranch;                    // 分支指令标志
 (* MARK_DEBUG="true" *) wire [31:0] aout, bout, cp0, hi, lo;  // 寄存器输出值
 (* MARK_DEBUG="true" *) wire [1:0] fwhi, fwlo;           // HI和LO前递选择信号
-(* MARK_DEBUG="true" *) wire [2:0] fwda, dwdb;           // （注：这里存在重复定义，应为不同信号）
+(* MARK_DEBUG="true" *) wire [2:0] fwda, fwdb;           // （注：这里存在重复定义，应为不同信号）
 (* MARK_DEBUG="true" *) wire [4:5] ex_cause;             // 异常原因
 
 // 指令字段解析
@@ -98,46 +100,167 @@ assign Dpc4 = pc4;               // D阶段PC+4输出
 assign imm = sign_ext ? {{16{ext16[15]}}, ext16} : {16'b0, ext16};  // 立即数符号扩展
 
 // 寄存器文件模块实例化
-Regfile regfile(clk, rstn, Wena_rf, rsc, rtc, Wrn, Wdata_rf, aout, bout, reg28);
+Regfile regfile(
+    .clk(clk),
+    .rstn(rstn),
+    .wen(Wena_rf),
+    .rsc(rsc),
+    .rtc(rtc),
+    .wrn(Wrn),
+    .wdata(Wdata_rf),
+    .raout(aout),
+    .rbout(bout),
+    .reg28(reg28)
+);
 
 // A和B操作数数据前递多路选择器
-MUX8_1 alu_aout(Ecounter, Ehi, Elo, Emuler_lo, Mdm, Malu, Ealu, aout, fwda, Rsout);
-MUX8_1 alu_bout(Ecounter, Ehi, Elo, Emuler_lo, Mdm, Malu, Ealu, bout, fwdb, Rtout);
+MUX8_1 alu_aout(
+    .d0(Ecounter),
+    .d1(Ehi),
+    .d2(Elo),
+    .d3(Emuler_lo),
+    .d4(Mdm),
+    .d5(Malu),
+    .d6(Ealu),
+    .d7(aout),
+    .sel(fwda),
+    .y(Rsout)
+);
+MUX8_1 alu_bout(
+    .d0(Ecounter),
+    .d1(Ehi),
+    .d2(Elo),
+    .d3(Emuler_lo),
+    .d4(Mdm),
+    .d5(Malu),
+    .d6(Ealu),
+    .d7(bout),
+    .sel(fwdb),
+    .y(Rtout)
+);
 
 // CP0协处理器模块实例化
 CP0 cp0reg(
-    clk, rstn,
-    mfc0, mtc0, eret, teq, bre, sys,
-    wcau, wsta, wepc, woth,
-    rsc, ex_cause,
-    Rtout,
-    CP0out
+    .clk(clk),
+    .rstn(rstn),
+    .mfc0(mfc0),
+    .mtc0(mtc0),
+    .eret(eret),
+    .teq(teq),
+    .bre(bre),
+    .sys(sys),
+    .wcau(wcau),
+    .wsta(wsta),
+    .wepc(wepc),
+    .woth(woth),
+    .rsc(rsc),
+    .ex_cause(ex_cause),
+    .rdata(Rtout),
+    .cp0out(CP0out)
 );
 
 // HI寄存器模块实例化
-Reg hireg(clk, rstn, Wena_hi, Wdata_hi, hi);
-MUX4_1 hiout(Er, Emuler_hi, Ehi, hi, fwhi, Hiout);
+Reg hireg(
+    .clk(clk),
+    .rstn(rstn),
+    .wen(Wena_hi),
+    .wdata(Wdata_hi),
+    .rdata(hi)
+);
+MUX4_1 hiout(
+    .d0(Er),
+    .d1(Emuler_hi),
+    .d2(Ehi),
+    .d3(hi),
+    .sel(fwhi),
+    .y(Hiout)
+);
 
 // LO寄存器模块实例化
-Reg loreg(clk, rstn, Wena_lo, Wdata_lo, lo);
-MUX4_1 loout(Eq, Emuler_lo, Elo, lo, fwlo, Loout);
+Reg loreg(
+    .clk(clk),
+    .rstn(rstn),
+    .wen(Wena_lo),
+    .wdata(Wdata_lo),
+    .rdata(lo)
+);
+MUX4_1 loout(
+    .d0(Eq),
+    .d1(Emuler_lo),
+    .d2(Elo),
+    .d3(lo),
+    .sel(fwlo),
+    .y(Loout)
+);
 
 // 比较模块实例化（用于分支指令）
-Compare_ID compare(Rsout, Rtout, beq, bne, bgez, teq, isBranch);
+Compare_ID compare(
+    .a(Rsout),
+    .b(Rtout),
+    .beq(beq),
+    .bne(bne),
+    .bgez(bgez),
+    .teq(teq),
+    .isBranch(isBranch)
+);
 
 // 流水线控制单元模块实例化
 PipeControlUnit CU(
-    rsc, rtc, rdc, func, op, mf, isBranch,
-    EisGoto,
-    Ern, Mrn,
-    Ew_rf, Mw_rf, Ew_hi, Ew_lo,
-    Erfsource, Mrfsource, Ehisource, Elosourse,
-    fwhi, fwlo, fwda, fwdb,
-    rn, sign, div, mfc0, mfc0, mtc0, sys, eret, bre, teq, beq, bne, bgez, aluc,
-    wcau, wsta, wepc, wotr, w_hi, w_lo, w_rf, w_dm,
-    ex_cause,
-    asource, bsource, cuttersource, hisource, losource, rfsource, pcsource,
-    stall, isGoto
+    .rsc(rsc),
+    .rtc(rtc),
+    .rdc(rdc),
+    .func(func),
+    .op(op),
+    .mf(mf),
+    .isBranch(isBranch),
+    .EisGoto(EisGoto),
+    .Ern(Ern),
+    .Mrn(Mrn),
+    .Ew_rf(Ew_rf),
+    .Mw_rf(Mw_rf),
+    .Ew_hi(Ew_hi),
+    .Ew_lo(Ew_lo),
+    .Erfsource(Erfsource),
+    .Mrfsource(Mrfsource),
+    .Ehisource(Ehisource),
+    .Elosource(Elosource),  // Fixed the typo: Elosourse -> Elosource
+    .fwhi(fwhi),
+    .fwlo(fwlo),
+    .fwda(fwda),
+    .fwdb(fwdb),
+    .rn(rn),
+    .sign(sign),
+    .div(div),
+    .mfc0(mfc0),
+    .mtc0(mtc0),
+    .sys(sys),
+    .eret(eret),
+    .bre(bre),
+    .teq(teq),
+    .beq(beq),
+    .bne(bne),
+    .bgez(bgez),
+    .aluc(aluc),
+    .wcau(wcau),
+    .wsta(wsta),
+    .wepc(wepc),
+    .wotr(wotr),
+    .w_hi(w_hi),
+    .w_lo(w_lo),
+    .w_rf(w_rf),
+    .w_dm(w_dm),
+    .ex_cause(ex_cause),
+    .asource(asource),
+    .bsource(bsource),
+    .cuttersource(cuttersource),
+    .hisource(hisource),
+    .losource(losource),
+    .rfsource(rfsource),
+    .pcsource(pcsource),
+    .SC(SC),
+    .LC(LC),
+    .stall(stall),
+    .isGoto(isGoto)
 );
 
 endmodule

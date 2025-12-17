@@ -35,6 +35,9 @@ module PipeMWreg(
     output reg [31:0] Wpc4,       // 传递给WB阶段的PC+4值
     output reg [31:0] Wa,         // 传递给WB阶段的寄存器A值
     output reg [31:0] Wb,         // 传递给WB阶段的寄存器B值
+    output reg [31:0] Wcp0,       // 传递给WB阶段的CP0相关数据
+    output reg [31:0] Whi,        // 传递给WB阶段的HI寄存器值
+    output reg [31:0] Wlo,        // 传递给WB阶段的LO寄存器值
     output reg [4:0] Wrn,         // 传递给WB阶段的目标寄存器编号
     output reg Ww_rf,             // 传递给WB阶段的写寄存器文件标志
     output reg Ww_hi,             // 传递给WB阶段的写HI标志

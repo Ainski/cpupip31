@@ -31,14 +31,28 @@ module PipeWB(
     // 1: 除法余数(r)
     // 2: 乘法高32位结果(muler_hi)
     // 3: 寄存器A的值(a)
-    MUX4_1 mux_hi(32'b0, r, muler_hi, a, hisource, Wdata_hi);
+    MUX4_1 mux_hi(
+        .d0(32'b0),
+        .d1(r),
+        .d2(muler_hi),
+        .d3(a),
+        .sel(hisource),
+        .y(Wdata_hi)
+    );
 
     // LO寄存器写入数据选择：根据losource信号选择数据源
     // 0: 0 (不写入)
     // 1: 除法余数(r)
     // 2: 乘法低32位结果(muler_lo)
     // 3: 寄存器B的值(b)
-    MUX4_1 mux_lo(32'b0, r, muler_lo, b, losource, Wdata_lo);
+    MUX4_1 mux_lo(
+        .d0(32'b0),
+        .d1(r),
+        .d2(muler_lo),
+        .d3(b),
+        .sel(losource),
+        .y(Wdata_lo)
+    );
 
     // 寄存器文件写入数据选择：根据rfsource信号选择数据源
     // 0: 0 (不写入)
@@ -49,7 +63,18 @@ module PipeWB(
     // 5: LO寄存器值(lo)
     // 6: 从数据存储器读取的数据(dm)
     // 7: ALU结果(alu)
-    MUX8_1 mux_rf(32'b0, cp0, muler_lo, counter, hi, lo, dm, alu, rfsource, Wdata_rf);
+    MUX8_1 mux_rf(
+        .d0(32'b0),
+        .d1(cp0),
+        .d2(muler_lo),
+        .d3(counter),
+        .d4(hi),
+        .d5(lo),
+        .d6(dm),
+        .d7(alu),
+        .sel(rfsource),
+        .y(Wdata_rf)
+    );
 
     // 直接传递目标寄存器编号和写使能信号
     assign Wrn = rn;
