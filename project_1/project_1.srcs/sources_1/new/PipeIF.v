@@ -21,8 +21,8 @@ module PipeIF (
     // 3: 分支指令计算的PC值
     // 4: 跳转指令的PC值
     // 5: 当前PC+4
-    MUXt_1 next_pc(32'h4, cpc, rpc, bpc, jpc, pc4, pcsource, npc);
+    MUX6_1 next_pc(32'h4, cpc, rpc, bpc, jpc, pc4, pcsource, npc);
 
     // 从指令存储器中获取指令，地址为pc[11:2]（使用pc的[11:2]位作为地址）
-    IMEM_ip imem(pc[11:2], instruction);
+    IMEM_ip imem(pc[12:2], instruction);
 endmodule
