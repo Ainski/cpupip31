@@ -25,7 +25,7 @@ module PipeID(
     input [2:0] Erfsource,        // EX阶段寄存器文件源选择
     input [2:0] Mrfsource,        // MEM阶段寄存器文件源选择
     input [1:0] Ehisource,        // EX阶段HI源选择
-    input [1:0] Elosourse,        // EX阶段LO源选择（注意：这里可能是拼写错误，应为Elosource）
+    input [1:0] Elosource,        // EX阶段LO源选择（注意：这里可能是拼写错误，应为Elosource）
     input [31:0] Wdata_rf,        // 写入寄存器文件的数据
     input [4:0] Wrn,              // 写入寄存器编号
     input Wena_rf,                // 写入寄存器文件使能

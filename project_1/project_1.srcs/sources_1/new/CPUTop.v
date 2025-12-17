@@ -138,7 +138,7 @@ PipeID id_stage (
     .Erfsource(ex_rfsource),
     .Mrfsource(mem_rfsource),
     .Ehisource(ex_hisource),
-    .Elosource(ex_losource), // 注意：原模块中拼写错误 - Elosourse
+    .Elosource(ex_losource), 
     .Wdata_rf(wb_data_rf),
     .Wrn(wb_wrn),
     .Wena_rf(wb_w_rf),
