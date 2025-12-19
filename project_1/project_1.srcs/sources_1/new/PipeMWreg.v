@@ -21,7 +21,6 @@ module PipeMWreg(
     input Mw_rf,                  // MEM阶段写寄存器文件标志
     input Mw_hi,                  // MEM阶段写HI标志
     input Mw_lo,                  // MEM阶段写LO标志
-    input [1:0] Mcuttersource,    // MEM阶段数据切割源选择
     input [1:0] Mhisource,        // MEM阶段HI源选择
     input [1:0] Mlosource,        // MEM阶段LO源选择
     input [2:0] Mrfsource,        // MEM阶段寄存器文件源选择
@@ -42,7 +41,6 @@ module PipeMWreg(
     output reg Ww_rf,             // 传递给WB阶段的写寄存器文件标志
     output reg Ww_hi,             // 传递给WB阶段的写HI标志
     output reg Ww_lo,             // 传递给WB阶段的写LO标志
-    output reg [1:0] Wcuttersource, // 传递给WB阶段的数据切割源选择
     output reg [1:0] Whisource,   // 传递给WB阶段的HI源选择
     output reg [1:0] Wlosource,   // 传递给WB阶段的LO源选择
     output reg [2:0] Wrfsource    // 传递给WB阶段的寄存器文件源选择
@@ -68,7 +66,6 @@ always @(posedge clk) begin
         Ww_rf <= 0;
         Ww_hi <= 0;
         Ww_lo <= 0;
-        Wcuttersource <= 0;
         Whisource <= 0;
         Wlosource <= 0;
         Wrfsource <= 0;
@@ -91,7 +88,6 @@ always @(posedge clk) begin
         Ww_rf <= Mw_rf;
         Ww_hi <= Mw_hi;
         Ww_lo <= Mw_lo;
-        Wcuttersource <= Mcuttersource;
         Whisource <= Mhisource;
         Wlosource <= Mlosource;
         Wrfsource <= Mrfsource;

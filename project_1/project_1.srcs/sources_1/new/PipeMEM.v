@@ -23,7 +23,6 @@ module PipeMEM(
     input [1:0] hisource,         // HI源选择
     input [1:0] losource,         // LO源选择
     input [2:0] rfsource,         // 寄存器文件源选择
-    input [1:0] alusource,        // ALU源选择
     input [1:0] SC,               // 存储器命令信号
     input [2:0] LC,               // 加载命令信号
     output [31:0] Mmuler_hi,      // 传递给WB阶段的乘法高32位结果

@@ -11,6 +11,9 @@ module PipeWB(
     input [31:0] pc4,             // PC+4值
     input [31:0] a,               // 寄存器A的值
     input [31:0] b,               // 寄存器B的值
+    input [31:0] cp0,             // CP0数据
+    input [31:0] hi,              // HI寄存器值
+    input [31:0] lo,              // LO寄存器值
     input [4:0] rn,               // 目标寄存器编号
     input w_rf,                   // 写寄存器文件标志
     input w_hi,                   // 写HI标志

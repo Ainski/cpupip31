@@ -15,7 +15,7 @@ module PipeIF (
     assign pc4 = pc + 32'h4;
 
     // 根据pcsource信号选择下一个PC值
-    // 0: 当前PC+4
+    // 0: 32'h4
     // 1: CP0提供的PC值
     // 2: 返回指令的PC值
     // 3: 分支指令计算的PC值

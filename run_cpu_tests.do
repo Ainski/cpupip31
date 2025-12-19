@@ -1,4 +1,4 @@
-# ModelSim Batch Script for CPU Pipeline Testing
+# ModelSim Batch Script for 5-Stage Pipeline CPU Testing
 
 # Clean up any existing libraries and files
 if {[file exists work]} {
@@ -12,25 +12,38 @@ catch {file delete _246tb_ex10_result.txt}
 vlib work
 
 # Compile IP core files first (these are required for the design to work)
-vlog -work work -quiet ./cpupip8.srcs/sources_1/ip/dmem1/dist_mem_gen_v8_0_10/simulation/dist_mem_gen_v8_0.v
-vlog -work work -quiet ./cpupip8.srcs/sources_1/ip/dmem1/sim/dmem1.v
+vlog -work work -quiet ./project_1/project_1.srcs/sources_1/ip/dmem1/dist_mem_gen_v8_0_10/simulation/dist_mem_gen_v8_0.v
+vlog -work work -quiet ./project_1/project_1.srcs/sources_1/ip/dmem1/sim/dmem1.v
 
-# Compile source files
-vlog -work work -quiet ./cpupip8.srcs/sources_1/new/def.v
-vlog -work work -quiet ./cpupip8.srcs/sources_1/new/alu.v
-vlog -work work -quiet ./cpupip8.srcs/sources_1/new/BJudge.v
-vlog -work work -quiet ./cpupip8.srcs/sources_1/new/PCreg.v
-vlog -work work -quiet ./cpupip8.srcs/sources_1/new/DMEM.v
-vlog -work work -quiet ./cpupip8.srcs/sources_1/new/EX_MEM.v
-vlog -work work -quiet ./cpupip8.srcs/sources_1/new/ID_EX.v
-vlog -work work -quiet ./cpupip8.srcs/sources_1/new/IF_ID.v
-vlog -work work -quiet ./cpupip8.srcs/sources_1/new/IMEM.v
-vlog -work work -quiet ./cpupip8.srcs/sources_1/new/MEM_WB.v
-vlog -work work -quiet ./cpupip8.srcs/sources_1/new/NPCmaker.v
-vlog -work work -quiet ./cpupip8.srcs/sources_1/new/regfile.v
-vlog -work work -quiet ./cpupip8.srcs/sources_1/new/cpu.v
-vlog -work work -quiet ./cpupip8.srcs/sources_1/new/sccomp_dataflow.v
-vlog -work work -quiet ./cpupip8.srcs/sim_1/new/_246tb_ex10_tb.v
+# Compile source files for 5-stage pipeline CPU
+vlog -work work -quiet ./project_1/project_1.srcs/sources_1/new/def.v
+vlog -work work -quiet ./project_1/project_1.srcs/sources_1/new/ALU.v
+vlog -work work -quiet ./project_1/project_1.srcs/sources_1/new/Compare_ID.v
+vlog -work work -quiet ./project_1/project_1.srcs/sources_1/new/Counter.v
+vlog -work work -quiet ./project_1/project_1.srcs/sources_1/new/CP0.v
+vlog -work work -quiet ./project_1/project_1.srcs/sources_1/new/DIVer.v
+vlog -work work -quiet ./project_1/project_1.srcs/sources_1/new/DMEM.v
+vlog -work work -quiet ./project_1/project_1.srcs/sources_1/new/MULer.v
+vlog -work work -quiet ./project_1/project_1.srcs/sources_1/new/MUX2_1.v
+vlog -work work -quiet ./project_1/project_1.srcs/sources_1/new/MUX4_1.v
+vlog -work work -quiet ./project_1/project_1.srcs/sources_1/new/MUX6_1.v
+vlog -work work -quiet ./project_1/project_1.srcs/sources_1/new/MUX8_1.v
+vlog -work work -quiet ./project_1/project_1.srcs/sources_1/new/PcReg.v
+vlog -work work -quiet ./project_1/project_1.srcs/sources_1/new/PipeControlUnit.v
+vlog -work work -quiet ./project_1/project_1.srcs/sources_1/new/PipeDEreg.v
+vlog -work work -quiet ./project_1/project_1.srcs/sources_1/new/PipeEMreg.v
+vlog -work work -quiet ./project_1/project_1.srcs/sources_1/new/PipeEXE.v
+vlog -work work -quiet ./project_1/project_1.srcs/sources_1/new/PipeID.v
+vlog -work work -quiet ./project_1/project_1.srcs/sources_1/new/PipeIF.v
+vlog -work work -quiet ./project_1/project_1.srcs/sources_1/new/PipeIR.v
+vlog -work work -quiet ./project_1/project_1.srcs/sources_1/new/PipeMEM.v
+vlog -work work -quiet ./project_1/project_1.srcs/sources_1/new/PipeMWreg.v
+vlog -work work -quiet ./project_1/project_1.srcs/sources_1/new/PipeWB.v
+vlog -work work -quiet ./project_1/project_1.srcs/sources_1/new/Reg.v
+vlog -work work -quiet ./project_1/project_1.srcs/sources_1/new/Regfile.v
+vlog -work work -quiet ./project_1/project_1.srcs/sources_1/new/PiplineCPU.v
+vlog -work work -quiet ./project_1/project_1.srcs/sources_1/new/IMEM_ip.v
+vlog -work work -quiet ./project_1/project_1.srcs/sim_1/new/_246tb_ex10_tb.v
 
 # Create results directory using Tcl commands
 set results_dir "./test_scripts/results"
@@ -71,11 +84,11 @@ proc run_single_test {test_file results_dir} {
         catch {file delete ./_246tb_ex10_result.txt}
     }
 
-    # Backup original IMEM.v
-    file copy -force ./cpupip8.srcs/sources_1/new/IMEM.v ./cpupip8.srcs/sources_1/new/IMEM.v.bak
+    # Backup original IMEM_ip.v
+    file copy -force ./project_1/project_1.srcs/sources_1/new/IMEM_ip.v ./project_1/project_1.srcs/sources_1/new/IMEM_ip.v.bak
 
-    # Read the original IMEM.v
-    set fid [open "./cpupip8.srcs/sources_1/new/IMEM.v" r]
+    # Read the original IMEM_ip.v
+    set fid [open "./project_1/project_1.srcs/sources_1/new/IMEM_ip.v" r]
     set content [read $fid]
     close $fid
 
@@ -83,9 +96,9 @@ proc run_single_test {test_file results_dir} {
     set lines [split $content "\n"]
     set new_lines {}
     foreach line $lines {
-        if {[string match "*\$readmemh*" $line] && [string match "*IMEMreg*" $line] && ![string match "*//*" [string trimleft $line]]} {
+        if {[string match "*\$readmemh*" $line] && [string match "*IMEMreg*" $line] && [string match "*//*" [string trimleft $line]] == 0} {
             # Found the active $readmemh line, replace it
-            lappend new_lines "       \$readmemh(\"E:/Homeworks/cpupip8/$test_file\", IMEMreg);"
+            lappend new_lines "        \$readmemh(\"E:/Homeworks/cpupip31/$test_file\", IMEMreg);"
         } else {
             lappend new_lines $line
         }
@@ -93,13 +106,13 @@ proc run_single_test {test_file results_dir} {
 
     set new_content [join $new_lines "\n"]
 
-    # Write the modified IMEM.v
-    set fid [open "./cpupip8.srcs/sources_1/new/IMEM.v" w]
+    # Write the modified IMEM_ip.v
+    set fid [open "./project_1/project_1.srcs/sources_1/new/IMEM_ip.v" w]
     puts -nonewline $fid $new_content
     close $fid
 
-    # Recompile only IMEM.v
-    vlog -work work -quiet ./cpupip8.srcs/sources_1/new/IMEM.v
+    # Recompile only IMEM_ip.v and the testbench
+    vlog -work work -quiet ./project_1/project_1.srcs/sources_1/new/IMEM_ip.v
 
     # Load and run simulation
     vsim -quiet work._246tb_ex10_tb
@@ -118,12 +131,12 @@ proc run_single_test {test_file results_dir} {
         puts "Warning: Simulation result file not found: $sim_result_file"
     }
 
-    # Restore original IMEM.v
-    file copy -force ./cpupip8.srcs/sources_1/new/IMEM.v.bak ./cpupip8.srcs/sources_1/new/IMEM.v
-    file delete ./cpupip8.srcs/sources_1/new/IMEM.v.bak
+    # Restore original IMEM_ip.v
+    file copy -force ./project_1/project_1.srcs/sources_1/new/IMEM_ip.v.bak ./project_1/project_1.srcs/sources_1/new/IMEM_ip.v
+    file delete ./project_1/project_1.srcs/sources_1/new/IMEM_ip.v.bak
 
     # Use existing standard result file from testdata/
-    set original_std_result_file "E:/Homeworks/cpupip8/$test_file"
+    set original_std_result_file "E:/Homeworks/cpupip31/$test_file"
     regsub {\.hex\.txt$} $original_std_result_file ".result.txt" std_result_file
 
     # Copy standard result file to the results directory
@@ -156,19 +169,19 @@ proc run_single_test {test_file results_dir} {
                 break
             }
         }
-        
+
         if {$success} {
             puts "RESULT: PASS - $test_file"
             return 1
         } else {
             puts "RESULT: FAIL - $test_file"
-            
+
             # 输出失败的具体信息
             puts "Comparison output:"
             puts "=================================================================================="
             puts $comp_content
             puts "=================================================================================="
-            
+
             return 0
         }
     } else {

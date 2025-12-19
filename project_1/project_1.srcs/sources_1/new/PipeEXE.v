@@ -74,27 +74,23 @@ module PipeEXE(
     wire zero, carry, negative, overflow;  // ALU状态信号
 
     Counter counter (
-        .d(a),
-        .q(Ecounter)
+        .rs(a),
+        .clz_out(Ecounter)
     );  // 计数器模块，输入a，输出Ecounter
     MULer muler (
-        .clk(clk),
-        .rstn(rstn),
         .sign(sign),
         .a(a),
         .b(b),
-        .hi(Emuler_hi),
-        .lo(Emuler_lo)
+        .HI(Emuler_hi),
+        .LO(Emuler_lo)
     );  // 乘法器模块
     DIVer diver (
-        .clk(clk),
-        .rstn(rstn),
         .sign(sign),
-        .div_en(div),
+        .div(div),
         .a(a),
         .b(b),
-        .q(Eq),
-        .r(Er)
+        .quotient(Eq),
+        .remainder(Er)
     );  // 除法器模块
     MUX2_1 mux_a(
         .d0({27'b0, imm[10:6]}),
@@ -112,10 +108,11 @@ module PipeEXE(
         .aluc(aluc),
         .a(ain),
         .b(bin),
-        .y(saout),
+        .r(Ealu),
         .zero(zero),
         .carry(carry),
         .negative(negative),
         .overflow(overflow)
     );  // ALU模块执行运算
+    assign saout = Ealu;
 endmodule

@@ -6,7 +6,7 @@
 
 `include "def.v"
 
-module IMEM(
+module IMEM_ip(
     input [10:0] a,       // Address input (pc[11:2] -> 10-bit address)
     output [31:0] spo    // Instruction output
 );
@@ -20,7 +20,7 @@ module IMEM(
     assign spo = IMEMreg[a];  // Address directly maps to memory location
 
     initial begin
-        //$readmemh("E:/Homeworks/cpupip31/testdata/1_addi.hex.txt", IMEMreg);
+        $readmemh("E:/Homeworks/cpupip31/testdata/1_addi.hex.txt", IMEMreg);
         //$readmemh("E:/Homeworks/cpupip31/testdata/2_addiu.hex.txt", IMEMreg);
         //$readmemh("E:/Homeworks/cpupip31/testdata/3_andi.hex.txt", IMEMreg);
         //$readmemh("E:/Homeworks/cpupip31/testdata/4_ori.hex.txt", IMEMreg);

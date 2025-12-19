@@ -60,6 +60,7 @@
 
 // 算术逻辑操作
 `define FUNC_ADD       6'b100000
+`define FUNC_CLZ       6'b100000  // 注意：与ADD相同，但opcode不同
 `define FUNC_ADDU      6'b100001
 `define FUNC_SUB       6'b100010
 `define FUNC_SUBU      6'b100011
@@ -162,7 +163,7 @@
 `define MEM_LOAD_WORD     3'b000
 `define MEM_LOAD_HALF_U   3'b001   // 无符号半字
 `define MEM_LOAD_HALF_S   3'b010   // 有符号半字
-`define MEM_LOAD_BYTE     3'b100   // 有符号字节
+`define MEM_LOAD_BYTE_S   3'b100   // 有符号字节
 `define MEM_LOAD_BYTE_U   3'b011   // 无符号字节
 
 // ============================================================
@@ -197,12 +198,12 @@
 // PC源选择定义
 // ============================================================
 
-`define PC_SRC_SEQ      2'b00    // 顺序执行 (PC+4)
-`define PC_SRC_JUMP     2'b01    // 跳转地址
-`define PC_SRC_BRANCH   2'b10    // 分支地址
-`define PC_SRC_REG      2'b11    // 寄存器地址（用于JR）
-`define PC_SRC_EXCEPTION 2'b11   // 异常地址
-
+`define PC_SRC_RESET      3'b000   // 0: 32'h4（复位时）
+`define PC_SRC_CP0        3'b001   // 1: CP0提供的PC值（异常处理）
+`define PC_SRC_RETURN     3'b010   // 2: 返回指令的PC值（eret）
+`define PC_SRC_BRANCH     3'b011   // 3: 分支指令计算的PC值
+`define PC_SRC_JUMP       3'b100   // 4: 跳转指令的PC值
+`define PC_SRC_SEQ_PLUS4  3'b101   // 5: 当前PC+4（顺序执行）
 // ============================================================
 // HI/LO寄存器源选择定义
 // ============================================================
@@ -251,11 +252,6 @@
 // 其他控制信号定义
 // ============================================================
 
-// 数据切割源选择
-`define CUTTER_SRC_NONE  2'b00   // 不切割
-`define CUTTER_SRC_HALF  2'b01   // 半字切割
-`define CUTTER_SRC_BYTE  2'b10   // 字节切割
-
 // CP0写控制
 `define CP0_WRITE_NONE  1'b0     // 不写入CP0
 `define CP0_WRITE_EN    1'b1     // 写入CP0
@@ -267,3 +263,7 @@
 // 跳转控制
 `define GOTO_DISABLE    1'b0     // 非跳转指令
 `define GOTO_ENABLE     1'b1     // 跳转指令
+
+`define SYSCALL  5'b01000
+`define BREAK    5'b01001
+`define TEQ      5'b01101

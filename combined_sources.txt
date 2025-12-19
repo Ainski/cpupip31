@@ -1,0 +1,3407 @@
+# Combined content from project_1\project_1.srcs\sources_1\new
+
+This file contains all the Verilog source files from the sources_1/new directory combined into a single file.
+
+---
+
+## ALU.v`timescale 1ns / 1ps
+module ALU( 
+input [31:0] a,   //32 位输入，操作数1 
+input [31:0] b,   //32 位输入，操作数2 
+input [3:0] aluc, //4位输入，控制 alu 的操作 
+output reg [31:0] r, //32 位输出，由a、b经过aluc指定的操作生成 
+output reg zero,        
+output reg carry,    
+//0 标志位 
+  // 进位标志位 
+output reg negative,   // 负数标志位 
+output reg overflow   // 溢出标志位 
+);
+  always @ (*) begin 
+    case (aluc) 
+      4'b0000://无符号加法
+      begin
+        r = a + b;
+        zero = (r == 0);
+        carry = (a[31] & b[31]) | (a[31] & ~r[31]) | (b[31] & ~r[31]);
+        negative = (r[31] == 1);
+        overflow = 0;
+      end
+      4'b0010://有符号加法
+      begin
+        r = $signed(a) + $signed(b);
+        zero = (r == 0);
+        carry = 0;
+        negative = (r[31] == 1);
+        overflow = (a[31] & b[31] & ~r[31]) | (~a[31] & ~b[31] & r[31]);
+      end
+      4'b0001://无符号减法
+      begin
+        r = a - b;
+        zero = (r == 0);
+        carry = (~a[31] & b[31]) | (~a[31] & r[31]) | (~b[31] & r[31]);
+        negative = (r[31] == 1);
+        overflow = 0;
+      end
+      4'b0011://有符号减法
+      begin
+        r = $signed(a) - $signed(b);
+        zero = (r == 0);
+        carry = 0;
+        negative = (r[31] == 1);
+        overflow = (~a[31] & b[31] & r[31]) | (a[31] & ~b[31] & ~r[31]);
+      end
+      4'b0100://与运算
+      begin
+        r = a & b;
+        zero = (r == 0);
+        carry = 0;
+        negative = (r[31] == 1);
+        overflow = 0;
+      end
+      4'b0101://或运算
+      begin
+        r = a | b;
+        zero = (r == 0);
+        carry = 0;
+        negative = (r[31] == 1);
+        overflow = 0;
+      end
+      4'b0110://异或运算
+      begin
+        r = a ^ b;
+        zero = (r == 0);
+        carry = 0;
+        negative = (r[31] == 1);
+        overflow = 0;
+      end
+      4'b0111://nor运算
+      begin
+        r = ~(a | b);
+        zero = (r == 0);
+        carry = 0;
+        negative = (r[31] == 1);
+        overflow = 0;
+      end
+      4'b1000://Lui运算
+      begin
+        r={b[15:0],16'b0};
+        zero = (r==0);
+        carry = 0;
+        negative = (r[31] == 1);
+        overflow = 0;
+      end
+      4'b1001://Lui运算
+      begin
+        r={b[15:0],16'b0};
+        zero = (r==0);
+        carry = 0;
+        negative = (r[31] == 1);
+        overflow = 0;
+      end
+      4'b1011://Slt运算
+      begin
+        r = ($signed(a) < $signed(b));
+        zero = (($signed(a) - $signed(b)) == 0);
+        carry = 0;
+        negative = ($signed(a) < $signed(b));
+        overflow = 0;
+      end
+      4'b1010://Sltu运算
+      begin
+        r = (a < b);
+        zero = ((a-b) == 0);
+        carry = (a<b);
+        negative = (r[31] == 1);
+        overflow = 0;
+      end
+      4'b1100://Sra运算
+      begin
+        r=($signed(b) >>> $signed(a));
+        zero = (r == 0);
+        //carry为最后一次被移出的位的数值
+        if(a<32&&a>0)
+            carry = b[a];
+        else if(a==0)
+            carry = 0;
+        else
+            carry=b[31];
+        negative = (r[31] == 1);
+        overflow = 0;
+      end
+      4'b1101://srl
+      begin
+        r=b>>a;
+        zero = (r == 0);
+        //carry为最后一次被移出的位的数值
+        if(a<32&&a>0)
+            carry = b[a];
+        else
+            carry = 0;
+        negative = (r[31] == 1);
+        overflow = 0;
+      end
+      4'b1110://sll
+      begin
+        r=b<<a;
+        zero = (r == 0);
+        //carry为最后一次被移出的位的数值
+        if(a<32&&a>0)
+            carry=b[32-a];
+        else
+            carry=0;
+        negative = (r[31] == 1);
+        overflow = 0;
+      end
+      4'b1111://sla
+      begin
+        r=b<<a;
+        zero = (r == 0);
+        //carry为最后一次被移出的位的数值
+        carry = b[31];
+        negative = (r[31] == 1);
+        overflow = 0;
+      end
+    endcase
+    end
+endmodule  
+  
+## Compare_ID.v  
+// Compare_ID 模块
+// 功能：比较两个输入值，根据不同的分支指令类型判断是否发生分支转移
+module Compare_ID(
+    input [31:0] a,           // 第一个操作数 (通常来自寄存器Rs)
+    input [31:0] b,           // 第二个操作数 (通常来自寄存器Rt或常量)
+    input beq,                // BEQ 指令信号 (Branch if Equal)
+    input bne,                // BNE 指令信号 (Branch if Not Equal)
+    input bgez,               // BGEZ 指令信号 (Branch if Greater or Equal Than Zero)
+    input teq,                // TEQ 指令信号 (Trap if EQual)，对于分支而言可当作BEQ处理
+    output isBranch           // 是否发生分支的输出信号
+);
+
+// 根据不同的分支指令类型进行比较，并产生分支信号
+assign isBranch =
+    (beq & (a == b)) |                       // BEQ: 如果 a 等于 b 则分支
+    (bne & (a != b)) |                       // BNE: 如果 a 不等于 b 则分支
+    (bgez & ($signed(a) >= 0)) |             // BGEZ: 如果 a >= 0 则分支 (对寄存器rs值做有符号比较)
+    (teq & (a == b));                        // TEQ: 如果 a 等于 b 则可能触发陷阱，此处简单按相等处理
+
+endmodule  
+  
+## Counter.v  
+`timescale 1ns / 1ps
+
+module Counter(
+    input  [31:0] rs,
+    output  [31:0] clz_out
+);
+
+wire [31:0] clz_terms;
+
+// 生成32个条件项，每个项对应原始代码中的一个与项
+generate
+    genvar i;
+    for (i = 0; i < 32; i = i + 1) begin : term_gen
+        assign clz_terms[i] = &(~rs[31:i]); // 计算从最低位到第i位的所有位取反后的与结果
+    end
+endgenerate
+
+// 累加所有条件项得到最终结果
+assign clz_out =(clz_terms[0] + clz_terms[1] + clz_terms[2] + clz_terms[3] +
+                 clz_terms[4] + clz_terms[5] + clz_terms[6] + clz_terms[7] +
+                 clz_terms[8] + clz_terms[9] + clz_terms[10] + clz_terms[11] +
+                 clz_terms[12] + clz_terms[13] + clz_terms[14] + clz_terms[15] +
+                 clz_terms[16] + clz_terms[17] + clz_terms[18] + clz_terms[19] +
+                 clz_terms[20] + clz_terms[21] + clz_terms[22] + clz_terms[23] +
+                 clz_terms[24] + clz_terms[25] + clz_terms[26] + clz_terms[27] +
+                 clz_terms[28] + clz_terms[29] + clz_terms[30] + clz_terms[31]);
+
+endmodule 
+ 
+## CP0.v 
+`timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Company: 
+// Engineer: 
+// 
+// Create Date: 2025/06/13 15:00:18
+// Design Name: 
+// Module Name: cp0
+// Project Name: 
+// Target Devices: 
+// Tool Versions: 
+// Description: 
+// 
+// Dependencies: 
+// 
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
+// 
+//////////////////////////////////////////////////////////////////////////////////
+
+
+module CP0(
+    input clk,
+    input rst,
+    input mfc0,
+    input mtc0,
+    input [31:0] npc,
+    input [4:0] rdc,
+    input [31:0] wdata,
+    input exception,
+    input eret,
+    input [4:0] cause,
+    input intr,
+    output [31:0] Erdata,
+    output [31:0] status,
+    output reg timer_int,
+    output [31:0] exc_addr
+    );
+    parameter  SYSCALL     =   5'b01000,
+               BREAK      =   5'b01001,
+               TEQ        =   5'b01101;
+    reg [31:0] ereg[0:31];
+    wire [31:0] epc;
+    //assign cause=ereg[13];
+    assign epc=ereg[14];
+    // assign Erdata = exception && mtc0 ? ereg[rdc] : 32'bz;
+    // assign status = exception && mfc0 ? ereg[12] : 32'bz;
+    assign Erdata = exception && mfc0 ? ereg[rdc] : 32'bz;
+    assign status = ereg[12];
+    assign exc_addr = exception && eret ? epc : 32'bz;
+    assign real_exc = ereg[12][0] && (!ereg[12][8]&&cause==SYSCALL||!ereg[12][9]&&cause==BREAK||!ereg[12][10]&&cause==TEQ&&intr);
+    always @ (posedge clk or posedge rst) begin
+        if( rst) begin
+            ereg[0]=0;
+            ereg[1]=0;
+            ereg[2]=0;
+            ereg[3]=0;
+            ereg[4]=0;
+            ereg[5]=0;
+            ereg[6]=0;
+            ereg[7]=0;
+            ereg[8]=0;
+            ereg[9]=0;
+            ereg[10]=0;
+            ereg[11]=0;
+            ereg[12]=0;
+            ereg[13]=0;
+            ereg[14]=0;
+            ereg[15]=0;
+            ereg[16]=0;
+            ereg[17]=0;
+            ereg[18]=0;
+            ereg[19]=0;
+            ereg[20]=0;
+            ereg[21]=0;
+            ereg[22]=0;
+            ereg[23]=0;
+            ereg[24]=0;
+            ereg[25]=0;
+            ereg[26]=0;
+            ereg[27]=0;
+            ereg[28]=0;
+            ereg[29]=0;
+            ereg[30]=0;
+            ereg[31]=0;
+        end else begin
+            if( mtc0) begin
+                ereg[rdc] = wdata;
+            end
+            else if(real_exc) begin
+                ereg[13] = {25'b0,cause,2'b0};
+                ereg[12] = ereg[12]<<5;
+                ereg[14] = npc;
+            end
+            else if (eret) begin
+                ereg[12] = ereg[12]>>5;
+            end 
+        end
+    end
+endmodule
+ 
+ 
+## def.v 
+// ============================================================
+// 指令操作码 (OPCODE) 定义
+// ============================================================
+
+// R型指令操作码
+`define OP_R_TYPE      6'b000000
+
+// I型指令操作码
+`define OP_BGEZ        6'b000001
+`define OP_J           6'b000010
+`define OP_JAL         6'b000011
+`define OP_BEQ         6'b000100
+`define OP_BNE         6'b000101
+`define OP_ADDI        6'b001000
+`define OP_ADDIU       6'b001001
+`define OP_SLTI        6'b001010
+`define OP_SLTIU       6'b001011
+`define OP_ANDI        6'b001100
+`define OP_ORI         6'b001101
+`define OP_XORI        6'b001110
+`define OP_LUI         6'b001111
+`define OP_COPROC0     6'b010000  // CP0相关指令
+`define OP_CLZ         6'b011100
+`define OP_LB          6'b100000
+`define OP_LH          6'b100001
+`define OP_LW          6'b100011
+`define OP_LBU         6'b100100
+`define OP_LHU         6'b100101
+`define OP_SB          6'b101000
+`define OP_SH          6'b101001
+`define OP_SW          6'b101011
+
+// ============================================================
+// R型指令功能码 (FUNCTION) 定义
+// ============================================================
+
+// 移位操作
+`define FUNC_SLL       6'b000000
+`define FUNC_SRL       6'b000010
+`define FUNC_SRA       6'b000011
+`define FUNC_SLLV      6'b000100
+`define FUNC_SRLV      6'b000110
+`define FUNC_SRAV      6'b000111
+
+// 跳转操作
+`define FUNC_JR        6'b001000
+`define FUNC_JALR      6'b001001
+
+// 特殊寄存器操作
+`define FUNC_MFHI      6'b010000
+`define FUNC_MTHI      6'b010001
+`define FUNC_MFLO      6'b010010
+`define FUNC_MTLO      6'b010011
+
+// 乘除操作
+`define FUNC_MULT      6'b011000
+`define FUNC_MULTU     6'b011001
+`define FUNC_DIV       6'b011010
+`define FUNC_DIVU      6'b011011
+
+// 算术逻辑操作
+`define FUNC_ADD       6'b100000
+`define FUNC_CLZ       6'b100000  // 注意：与ADD相同，但opcode不同
+`define FUNC_ADDU      6'b100001
+`define FUNC_SUB       6'b100010
+`define FUNC_SUBU      6'b100011
+`define FUNC_AND       6'b100100
+`define FUNC_OR        6'b100101
+`define FUNC_XOR       6'b100110
+`define FUNC_NOR       6'b100111
+`define FUNC_SLT       6'b101010
+`define FUNC_SLTU      6'b101011
+
+// 异常操作
+`define FUNC_TEQ       6'b110100
+`define FUNC_SYSCALL   6'b001100
+`define FUNC_BREAK     6'b001101
+`define FUNC_ERET      6'b011000  // ERET指令功能码
+
+// ============================================================
+// RT字段特殊值定义
+// ============================================================
+
+// BGEZ指令的RT字段
+`define RT_BGEZ        5'b00001
+
+// CP0指令的RS字段
+`define RS_MFC0        5'b00000
+`define RS_MTC0        5'b00100
+`define RS_ERET        5'b10000
+
+// ============================================================
+// 特殊指令编码定义
+// ============================================================
+
+// 完整指令编码
+`define INSTR_BREAK    32'b000000_00000_00000_00000_00000_001101
+`define INSTR_SYSCALL  32'b000000_00000_00000_00000_00000_001100
+`define INSTR_ERET     32'b010000_10000_00000_00000_00000_011000
+`define INSTR_HALT     32'b111111_11111_11111_11111_11111_111111
+`define INSTR_NOP      32'b000000_00000_00000_00000_00000_000000
+
+// ============================================================
+// ALU控制信号定义
+// ============================================================
+
+// 基本算术逻辑运算
+`define ALUC_ADD       4'b0010
+`define ALUC_ADDU      4'b0000
+`define ALUC_SUB       4'b0011
+`define ALUC_SUBU      4'b0001
+`define ALUC_AND       4'b0100
+`define ALUC_OR        4'b0101
+`define ALUC_XOR       4'b0110
+`define ALUC_NOR       4'b0111
+`define ALUC_SLT       4'b1011
+`define ALUC_SLTU      4'b1010
+
+// 移位运算
+`define ALUC_SLL       4'b1110
+`define ALUC_SRL       4'b1101
+`define ALUC_SRA       4'b1100
+`define ALUC_SLA       4'b1111  // 算术左移（同逻辑左移）
+
+// 特殊运算
+`define ALUC_LUI       4'b1000   // 加载高位立即数
+`define ALUC_BGEZ      4'b1001   // 大于等于零比较
+`define ALUC_CLZ       4'b1010   // 前导零计数
+
+// ============================================================
+// ALU乘除单元控制信号定义
+// ============================================================
+
+// 乘除运算类型
+`define ALUMCTR_NVL    3'b000   // 非乘除指令
+`define ALUMCTR_MULT   3'b001   // 有符号乘法
+`define ALUMCTR_MULTU  3'b010   // 无符号乘法
+`define ALUMCTR_DIV    3'b011   // 有符号除法
+`define ALUMCTR_DIVU   3'b100   // 无符号除法
+`define ALUMCTR_MTHI   3'b101   // 移动到HI
+`define ALUMCTR_MTLO   3'b110   // 移动到LO
+
+// ============================================================
+// 异常原因编码定义
+// ============================================================
+
+`define CAUSE_SYSCALL  4'b1000
+`define CAUSE_BREAK    4'b1001
+`define CAUSE_TEQ      4'b1101
+`define CAUSE_INTERRUPT 4'b0000  // 中断异常
+`define CAUSE_OVERFLOW 4'b1100   // 溢出异常
+
+// ============================================================
+// 存储器访问控制信号定义
+// ============================================================
+
+// 存储指令控制（写内存）
+`define MEM_STORE_BYTE    2'b10
+`define MEM_STORE_HALF    2'b01
+`define MEM_STORE_WORD    2'b00
+
+// 加载指令控制（读内存）
+`define MEM_LOAD_WORD     3'b000
+`define MEM_LOAD_HALF_U   3'b001   // 无符号半字
+`define MEM_LOAD_HALF_S   3'b010   // 有符号半字
+`define MEM_LOAD_BYTE_S   3'b100   // 有符号字节
+`define MEM_LOAD_BYTE_U   3'b011   // 无符号字节
+
+// ============================================================
+// 数据前递源选择定义
+// ============================================================
+
+`define FWD_SRC_NONE     3'b000    // 不前递，使用寄存器值
+`define FWD_SRC_EX_ALU   3'b001    // 来自EX阶段ALU结果
+`define FWD_SRC_EX_MULT  3'b010    // 来自EX阶段乘法器结果
+`define FWD_SRC_EX_HI    3'b011    // 来自EX阶段HI寄存器
+`define FWD_SRC_EX_LO    3'b100    // 来自EX阶段LO寄存器
+`define FWD_SRC_MEM      3'b101    // 来自MEM阶段结果
+`define FWD_SRC_WB       3'b110    // 来自WB阶段结果
+
+// HI/LO寄存器前递选择
+`define FWD_HILO_NONE    2'b00     // 不前递
+`define FWD_HILO_EX      2'b01     // 来自EX阶段
+`define FWD_HILO_MEM     2'b10     // 来自MEM阶段
+`define FWD_HILO_WB      2'b11     // 来自WB阶段
+
+// ============================================================
+// 寄存器堆写入源选择定义
+// ============================================================
+
+`define RF_SRC_ALU      3'b000   // ALU计算结果
+`define RF_SRC_MEM      3'b001   // 内存读取数据
+`define RF_SRC_PC_PLUS4 3'b010   // PC+4（用于JAL）
+`define RF_SRC_HILO     3'b011   // HI/LO寄存器
+`define RF_SRC_CP0      3'b100   // CP0寄存器
+
+// ============================================================
+// PC源选择定义
+// ============================================================
+
+`define PC_SRC_SEQ      2'b00    // 顺序执行 (PC+4)
+`define PC_SRC_JUMP     2'b01    // 跳转地址
+`define PC_SRC_BRANCH   2'b10    // 分支地址
+`define PC_SRC_REG      2'b11    // 寄存器地址（用于JR）
+`define PC_SRC_EXCEPTION 2'b11   // 异常地址
+
+// ============================================================
+// HI/LO寄存器源选择定义
+// ============================================================
+
+`define HILO_SRC_NONE   2'b00    // 不写入
+`define HILO_SRC_MULT   2'b01    // 乘法结果
+`define HILO_SRC_DIV    2'b10    // 除法结果
+`define HILO_SRC_MOVE   2'b11    // 寄存器移动
+
+// ============================================================
+// Tomasulo算法相关定义
+// ============================================================
+
+// 保留站类型
+`define RS_TYPE_IDLE    3'b000   // 空闲
+`define RS_TYPE_ALU     3'b001   // ALU操作
+`define RS_TYPE_MULDIV  3'b010   // 乘除操作
+`define RS_TYPE_MEM     3'b011   // 内存操作
+`define RS_TYPE_BRANCH  3'b100   // 分支操作
+
+// 功能单元状态
+`define FU_IDLE         3'b000   // 空闲
+`define FU_BUSY         3'b001   // 忙碌
+`define FU_COMPLETE     3'b010   // 完成
+
+// 操作数源类型
+`define OP_SRC_REG      1'b0     // 来自寄存器
+`define OP_SRC_IMM      1'b1     // 来自立即数
+
+// 保留站操作数状态
+`define RS_OP_READY     1'b1     // 操作数就绪
+`define RS_OP_WAIT      1'b0     // 操作数等待
+
+// ============================================================
+// 控制信号默认值
+// ============================================================
+
+// 默认控制信号值
+`define DEFAULT_ALUC    4'b0000
+`define DEFAULT_RF_SRC  3'b000
+`define DEFAULT_PC_SRC  2'b00
+`define DEFAULT_MEM_CTL 2'b00
+`define DEFAULT_LOAD_CTL 3'b000
+
+// ============================================================
+// 其他控制信号定义
+// ============================================================
+
+// CP0写控制
+`define CP0_WRITE_NONE  1'b0     // 不写入CP0
+`define CP0_WRITE_EN    1'b1     // 写入CP0
+
+// 流水线控制
+`define STALL_DISABLE   1'b0     // 不暂停
+`define STALL_ENABLE    1'b1     // 暂停
+
+// 跳转控制
+`define GOTO_DISABLE    1'b0     // 非跳转指令
+`define GOTO_ENABLE     1'b1     // 跳转指令 
+ 
+## DIVer.v 
+// DIVer - Divider module for CPU pipeline
+// Extracted from ALUM.v - combinational implementation
+
+`timescale 1ps / 1ps
+
+module DIVer (
+    input sign,              // Sign flag for signed/unsigned divide
+    input div,               // Division operation flag
+    input [31:0] a,          // Dividend
+    input [31:0] b,          // Divisor
+    output [31:0] quotient,   // Quotient output
+    output [31:0] remainder   // Remainder output
+);
+
+    // Internal signals for handling signed/unsigned
+    wire [31:0] temp_a;
+    wire [31:0] temp_b;
+    wire [32:0] temp_a_divu;
+    wire [32:0] temp_b_divu;
+    wire [32:0] quotient_o_divu;
+    wire [32:0] remainder_o_divu;
+    wire sign_a;
+    wire sign_b;
+    wire result_sign;
+
+    assign sign_a = a[31];
+    assign sign_b = b[31];
+    assign result_sign = sign && (sign_a ^ sign_b);
+
+    // For signed operations, convert to positive if negative
+    assign temp_a = (sign && a[31]) ? -a : a;
+    assign temp_b = (sign && b[31]) ? -b : b;
+
+    assign temp_a_divu = {1'b0, temp_a};
+    assign temp_b_divu = {1'b0, temp_b};
+
+    // Divider implementation for unsigned division
+    wire [32:0] numwire [32:0];
+    wire [33:0] numtemp [32:0];
+    wire [32:0] subwire [32:0];
+    wire [32:0] ge;
+    genvar i;
+
+    assign numwire[32] = {{32{1'b0}}, temp_a_divu[32]};
+    assign numtemp[32] = numwire[32] - temp_b_divu;
+    assign ge[32] = ~numtemp[32][33];
+    assign subwire[32] = ge[32] ? numtemp[32] : numtemp[32] + temp_b_divu;
+
+    generate
+        for (i = 31; i >= 0; i = i - 1) begin: shift_and_calculate_result
+            assign numwire[i] = {subwire[i+1][31:0], temp_a_divu[i]};
+            assign numtemp[i] = numwire[i] - temp_b_divu;
+            assign ge[i] = ~numtemp[i][33];
+            assign subwire[i] = ge[i] ? numtemp[i] : numtemp[i] + temp_b_divu;
+        end
+    endgenerate
+
+    assign quotient_o_divu = (|temp_b_divu) ? ge : 0;
+    assign remainder_o_divu = (|temp_b_divu) ? subwire[0] : 0;
+
+    // Only perform division when div flag is set, otherwise pass through
+    assign quotient = div ? 
+                     (sign ? (result_sign ? -quotient_o_divu[31:0] : quotient_o_divu[31:0]) :
+                            quotient_o_divu[31:0]) : 32'b0;
+    assign remainder = div ? 
+                      (sign ? (sign_a ? -remainder_o_divu[31:0] : remainder_o_divu[31:0]) :
+                             remainder_o_divu[31:0]) : 32'b0;
+
+endmodule 
+ 
+## DMEM.v 
+`timescale 1ns / 1ps
+`include "def.v"
+
+module DMEM(
+    input clk,
+    input [1:0]SC,
+    input [2:0]LC,
+    input [31:0] Data_in,
+    input [31:0] DMEMaddr,
+    input CS,
+    input DM_W,
+    input DM_R,
+    output [31:0] Dataout
+);
+
+wire [7:0] dmem1_w;
+wire [7:0] dmem2_w;
+wire [7:0] dmem3_w;
+wire [7:0] dmem4_w;
+wire [7:0] dmem1_r;
+wire [7:0] dmem2_r;
+wire [7:0] dmem3_r;
+wire [7:0] dmem4_r;
+
+wire we1;
+wire we2;
+wire we3;
+wire we4;
+
+
+
+assign dmem1_w = Data_in[7:0];
+assign dmem2_w = Data_in[15:8];
+assign dmem3_w = Data_in[23:16];
+assign dmem4_w = Data_in[31:24];
+
+assign we1 = (SC == `MEM_STORE_WORD || SC == `MEM_STORE_HALF || SC == `MEM_STORE_BYTE) && DM_W && CS;
+assign we2 = (SC == `MEM_STORE_WORD || SC == `MEM_STORE_HALF) && DM_W && CS;
+assign we3 = (SC == `MEM_STORE_WORD) && DM_W && CS;
+assign we4 = (SC == `MEM_STORE_WORD) && DM_W && CS;
+
+assign Dataout = (CS && DM_R) ? (LC == `MEM_LOAD_WORD) ? {dmem4_r, dmem3_r, dmem2_r, dmem1_r} :
+                                (LC == `MEM_LOAD_HALF_U) ? {16'b0, dmem2_r, dmem1_r} :
+                                (LC == `MEM_LOAD_HALF_S)  ? {{16{dmem2_r[7]}}, dmem2_r, dmem1_r} :
+                                (LC == `MEM_LOAD_BYTE_S)  ? {{24{dmem1_r[7]}}, dmem1_r} :
+                                (LC == `MEM_LOAD_BYTE_U) ? {24'b0, dmem1_r} : 32'bz : 32'bz;
+                                
+dmem1 dmem1_uut(
+    .a(DMEMaddr[10:0]),
+    .d(dmem1_w),
+    .clk(clk),
+    .we(we1),
+    .spo(dmem1_r)
+);
+
+dmem1 dmem2_uut(
+    .a(DMEMaddr[10:0]),
+    .d(dmem2_w),
+    .clk(clk),
+    .we(we2),
+    .spo(dmem2_r)
+);
+
+dmem1 dmem3_uut(
+    .a(DMEMaddr[10:0]),
+    .d(dmem3_w),
+    .clk(clk),
+    .we(we3),
+    .spo(dmem3_r)
+);
+
+dmem1 dmem4_uut(
+    .a(DMEMaddr[10:0]),
+    .d(dmem4_w),
+    .clk(clk),
+    .we(we4),
+    .spo(dmem4_r)
+);
+
+
+endmodule 
+ 
+## IMEM_ip.v 
+// IMEM_ip - Instruction Memory IP Module
+// Drop-in replacement for Xilinx Block RAM IP or similar memory IP
+// Designed to conform to interface used in PipeIF.v module
+
+`timescale 1ns / 1ps
+
+`include "def.v"
+
+module IMEM_ip(
+    input [10:0] a,       // Address input (pc[11:2] -> 10-bit address)
+    output [31:0] spo    // Instruction output
+);
+    // imem imem_ip(
+    //     .a(address[12:2]),
+    //     .spo(instrT)
+    // );
+
+    // Internal memory implementation (same as original IMEM)
+    reg [31:0] IMEMreg [0:2047];
+    assign spo = IMEMreg[a];  // Address directly maps to memory location
+
+    initial begin
+        $readmemh("E:/Homeworks/cpupip31/testdata/1_addi.hex.txt", IMEMreg);
+        //$readmemh("E:/Homeworks/cpupip31/testdata/2_addiu.hex.txt", IMEMreg);
+        //$readmemh("E:/Homeworks/cpupip31/testdata/3_andi.hex.txt", IMEMreg);
+        //$readmemh("E:/Homeworks/cpupip31/testdata/4_ori.hex.txt", IMEMreg);
+        //$readmemh("E:/Homeworks/cpupip31/testdata/5_sltiu.hex.txt", IMEMreg);
+        //$readmemh("E:/Homeworks/cpupip31/testdata/6_lui.hex.txt", IMEMreg);
+        //$readmemh("E:/Homeworks/cpupip31/testdata/7_xori.hex.txt", IMEMreg);
+        //$readmemh("E:/Homeworks/cpupip31/testdata/8_slti.hex.txt", IMEMreg);
+        //$readmemh("E:/Homeworks/cpupip31/testdata/9_addu.hex.txt", IMEMreg);
+        //$readmemh("E:/Homeworks/cpupip31/testdata/10_and.hex.txt", IMEMreg);
+        //$readmemh("E:/Homeworks/cpupip31/testdata/11_beq.hex.txt", IMEMreg);
+        //$readmemh("E:/Homeworks/cpupip31/testdata/12_bne.hex.txt", IMEMreg);
+        //$readmemh("E:/Homeworks/cpupip31/testdata/13_j.hex.txt", IMEMreg);
+        //$readmemh("E:/Homeworks/cpupip31/testdata/14_jal.hex.txt", IMEMreg);
+        //$readmemh("E:/Homeworks/cpupip31/testdata/15_jr.hex.txt", IMEMreg);
+        //$readmemh("E:/Homeworks/cpupip31/testdata/16.26_lwsw.hex.txt", IMEMreg);
+        //$readmemh("E:/Homeworks/cpupip31/testdata/16.26_lwsw2.hex.txt", IMEMreg);
+        //$readmemh("E:/Homeworks/cpupip31/testdata/17_xor.hex.txt", IMEMreg);
+        //$readmemh("E:/Homeworks/cpupip31/testdata/18_nor.hex.txt", IMEMreg);
+        //$readmemh("E:/Homeworks/cpupip31/testdata/19_or.hex.txt", IMEMreg);
+        //$readmemh("E:/Homeworks/cpupip31/testdata/20_sll.hex.txt", IMEMreg);
+        //$readmemh("E:/Homeworks/cpupip31/testdata/21_sllv.hex.txt", IMEMreg);
+        //$readmemh("E:/Homeworks/cpupip31/testdata/22_sltu.hex.txt", IMEMreg);
+        //$readmemh("E:/Homeworks/cpupip31/testdata/23_sra.hex.txt", IMEMreg);
+        //$readmemh("E:/Homeworks/cpupip31/testdata/24_srl.hex.txt", IMEMreg);
+        //$readmemh("E:/Homeworks/cpupip31/testdata/25_subu.hex.txt", IMEMreg);
+        //$readmemh("E:/Homeworks/cpupip31/testdata/27_add.hex.txt", IMEMreg);
+        //$readmemh("E:/Homeworks/cpupip31/testdata/28_sub.hex.txt", IMEMreg);
+        //$readmemh("E:/Homeworks/cpupip31/testdata/29_slt.hex.txt", IMEMreg);
+        //$readmemh("E:/Homeworks/cpupip31/testdata/30_srlv.hex.txt", IMEMreg);
+        //$readmemh("E:/Homeworks/cpupip31/testdata/31_srav.hex.txt", IMEMreg);
+        //$readmemh("E:/Homeworks/cpupip31/testdata/32_clz.hex.txt", IMEMreg);
+        //$readmemh("E:/Homeworks/cpupip31/testdata/33_divu.hex.txt", IMEMreg);
+        //$readmemh("E:/Homeworks/cpupip31/testdata/35_jalr.hex.txt", IMEMreg);
+        //$readmemh("E:/Homeworks/cpupip31/testdata/36.39_lbsb.hex.txt", IMEMreg);
+        //$readmemh("E:/Homeworks/cpupip31/testdata/36.39_lbsb2.hex.txt", IMEMreg);
+        //$readmemh("E:/Homeworks/cpupip31/testdata/37_lbu.hex.txt", IMEMreg);
+        //$readmemh("E:/Homeworks/cpupip31/testdata/37_lbu2.hex.txt", IMEMreg);
+        //$readmemh("E:/Homeworks/cpupip31/testdata/38_lhu.hex.txt", IMEMreg);
+        //$readmemh("E:/Homeworks/cpupip31/testdata/38_lhu2.hex.txt", IMEMreg);
+        //$readmemh("E:/Homeworks/cpupip31/testdata/40.41_lhsh.hex.txt", IMEMreg);
+        //$readmemh("E:/Homeworks/cpupip31/testdata/40.41_lhsh2.hex.txt", IMEMreg);
+        //$readmemh("E:/Homeworks/cpupip31/testdata/42.45_mfc0mtc0.hex.txt", IMEMreg);
+        //$readmemh("E:/Homeworks/cpupip31/testdata/43.46_mfhi.mthi.hex.txt", IMEMreg);
+        //$readmemh("E:/Homeworks/cpupip31/testdata/44.47_mflo.mtlo.hex.txt", IMEMreg);
+        //$readmemh("E:/Homeworks/cpupip31/testdata/48_mult.hex.txt", IMEMreg);
+        //$readmemh("E:/Homeworks/cpupip31/testdata/49_multu.hex.txt", IMEMreg);
+        //$readmemh("E:/Homeworks/cpupip31/testdata/52_bgez.hex.txt", IMEMreg);
+        //$readmemh("E:/Homeworks/cpupip31/testdata/54_div.hex.txt", IMEMreg);
+        //$readmemh("E:/Homeworks/cpupip31/testdata/55_cp0.hex.txt", IMEMreg);
+        //$readmemh("E:/Homeworks/cpupip31/testdata/101_swlwbnebeq.hex.txt", IMEMreg);
+        //$readmemh("E:/Homeworks/cpupip31/testdata/102_regconflict.hex.txt", IMEMreg);
+        //$readmemh("E:/Homeworks/cpupip31/testdata/103_regconflict_detected_2.hex.txt", IMEMreg);
+        //$readmemh("E:/Homeworks/cpupip31/testdata/104_pizza_tower_test.hex.txt", IMEMreg);
+    end
+
+endmodule 
+ 
+## MULer.v 
+// MULer - Multiplier module for CPU pipeline
+// Extracted from ALUM.v - combinational implementation
+
+`timescale 1ps / 1ps
+
+module MULer (
+    input sign,              // Sign flag for signed/unsigned multiply
+    input [31:0] a,          // First operand
+    input [31:0] b,          // Second operand
+    output [31:0] HI,        // High 32 bits of result
+    output [31:0] LO         // Low 32 bits of result
+);
+
+    // Internal signals for handling signed/unsigned
+    wire [31:0] temp_a;
+    wire [31:0] temp_b;
+    wire [63:0] prod;
+    wire [63:0] real_prod;
+    wire sign_a;
+    wire sign_b;
+
+    assign sign_a = a[31];
+    assign sign_b = b[31];
+
+    // For signed operations, convert to positive if negative
+    assign temp_a = sign && a[31] ? -a : a;
+    assign temp_b = sign && b[31] ? -b : b;
+
+    // Handle sign of result for signed multiplication
+    assign real_prod = sign && (sign_a ^ sign_b) ? -prod : prod;
+
+    // Generate multiplier bits for each bit of b
+    wire [63:0] stored0  = temp_b[0]  ? {32'b0, temp_a}            : 64'b0;
+    wire [63:0] stored1  = temp_b[1]  ? {31'b0, temp_a, 1'b0}      : 64'b0;
+    wire [63:0] stored2  = temp_b[2]  ? {30'b0, temp_a, 2'b0}      : 64'b0;
+    wire [63:0] stored3  = temp_b[3]  ? {29'b0, temp_a, 3'b0}      : 64'b0;
+    wire [63:0] stored4  = temp_b[4]  ? {28'b0, temp_a, 4'b0}      : 64'b0;
+    wire [63:0] stored5  = temp_b[5]  ? {27'b0, temp_a, 5'b0}      : 64'b0;
+    wire [63:0] stored6  = temp_b[6]  ? {26'b0, temp_a, 6'b0}      : 64'b0;
+    wire [63:0] stored7  = temp_b[7]  ? {25'b0, temp_a, 7'b0}      : 64'b0;
+    wire [63:0] stored8  = temp_b[8]  ? {24'b0, temp_a, 8'b0}      : 64'b0;
+    wire [63:0] stored9  = temp_b[9]  ? {23'b0, temp_a, 9'b0}      : 64'b0;
+    wire [63:0] stored10 = temp_b[10] ? {22'b0, temp_a, 10'b0}     : 64'b0;
+    wire [63:0] stored11 = temp_b[11] ? {21'b0, temp_a, 11'b0}     : 64'b0;
+    wire [63:0] stored12 = temp_b[12] ? {20'b0, temp_a, 12'b0}     : 64'b0;
+    wire [63:0] stored13 = temp_b[13] ? {19'b0, temp_a, 13'b0}     : 64'b0;
+    wire [63:0] stored14 = temp_b[14] ? {18'b0, temp_a, 14'b0}     : 64'b0;
+    wire [63:0] stored15 = temp_b[15] ? {17'b0, temp_a, 15'b0}     : 64'b0;
+    wire [63:0] stored16 = temp_b[16] ? {16'b0, temp_a, 16'b0}     : 64'b0;
+    wire [63:0] stored17 = temp_b[17] ? {15'b0, temp_a, 17'b0}     : 64'b0;
+    wire [63:0] stored18 = temp_b[18] ? {14'b0, temp_a, 18'b0}     : 64'b0;
+    wire [63:0] stored19 = temp_b[19] ? {13'b0, temp_a, 19'b0}     : 64'b0;
+    wire [63:0] stored20 = temp_b[20] ? {12'b0, temp_a, 20'b0}     : 64'b0;
+    wire [63:0] stored21 = temp_b[21] ? {11'b0, temp_a, 21'b0}     : 64'b0;
+    wire [63:0] stored22 = temp_b[22] ? {10'b0, temp_a, 22'b0}     : 64'b0;
+    wire [63:0] stored23 = temp_b[23] ? {9'b0, temp_a, 23'b0}      : 64'b0;
+    wire [63:0] stored24 = temp_b[24] ? {8'b0, temp_a, 24'b0}      : 64'b0;
+    wire [63:0] stored25 = temp_b[25] ? {7'b0, temp_a, 25'b0}      : 64'b0;
+    wire [63:0] stored26 = temp_b[26] ? {6'b0, temp_a, 26'b0}      : 64'b0;
+    wire [63:0] stored27 = temp_b[27] ? {5'b0, temp_a, 27'b0}      : 64'b0;
+    wire [63:0] stored28 = temp_b[28] ? {4'b0, temp_a, 28'b0}      : 64'b0;
+    wire [63:0] stored29 = temp_b[29] ? {3'b0, temp_a, 29'b0}      : 64'b0;
+    wire [63:0] stored30 = temp_b[30] ? {2'b0, temp_a, 30'b0}      : 64'b0;
+    wire [63:0] stored31 = temp_b[31] ? {1'b0, temp_a, 31'b0}      : 64'b0;
+
+    // 一级加法：32个输入两两相加（16个结果）
+    wire [63:0] add0_1  = stored0  + stored1;
+    wire [63:0] add2_3  = stored2  + stored3;
+    wire [63:0] add4_5  = stored4  + stored5;
+    wire [63:0] add6_7  = stored6  + stored7;
+    wire [63:0] add8_9  = stored8  + stored9;
+    wire [63:0] add10_11 = stored10 + stored11;
+    wire [63:0] add12_13 = stored12 + stored13;
+    wire [63:0] add14_15 = stored14 + stored15;
+    wire [63:0] add16_17 = stored16 + stored17;
+    wire [63:0] add18_19 = stored18 + stored19;
+    wire [63:0] add20_21 = stored20 + stored21;
+    wire [63:0] add22_23 = stored22 + stored23;
+    wire [63:0] add24_25 = stored24 + stored25;
+    wire [63:0] add26_27 = stored26 + stored27;
+    wire [63:0] add28_29 = stored28 + stored29;
+    wire [63:0] add30_31 = stored30 + stored31;
+
+    // 二级加法：16个结果两两相加（8个结果）
+    wire [63:0] add0t1_2t3 = add0_1  + add2_3;
+    wire [63:0] add4t5_6t7 = add4_5  + add6_7;
+    wire [63:0] add8t9_10t11 = add8_9  + add10_11;
+    wire [63:0] add12t13_14t15 = add12_13 + add14_15;
+    wire [63:0] add16t17_18t19 = add16_17 + add18_19;
+    wire [63:0] add20t21_22t23 = add20_21 + add22_23;
+    wire [63:0] add24t25_26t27 = add24_25 + add26_27;
+    wire [63:0] add28t29_30t31 = add28_29 + add30_31;
+
+    // 三级加法：8个结果两两相加（4个结果）
+    wire [63:0] add0t3_4t7 = add0t1_2t3 + add4t5_6t7;
+    wire [63:0] add8t11_12t15 = add8t9_10t11 + add12t13_14t15;
+    wire [63:0] add16t19_20t23 = add16t17_18t19 + add20t21_22t23;
+    wire [63:0] add24t27_28t31 = add24t25_26t27 + add28t29_30t31;
+
+    // 四级加法：4个结果两两相加（2个结果）
+    wire [63:0] add0t7_8t15 = add0t3_4t7 + add8t11_12t15;
+    wire [63:0] add16t23_24t31 = add16t19_20t23 + add24t27_28t31;
+
+    // 最终加法：2个结果相加（1个结果）
+    assign prod = add0t7_8t15 + add16t23_24t31;
+
+    assign HI = real_prod[63:32];
+    assign LO = real_prod[31:0];
+
+endmodule 
+ 
+## MUX2_1.v 
+// 2-to-1 Multiplexer
+module MUX2_1 (
+    input [31:0] A, B,  // 32-bit inputs
+    input sel,         // selector
+    output reg [31:0] Y  // 32-bit output
+);
+
+always @(*) begin
+    case(sel)
+        1'b0: Y = A;
+        1'b1: Y = B;
+    endcase
+end
+
+endmodule 
+ 
+## MUX4_1.v 
+// 4-to-1 Multiplexer
+module MUX4_1 (
+    input [31:0] A, B, C, D,  // 32-bit inputs
+    input [1:0] sel,         // 2-bit selector
+    output reg [31:0] Y      // 32-bit output
+);
+
+always @(*) begin
+    case(sel)
+        2'b00: Y = A;
+        2'b01: Y = B;
+        2'b10: Y = C;
+        2'b11: Y = D;
+    endcase
+end
+
+endmodule 
+ 
+## MUX6_1.v 
+// 6-to-1 Multiplexer
+module MUX6_1 (
+    input [31:0] A, B, C, D, E, F,  // 32-bit inputs
+    input [2:0] sel,               // 3-bit selector
+    output reg [31:0] Y            // 32-bit output
+);
+
+always @(*) begin
+    case(sel)
+        3'b000: Y = A;
+        3'b001: Y = B;
+        3'b010: Y = C;
+        3'b011: Y = D;
+        3'b100: Y = E;
+        3'b101: Y = F;
+        default: Y = A; // For undefined cases
+    endcase
+end
+
+endmodule 
+ 
+## MUX8_1.v 
+// 8-to-1 Multiplexer
+module MUX8_1 (
+    input [31:0] A, B, C, D, E, F, G, H,  // 32-bit inputs
+    input [2:0] sel,                     // 3-bit selector
+    output reg [31:0] Y                  // 32-bit output
+);
+
+always @(*) begin
+    case(sel)
+        3'b000: Y = A;
+        3'b001: Y = B;
+        3'b010: Y = C;
+        3'b011: Y = D;
+        3'b100: Y = E;
+        3'b101: Y = F;
+        3'b110: Y = G;
+        3'b111: Y = H;
+    endcase
+end
+
+endmodule 
+ 
+## PcReg.v 
+// PC寄存器模块
+// 功能：存储当前指令地址并根据时钟信号更新
+module PcReg(
+    input clk,       // 时钟信号
+    input rstn,      // 异步复位信号（低电平有效）
+    input wena,      // 写使能信号
+    input [31:0] data_in,   // 输入数据（新PC值）
+    input halt,
+    output reg [31:0] data_out  // 输出数据（当前PC值）
+);
+reg halting;
+always @(posedge clk or posedge rstn) begin
+    if (!rstn) begin
+        // 复位时PC初始化为起始地址0x00400000
+        data_out <= 32'h00400000;
+        halting <= 0;
+    end else if (halt) begin
+        // 遇到halt指令时进入停止状态
+        data_out <= data_out;
+        halting <= halting;
+    end else begin
+        // 正常情况下更新PC值
+        data_out <= data_in;
+        halting <= halting;
+    end
+end
+endmodule 
+ 
+## PipeControlUnit.v 
+`timescale 1ns / 1ps
+`include "def.v"
+
+// ============================================================
+// 基于Tomasulo算法的动态流水线控制单元模块
+// 功能：根据指令生成各种控制信号，控制CPU流水线各阶段的操作
+// ============================================================
+module PipeControlUnit(
+    // 输入端口
+    input clk,                    // 时钟信号
+    input rstn,                   // 复位信号（低电平有效）
+    input userbreak,             // 用户中断信号（1：暂停，0：继续）
+    input [4:0] rsc,              // 源寄存器Rs编号 [25:21]
+    input [4:0] rtc,              // 源寄存器Rt编号 [20:16]
+    input [4:0] rdc,              // 目标寄存器Rd编号 [15:11]
+    input [5:0] func,             // 指令功能码 [5:0]
+    input [5:0] op,               // 指令操作码 [31:26]
+    input [4:0] mf,               // CP0寄存器字段 [25:21]
+    input isBranch,               // 分支指令标志
+    input EisGoto,                // EX阶段跳转指令标志
+    input [4:0] Ern,              // EX阶段目标寄存器编号
+    input [4:0] Mrn,              // MEM阶段目标寄存器编号
+    input Ew_rf,                  // EX阶段写寄存器堆标志
+    input Mw_rf,                  // MEM阶段写寄存器堆标志
+    input Ew_hi,                  // EX阶段写HI寄存器标志
+    input Ew_lo,                  // EX阶段写LO寄存器标志
+    input [2:0] Erfsource,        // EX阶段寄存器堆源选择
+    input [2:0] Mrfsource,        // MEM阶段寄存器堆源选择
+    input [1:0] Ehisource,        // EX阶段HI源选择
+    input [1:0] Elosource,        // EX阶段LO源选择
+    
+    // 输出端口
+    output reg [1:0] fwhi,        // HI寄存器数据前递选择 [1:0]
+    output reg [1:0] fwlo,        // LO寄存器数据前递选择 [1:0]
+    output reg [2:0] fwda,        // A操作数数据前递选择 [2:0]
+    output reg [2:0] fwdb,        // B操作数数据前递选择 [2:0]
+    output reg [4:0] rn,          // 目标寄存器编号 [4:0]
+    output reg sign,              // 符号扩展标志 [0]
+    output reg div,               // 除法操作标志 [0]
+    output reg mfc0,              // 从CP0读取标志 [0]
+    output reg mtc0,              // 写入CP0标志 [0]
+    output reg sys,               // 系统调用标志 [0]
+    output reg eret,              // 异常返回标志 [0]
+    output reg bre,               // 系统调用错误标志 [0]
+    output reg teq,               // 相等测试标志 [0]
+    output reg beq,               // 相等分支标志 [0]
+    output reg bne,               // 不等分支标志 [0]
+    output reg bgez,              // 大于等于零分支标志 [0]
+    output [3:0] aluc,            // ALU操作码 [3:0]
+    output reg wcau,              // 写入CAUSE寄存器标志 [0]
+    output reg wsta,              // 写入STATUS寄存器标志 [0]
+    output reg wepc,              // 写入EPC寄存器标志 [0]
+    output reg wotr,              // 写入其他寄存器标志 [0]
+    output reg w_hi,              // 写HI寄存器标志 [0]
+    output reg w_lo,              // 写LO寄存器标志 [0]
+    output reg w_rf,              // 写寄存器堆标志 [0]
+    output reg w_dm,              // 写数据存储器标志 [0]
+    output [2:0] ex_cause,        // 异常原因编码 [2:0]
+    output reg asource,           // A源选择标志 [0]
+    output reg bsource,           // B源选择标志 [0]
+    output reg [1:0] hisource,    // HI寄存器源选择 [1:0]
+    output reg [1:0] losource,    // LO寄存器源选择 [1:0]
+    output [2:0] rfsource,        // 寄存器堆源选择 [2:0]
+    output reg [1:0] pcsource,    // PC源选择 [1:0]
+    output reg [1:0] SC,          // 存储器命令信号 [1:0]
+    output reg [2:0] LC,          // 加载命令信号 [2:0]
+    output reg stall,             // 流水线暂停信号 [0]
+    output reg isGoto,            // 跳转指令标志 [0]
+    output reg halt               // CPU停止信号 [0]
+);
+
+    // ============================================================
+    // Tomasulo算法相关参数
+    // ============================================================
+    parameter NUM_RESERVATION_STATIONS = 6;  // 保留站数量
+    parameter NUM_FUNCTION_UNITS = 4;        // 功能单元数量
+    parameter NUM_CDB_BUSES = 2;             // 公共数据总线数量
+    
+    // ============================================================
+    // 内部寄存器定义
+    // ============================================================
+    
+    // 保留站状态定义
+    reg [31:0] reservation_stations [0:NUM_RESERVATION_STATIONS-1];
+    reg [2:0] station_type [0:NUM_RESERVATION_STATIONS-1];   // 保留站类型
+    reg [4:0] station_dest [0:NUM_RESERVATION_STATIONS-1];   // 目标寄存器
+    reg [3:0] station_opcode [0:NUM_RESERVATION_STATIONS-1]; // 操作码
+    reg station_busy [0:NUM_RESERVATION_STATIONS-1];         // 忙碌标志
+    
+    // 寄存器状态表 - 跟踪每个寄存器的生产者
+    reg [2:0] reg_status [0:31];  // 每个寄存器的状态: 0:空闲, >0:保留站编号
+    
+    // HI/LO寄存器状态
+    reg [2:0] hi_status;          // HI寄存器状态
+    reg [2:0] lo_status;          // LO寄存器状态
+    
+    // 公共数据总线(CDB)信号
+    reg [31:0] cdb_value [0:NUM_CDB_BUSES-1];
+    reg [4:0] cdb_reg [0:NUM_CDB_BUSES-1];
+    reg [2:0] cdb_rs_id [0:NUM_CDB_BUSES-1];  // 来源保留站ID
+    reg cdb_valid [0:NUM_CDB_BUSES-1];
+    
+    // 功能单元状态
+    reg [2:0] fu_busy [0:NUM_FUNCTION_UNITS-1];
+    reg [4:0] fu_dest [0:NUM_FUNCTION_UNITS-1];
+    reg [2:0] fu_rs_id [0:NUM_FUNCTION_UNITS-1];  // 关联的保留站ID
+    
+    // 内部控制信号
+    reg [3:0] aluc_reg;
+    reg [2:0] rfsource_reg;
+    reg [2:0] ex_cause_reg;
+    
+    // 指令译码辅助信号
+    reg isRType, isIType, isJType, isLoad, isStore, isBranchType;
+    reg isMultDiv, isMFHI, isMFLO, isMTHI, isMTLO;
+    reg isJump, isJR, isJAL, isJALR, isSpecialInstr;
+    reg isShift, isShiftV, isALUOp, isMemOp;
+    reg isHalt;  // HALT指令标志
+    
+    // HALT状态寄存器
+    reg halt_state;  // HALT状态，一旦置位，CPU停止
+    
+    // 用户中断状态寄存器
+    reg userbreak_paused;  // 用户中断暂停状态
+    reg userbreak_prev;    // 上一个时钟周期的userbreak值，用于检测边沿
+    
+    // 循环变量和临时变量声明
+    integer i, j, k, l;
+    integer rs_id_int;
+    reg [2:0] rs_type_reg;
+    reg cdb_found_flag;
+    integer busy_count_temp;
+    integer rs_status_temp, rt_status_temp;
+    
+    // ============================================================
+    // Tomasulo算法辅助函数
+    // ============================================================
+    
+    // 分配保留站
+    function integer allocate_reservation_station;
+        input [2:0] type_req;
+        integer i_local;
+        reg found_flag;
+        begin
+            allocate_reservation_station = -1;  // 默认返回无效
+            found_flag = 0;
+            
+            for (i_local = 0; i_local < NUM_RESERVATION_STATIONS; i_local = i_local + 1) begin
+                if (!station_busy[i_local] && station_type[i_local] == `RS_TYPE_IDLE) begin
+                    allocate_reservation_station = i_local;
+                    found_flag = 1;
+                end
+                // 如果已经找到，就不再继续循环
+                if (found_flag) begin
+                    i_local = NUM_RESERVATION_STATIONS; // 设置循环终止条件
+                end
+            end
+        end
+    endfunction
+    
+    // 检查冒险
+    function reg check_hazards;
+        input [4:0] rs; 
+        input [4:0] rt; 
+        input [4:0] rd; 
+        input [5:0] opcode; 
+        input [5:0] funcode;
+        reg hazard;
+        integer rs_status, rt_status;
+        integer busy_count;
+        integer i_local;
+        begin
+            hazard = `STALL_DISABLE;
+            
+            // 1. 检查RAW冒险（读后写）
+            if (rs != 5'b0) begin
+                rs_status = reg_status[rs];
+                if (rs_status != 3'b0 && station_busy[rs_status-1]) begin
+                    // 如果源寄存器被占用且保留站忙碌，需要等待
+                    hazard = `STALL_ENABLE;
+                end
+            end
+            
+            if (rt != 5'b0) begin
+                rt_status = reg_status[rt];
+                if (rt_status != 3'b0 && station_busy[rt_status-1]) begin
+                    hazard = `STALL_ENABLE;
+                end
+            end
+            
+            // 2. 检查结构冒险（保留站满）
+            busy_count = 0;
+            for (i_local = 0; i_local < NUM_RESERVATION_STATIONS; i_local = i_local + 1) begin
+                if (station_busy[i_local]) busy_count = busy_count + 1;
+            end
+            if (busy_count >= NUM_RESERVATION_STATIONS) begin
+                hazard = `STALL_ENABLE;
+            end
+            
+            // 3. 检查功能单元忙（乘除指令）
+            if (is_mult_div_operation(opcode, funcode)) begin
+                busy_count = 0;
+                for (i_local = 0; i_local < NUM_FUNCTION_UNITS; i_local = i_local + 1) begin
+                    if (fu_busy[i_local] != `FU_IDLE) busy_count = busy_count + 1;
+                end
+                if (busy_count >= NUM_FUNCTION_UNITS) begin
+                    hazard = `STALL_ENABLE;
+                end
+            end
+            
+            // 4. 检查WAW冒险（写后写）- 对于Tomasulo算法通常不是问题
+            // 因为保留站可以处理乱序完成
+            
+            check_hazards = hazard;
+        end
+    endfunction
+    
+    // 判断是否为乘除操作
+    function reg is_mult_div_operation;
+        input [5:0] opcode;
+        input [5:0] funcode;
+        reg result;
+        begin
+            result = 1'b0;
+            if (opcode == `OP_R_TYPE) begin
+                case (funcode)
+                    `FUNC_MULT, `FUNC_MULTU, `FUNC_DIV, `FUNC_DIVU: 
+                        result = 1'b1;
+                    default: 
+                        result = 1'b0;
+                endcase
+            end
+            is_mult_div_operation = result;
+        end
+    endfunction
+    
+    // 检查CDB是否有数据可用
+    function reg check_cdb_ready;
+        input [4:0] reg_num;
+        integer i_local;
+        reg found;
+        begin
+            found = 1'b0;
+            
+            for (i_local = 0; i_local < NUM_CDB_BUSES; i_local = i_local + 1) begin
+                if (cdb_valid[i_local] && cdb_reg[i_local] == reg_num) begin
+                    found = 1'b1;
+                    // 设置循环终止条件
+                    i_local = NUM_CDB_BUSES;
+                end
+            end
+            
+            check_cdb_ready = found;
+        end
+    endfunction
+    
+    // ============================================================
+    // 控制信号生成主逻辑
+    // ============================================================
+    always @(*) begin
+        // 如果CPU处于HALT状态，所有控制信号置为无效
+        if (halt_state) begin
+            sign = 1'b0;
+            div = 1'b0;
+            mfc0 = 1'b0;
+            mtc0 = 1'b0;
+            sys = 1'b0;
+            eret = 1'b0;
+            bre = 1'b0;
+            teq = 1'b0;
+            beq = 1'b0;
+            bne = 1'b0;
+            bgez = 1'b0;
+            wcau = 1'b0;
+            wsta = 1'b0;
+            wepc = 1'b0;
+            wotr = 1'b0;
+            w_hi = 1'b0;
+            w_lo = 1'b0;
+            w_rf = 1'b0;
+            w_dm = 1'b0;
+            asource = `OP_SRC_REG;
+            bsource = `OP_SRC_REG;
+            hisource = `HILO_SRC_NONE;
+            losource = `HILO_SRC_NONE;
+            pcsource = `PC_SRC_SEQ;
+            SC = `MEM_STORE_WORD;
+            LC = `MEM_LOAD_WORD;
+            stall = `STALL_ENABLE;  // HALT时暂停流水线
+            isGoto = `GOTO_DISABLE;
+            fwhi = `FWD_HILO_NONE;
+            fwlo = `FWD_HILO_NONE;
+            fwda = `FWD_SRC_NONE;
+            fwdb = `FWD_SRC_NONE;
+            aluc_reg = `DEFAULT_ALUC;
+            rfsource_reg = `DEFAULT_RF_SRC;
+            ex_cause_reg = 3'b000;
+            halt = 1'b1;  // 输出HALT信号
+            isHalt = 1'b0;
+            
+            // 不处理指令类型判断
+            isRType = 1'b0;
+            isIType = 1'b0;
+            isJType = 1'b0;
+            isLoad = 1'b0;
+            isStore = 1'b0;
+            isBranchType = 1'b0;
+            isMultDiv = 1'b0;
+            isMFHI = 1'b0;
+            isMFLO = 1'b0;
+            isMTHI = 1'b0;
+            isMTLO = 1'b0;
+            isJR = 1'b0;
+            isJALR = 1'b0;
+            isJAL = 1'b0;
+            isJump = 1'b0;
+            isShift = 1'b0;
+            isShiftV = 1'b0;
+            isALUOp = 1'b0;
+            isMemOp = 1'b0;
+            rn = 5'b0;
+        end
+        // 如果CPU处于用户中断暂停状态
+        else if (userbreak_paused) begin
+            // 用户中断暂停时，暂停流水线但保持所有状态
+            sign = 1'b0;
+            div = 1'b0;
+            mfc0 = 1'b0;
+            mtc0 = 1'b0;
+            sys = 1'b0;
+            eret = 1'b0;
+            bre = 1'b0;
+            teq = 1'b0;
+            beq = 1'b0;
+            bne = 1'b0;
+            bgez = 1'b0;
+            wcau = 1'b0;
+            wsta = 1'b0;
+            wepc = 1'b0;
+            wotr = 1'b0;
+            w_hi = 1'b0;
+            w_lo = 1'b0;
+            w_rf = 1'b0;
+            w_dm = 1'b0;
+            asource = `OP_SRC_REG;
+            bsource = `OP_SRC_REG;
+            hisource = `HILO_SRC_NONE;
+            losource = `HILO_SRC_NONE;
+            pcsource = `PC_SRC_SEQ;
+            SC = `MEM_STORE_WORD;
+            LC = `MEM_LOAD_WORD;
+            stall = `STALL_ENABLE;  // 暂停流水线
+            isGoto = `GOTO_DISABLE;
+            fwhi = `FWD_HILO_NONE;
+            fwlo = `FWD_HILO_NONE;
+            fwda = `FWD_SRC_NONE;
+            fwdb = `FWD_SRC_NONE;
+            aluc_reg = `DEFAULT_ALUC;
+            rfsource_reg = `DEFAULT_RF_SRC;
+            ex_cause_reg = 3'b000;
+            halt = 1'b0;  // 用户中断暂停时不输出HALT信号
+            isHalt = 1'b0;
+            
+            // 不处理指令类型判断
+            isRType = 1'b0;
+            isIType = 1'b0;
+            isJType = 1'b0;
+            isLoad = 1'b0;
+            isStore = 1'b0;
+            isBranchType = 1'b0;
+            isMultDiv = 1'b0;
+            isMFHI = 1'b0;
+            isMFLO = 1'b0;
+            isMTHI = 1'b0;
+            isMTLO = 1'b0;
+            isJR = 1'b0;
+            isJALR = 1'b0;
+            isJAL = 1'b0;
+            isJump = 1'b0;
+            isShift = 1'b0;
+            isShiftV = 1'b0;
+            isALUOp = 1'b0;
+            isMemOp = 1'b0;
+            rn = 5'b0;
+        end
+        else begin
+            // ------------------------------------------------
+            // 1. 默认值设置
+            // ------------------------------------------------
+            sign = 1'b0;
+            div = 1'b0;
+            mfc0 = 1'b0;
+            mtc0 = 1'b0;
+            sys = 1'b0;
+            eret = 1'b0;
+            bre = 1'b0;
+            teq = 1'b0;
+            beq = 1'b0;
+            bne = 1'b0;
+            bgez = 1'b0;
+            wcau = 1'b0;
+            wsta = 1'b0;
+            wepc = 1'b0;
+            wotr = 1'b0;
+            w_hi = 1'b0;
+            w_lo = 1'b0;
+            w_rf = 1'b0;
+            w_dm = 1'b0;
+            asource = `OP_SRC_REG;
+            bsource = `OP_SRC_REG;
+            hisource = `HILO_SRC_NONE;
+            losource = `HILO_SRC_NONE;
+            pcsource = `PC_SRC_SEQ;
+            SC = `MEM_STORE_WORD;
+            LC = `MEM_LOAD_WORD;
+            stall = `STALL_DISABLE;
+            isGoto = `GOTO_DISABLE;
+            fwhi = `FWD_HILO_NONE;
+            fwlo = `FWD_HILO_NONE;
+            fwda = `FWD_SRC_NONE;
+            fwdb = `FWD_SRC_NONE;
+            aluc_reg = `DEFAULT_ALUC;
+            rfsource_reg = `DEFAULT_RF_SRC;
+            ex_cause_reg = 3'b000;
+            halt = 1'b0;  // 正常执行时HALT为0
+            
+            // ------------------------------------------------
+            // 2. 指令类型判断（包括HALT指令）
+            // ------------------------------------------------
+            // 检测HALT指令：操作码为6'b111111（全1）
+            isHalt = (op == 6'b111111);
+            
+            isRType = (op == `OP_R_TYPE) && !isHalt;
+            isIType = (op != `OP_R_TYPE) && (op != `OP_J) && (op != `OP_JAL) && 
+                      (op != `OP_BGEZ) && (op != `OP_COPROC0) && !isHalt;
+            isJType = ((op == `OP_J) || (op == `OP_JAL)) && !isHalt;
+            isBranchType = ((op == `OP_BEQ) || (op == `OP_BNE) || (op == `OP_BGEZ)) && !isHalt;
+            isLoad = ((op == `OP_LW) || (op == `OP_LH) || (op == `OP_LB) ||
+                     (op == `OP_LHU) || (op == `OP_LBU)) && !isHalt;
+            isStore = ((op == `OP_SW) || (op == `OP_SH) || (op == `OP_SB)) && !isHalt;
+            isSpecialInstr = (op == `OP_R_TYPE) && 
+                            ((func == `FUNC_SYSCALL) || (func == `FUNC_BREAK) || 
+                             (func == `FUNC_TEQ));
+            
+            // 具体指令类型判断
+            isMultDiv = isRType && ((func == `FUNC_MULT) || (func == `FUNC_MULTU) ||
+                                    (func == `FUNC_DIV) || (func == `FUNC_DIVU));
+            isMFHI = isRType && (func == `FUNC_MFHI);
+            isMFLO = isRType && (func == `FUNC_MFLO);
+            isMTHI = isRType && (func == `FUNC_MTHI);
+            isMTLO = isRType && (func == `FUNC_MTLO);
+            isJR = isRType && (func == `FUNC_JR);
+            isJALR = isRType && (func == `FUNC_JALR);
+            isJAL = (op == `OP_JAL) && !isHalt;
+            isJump = isJType;
+            isShift = isRType && ((func == `FUNC_SLL) || (func == `FUNC_SRL) || 
+                                  (func == `FUNC_SRA));
+            isShiftV = isRType && ((func == `FUNC_SLLV) || (func == `FUNC_SRLV) || 
+                                   (func == `FUNC_SRAV));
+            isALUOp = isRType || isIType;
+            isMemOp = isLoad || isStore;
+            
+            // ------------------------------------------------
+            // 3. 目标寄存器选择
+            // ------------------------------------------------
+            if (isRType) begin
+                if (func == `FUNC_JR || func == `FUNC_MTHI || func == `FUNC_MTLO || 
+                    isMultDiv) begin
+                    rn = 5'b0;  // 这些指令不写通用寄存器
+                end else if (func == `FUNC_JALR) begin
+                    rn = 5'd31;  // JALR写$ra寄存器
+                end else begin
+                    rn = rdc;    // 标准R型指令写rd
+                end
+            end else if (isLoad) begin
+                rn = rtc;        // 加载指令写rt
+            end else if (isIType || op == `OP_JAL || op == `OP_CLZ) begin
+                rn = rtc;        // I型指令、JAL、CLZ写rt
+            end else if (op == `OP_COPROC0 && mf == `RS_MFC0) begin
+                rn = rtc;        // mfc0写rt
+            end else begin
+                rn = 5'b0;       // 其他指令不写寄存器
+            end
+            
+            // ------------------------------------------------
+            // 4. ALU控制信号生成
+            // ------------------------------------------------
+            if (isRType) begin
+                case (func)
+                    `FUNC_ADD:   aluc_reg = `ALUC_ADD;
+                    `FUNC_ADDU:  aluc_reg = `ALUC_ADDU;
+                    `FUNC_SUB:   aluc_reg = `ALUC_SUB;
+                    `FUNC_SUBU:  aluc_reg = `ALUC_SUBU;
+                    `FUNC_AND:   aluc_reg = `ALUC_AND;
+                    `FUNC_OR:    aluc_reg = `ALUC_OR;
+                    `FUNC_XOR:   aluc_reg = `ALUC_XOR;
+                    `FUNC_NOR:   aluc_reg = `ALUC_NOR;
+                    `FUNC_SLT:   aluc_reg = `ALUC_SLT;
+                    `FUNC_SLTU:  aluc_reg = `ALUC_SLTU;
+                    `FUNC_SLL:   aluc_reg = `ALUC_SLL;
+                    `FUNC_SRL:   aluc_reg = `ALUC_SRL;
+                    `FUNC_SRA:   aluc_reg = `ALUC_SRA;
+                    `FUNC_SLLV:  aluc_reg = `ALUC_SLL;
+                    `FUNC_SRLV:  aluc_reg = `ALUC_SRL;
+                    `FUNC_SRAV:  aluc_reg = `ALUC_SRA;
+                    `FUNC_CLZ:   aluc_reg = `ALUC_CLZ;
+                    default:     aluc_reg = `DEFAULT_ALUC;
+                endcase
+            end else if (isHalt) begin
+                aluc_reg = `DEFAULT_ALUC;  // HALT指令不需要ALU操作
+            end else begin
+                case (op)
+                    `OP_ADDI:   aluc_reg = `ALUC_ADD;
+                    `OP_ADDIU:  aluc_reg = `ALUC_ADDU;
+                    `OP_SLTI:   aluc_reg = `ALUC_SLT;
+                    `OP_SLTIU:  aluc_reg = `ALUC_SLTU;
+                    `OP_ANDI:   aluc_reg = `ALUC_AND;
+                    `OP_ORI:    aluc_reg = `ALUC_OR;
+                    `OP_XORI:   aluc_reg = `ALUC_XOR;
+                    `OP_LUI:    aluc_reg = `ALUC_LUI;
+                    `OP_CLZ:    aluc_reg = `ALUC_CLZ;
+                    `OP_BEQ, `OP_BNE: aluc_reg = `ALUC_SUB;
+                    `OP_BGEZ:   aluc_reg = `ALUC_BGEZ;
+                    default:    aluc_reg = `DEFAULT_ALUC;
+                endcase
+            end
+            
+            // ------------------------------------------------
+            // 5. 寄存器堆写入源选择
+            // ------------------------------------------------
+            if (isLoad) begin
+                rfsource_reg = `RF_SRC_MEM;      // 来自内存
+            end else if (op == `OP_JAL || isJALR) begin
+                rfsource_reg = `RF_SRC_PC_PLUS4; // 来自PC+4
+            end else if (isMFHI || isMFLO) begin
+                rfsource_reg = `RF_SRC_HILO;     // 来自HI/LO
+            end else if (mfc0) begin
+                rfsource_reg = `RF_SRC_CP0;      // 来自CP0
+            end else if (isALUOp) begin
+                rfsource_reg = `RF_SRC_ALU;      // 来自ALU
+            end else begin
+                rfsource_reg = `DEFAULT_RF_SRC;
+            end
+            
+            // ------------------------------------------------
+            // 6. 异常原因编码
+            // ------------------------------------------------
+            ex_cause_reg = 3'b000;
+            if (isRType) begin
+                case (func)
+                    `FUNC_SYSCALL: ex_cause_reg = `CAUSE_SYSCALL;
+                    `FUNC_BREAK:   ex_cause_reg = `CAUSE_BREAK;
+                    `FUNC_TEQ:     ex_cause_reg = `CAUSE_TEQ;
+                    default:       ex_cause_reg = 3'b000;
+                endcase
+            end
+            
+            // ------------------------------------------------
+            // 7. 符号扩展控制
+            // ------------------------------------------------
+            sign = (op == `OP_ADDI || op == `OP_SLTI || op == `OP_SLTIU || 
+                    op == `OP_LB || op == `OP_LH || op == `OP_LW);
+            
+            // ------------------------------------------------
+            // 8. 除法操作标志
+            // ------------------------------------------------
+            div = isRType && (func == `FUNC_DIV || func == `FUNC_DIVU);
+            
+            // ------------------------------------------------
+            // 9. CP0操作控制
+            // ------------------------------------------------
+            mfc0 = (op == `OP_COPROC0) && (mf == `RS_MFC0);
+            mtc0 = (op == `OP_COPROC0) && (mf == `RS_MTC0);
+            eret = (op == `OP_COPROC0) && (mf == `RS_ERET) && (func == `FUNC_ERET);
+            
+            // ------------------------------------------------
+            // 10. 特殊指令控制
+            // ------------------------------------------------
+            sys = isRType && (func == `FUNC_SYSCALL);
+            teq = isRType && (func == `FUNC_TEQ);
+            bre = isRType && (func == `FUNC_BREAK);
+            
+            // ------------------------------------------------
+            // 11. 分支指令控制
+            // ------------------------------------------------
+            beq = (op == `OP_BEQ);
+            bne = (op == `OP_BNE);
+            bgez = (op == `OP_BGEZ) && (rtc == `RT_BGEZ);
+            
+            // ------------------------------------------------
+            // 12. 寄存器写入控制
+            // ------------------------------------------------
+            w_hi = isRType && (func == `FUNC_MULT || func == `FUNC_MULTU || 
+                              func == `FUNC_DIV || func == `FUNC_DIVU || 
+                              func == `FUNC_MTHI);
+            w_lo = isRType && (func == `FUNC_MULT || func == `FUNC_MULTU || 
+                              func == `FUNC_DIV || func == `FUNC_DIVU || 
+                              func == `FUNC_MTLO);
+            w_rf = (isRType && !isJR && !isSpecialInstr && !isMTHI && !isMTLO && !isMultDiv) ||
+                   isIType || isLoad || (op == `OP_JAL) || isJALR || mfc0 || (op == `OP_CLZ);
+            w_dm = isStore;
+            
+            // CP0写控制
+            wcau = (ex_cause_reg != 3'b000);  // 有异常时写CAUSE
+            wsta = (sys || bre || teq || eret);  // 特殊指令写STATUS
+            wepc = (sys || bre || teq);  // 异常时写EPC
+            wotr = mtc0;  // mtc0写其他CP0寄存器
+            
+            // ------------------------------------------------
+            // 13. 操作数源选择
+            // ------------------------------------------------
+            asource = isRType ? `OP_SRC_REG : `OP_SRC_IMM;  // R型:寄存器, I型:立即数
+            bsource = (isRType && isShift && !isShiftV) ? `OP_SRC_IMM : `OP_SRC_REG;
+            
+            // ------------------------------------------------
+            // 14. HI/LO寄存器源选择
+            // ------------------------------------------------
+            if (func == `FUNC_MULT || func == `FUNC_MULTU) begin
+                hisource = `HILO_SRC_MULT;
+                losource = `HILO_SRC_MULT;
+            end else if (func == `FUNC_DIV || func == `FUNC_DIVU) begin
+                hisource = `HILO_SRC_DIV;
+                losource = `HILO_SRC_DIV;
+            end else if (func == `FUNC_MTHI || func == `FUNC_MTLO) begin
+                hisource = `HILO_SRC_MOVE;
+                losource = `HILO_SRC_MOVE;
+            end else begin
+                hisource = `HILO_SRC_NONE;
+                losource = `HILO_SRC_NONE;
+            end
+            
+            // ------------------------------------------------
+            // 15. 存储器访问控制
+            // ------------------------------------------------
+            case (op)
+                `OP_SB: SC = `MEM_STORE_BYTE;
+                `OP_SH: SC = `MEM_STORE_HALF;
+                `OP_SW: SC = `MEM_STORE_WORD;
+                default: SC = `MEM_STORE_WORD;
+            endcase
+            
+            case (op)
+                `OP_LW:  LC = `MEM_LOAD_WORD;
+                `OP_LH:  LC = `MEM_LOAD_HALF_S;
+                `OP_LB:  LC = `MEM_LOAD_BYTE_S;
+                `OP_LHU: LC = `MEM_LOAD_HALF_U;
+                `OP_LBU: LC = `MEM_LOAD_BYTE_U;
+                default: LC = `MEM_LOAD_WORD;
+            endcase
+            
+            // ------------------------------------------------
+            // 16. Tomasulo算法: 冒险检测和保留站分配
+            // ------------------------------------------------
+            stall = check_hazards(rsc, rtc, rn, op, func);
+            
+            // 如果没有停顿，尝试分配保留站
+            if (!stall && !isHalt) begin
+                rs_id_int = -1;
+                
+                // 确定保留站类型
+                if (isMultDiv) begin
+                    rs_type_reg = `RS_TYPE_MULDIV;
+                end else if (isMemOp) begin
+                    rs_type_reg = `RS_TYPE_MEM;
+                end else if (isBranchType || isJump || isJR || isJALR) begin
+                    rs_type_reg = `RS_TYPE_BRANCH;
+                end else begin
+                    rs_type_reg = `RS_TYPE_ALU;
+                end
+                
+                // 分配保留站
+                rs_id_int = allocate_reservation_station(rs_type_reg);
+                if (rs_id_int == -1) begin
+                    stall = `STALL_ENABLE;  // 没有可用保留站，停顿
+                end else if (rs_id_int != -1) begin
+                    // 配置保留站
+                    station_opcode[rs_id_int] = aluc_reg;
+                    station_dest[rs_id_int] = rn;
+                end
+            end
+            
+            // ------------------------------------------------
+            // 17. 数据前递控制 (Tomasulo算法)
+            // ------------------------------------------------
+            fwda = `FWD_SRC_NONE;
+            fwdb = `FWD_SRC_NONE;
+            fwhi = `FWD_HILO_NONE;
+            fwlo = `FWD_HILO_NONE;
+            
+            // 检查源寄存器Rs的数据相关
+            if (rsc != 5'b0) begin
+                rs_status_temp = reg_status[rsc];
+                if (rs_status_temp != 3'b0 && station_busy[rs_status_temp-1]) begin
+                    // 检查CDB是否有数据可用
+                    if (check_cdb_ready(rsc)) begin
+                        fwda = `FWD_SRC_EX_ALU;  // 从CDB获取数据
+                    end else begin
+                        fwda = `FWD_SRC_NONE;    // 等待数据就绪
+                    end
+                end
+            end
+            
+            // 检查源寄存器Rt的数据相关
+            if (rtc != 5'b0) begin
+                rt_status_temp = reg_status[rtc];
+                if (rt_status_temp != 3'b0 && station_busy[rt_status_temp-1]) begin
+                    if (check_cdb_ready(rtc)) begin
+                        fwdb = `FWD_SRC_EX_ALU;  // 从CDB获取数据
+                    end else begin
+                        fwdb = `FWD_SRC_NONE;    // 等待数据就绪
+                    end
+                end
+            end
+            
+            // HI/LO寄存器前递
+            if (Ew_hi) fwhi = `FWD_HILO_EX;
+            if (Ew_lo) fwlo = `FWD_HILO_EX;
+            
+            // 对于乘除指令，前递来自EX阶段的结果
+            if (isMultDiv) begin
+                fwda = `FWD_SRC_EX_MULT;
+                fwdb = `FWD_SRC_EX_MULT;
+            end
+            
+            // ------------------------------------------------
+            // 18. 跳转和分支控制
+            // ------------------------------------------------
+            isGoto = isJump || isJR || isJALR || isBranchType || eret;
+            
+            if (isJump || isJALR) begin
+                pcsource = `PC_SRC_JUMP;
+            end else if (isBranchType) begin
+                pcsource = `PC_SRC_BRANCH;
+            end else if (isJR) begin
+                pcsource = `PC_SRC_REG;
+            end else if (eret) begin
+                pcsource = `PC_SRC_EXCEPTION;
+            end else begin
+                pcsource = `PC_SRC_SEQ;
+            end
+        end
+    end
+    
+    // ============================================================
+    // HALT指令和用户中断处理逻辑
+    // ============================================================
+    always @(posedge clk or negedge rstn) begin
+        if (!rstn) begin
+            halt_state <= 1'b0;         // 复位时清除HALT状态
+            userbreak_paused <= 1'b0;   // 复位时清除用户中断暂停状态
+            userbreak_prev <= 1'b0;     // 复位时清除上一个userbreak值
+        end else begin
+            // 保存上一个时钟周期的userbreak值，用于边沿检测
+            userbreak_prev <= userbreak;
+            
+            // HALT指令检测，优先级最高
+            if (isHalt && !halt_state) begin
+                halt_state <= 1'b1;
+                // HALT指令执行时，忽略userbreak状态
+                userbreak_paused <= 1'b0;
+            end
+            // 只有在未执行HALT指令的情况下，才处理userbreak
+            else if (!halt_state) begin
+                // 检测userbreak的上升沿（0->1）：进入暂停状态
+                if (!userbreak_prev && userbreak) begin
+                    userbreak_paused <= 1'b1;
+                end
+                // 检测userbreak的下降沿（1->0）：退出暂停状态
+                else if (userbreak_prev && !userbreak) begin
+                    userbreak_paused <= 1'b0;
+                end
+            end
+        end
+    end
+    
+    // ============================================================
+    // 寄存器状态更新逻辑
+    // ============================================================
+    always @(posedge clk or negedge rstn) begin
+        if (!rstn) begin
+            // 复位时初始化所有寄存器状态
+            for (i = 0; i < NUM_CDB_BUSES; i = i + 1) begin
+                cdb_valid[i] <= 1'b0;
+                cdb_reg[i] <= 5'b00000;
+                cdb_value[i] <= 32'b0;
+                cdb_rs_id[i] <= 3'b000;
+            end
+            
+            for (i = 0; i < 32; i = i + 1) begin
+                reg_status[i] <= 3'b000;
+            end
+        end
+        else if (!halt_state && !userbreak_paused) begin
+            // 当CDB有效时，更新寄存器状态（仅在非HALT且非暂停状态下）
+            for (i = 0; i < NUM_CDB_BUSES; i = i + 1) begin
+                if (cdb_valid[i]) begin
+                    if (reg_status[cdb_reg[i]] == cdb_rs_id[i] + 1) begin
+                        reg_status[cdb_reg[i]] <= 3'b0;  // 寄存器变为空闲
+                    end
+                end
+            end
+        end
+    end
+    
+    // ============================================================
+    // Tomasulo算法状态寄存器初始化
+    // ============================================================
+    always @(posedge clk or negedge rstn) begin
+        if (!rstn) begin
+            // 复位时初始化保留站
+            for (i = 0; i < NUM_RESERVATION_STATIONS; i = i + 1) begin
+                station_busy[i] <= 1'b0;
+                station_type[i] <= `RS_TYPE_IDLE;
+                station_dest[i] <= 5'b00000;
+                station_opcode[i] <= `DEFAULT_ALUC;
+            end
+            
+            hi_status <= 3'b000;
+            lo_status <= 3'b000;
+            
+            // 复位时初始化功能单元
+            for (i = 0; i < NUM_FUNCTION_UNITS; i = i + 1) begin
+                fu_busy[i] <= `FU_IDLE;
+                fu_dest[i] <= 5'b00000;
+                fu_rs_id[i] <= 3'b000;
+            end
+        end
+    end
+    
+    // ============================================================
+    // 输出连接
+    // ============================================================
+    assign aluc = aluc_reg;
+    assign rfsource = rfsource_reg;
+    assign ex_cause = ex_cause_reg;
+    
+endmodule 
+ 
+## PipeDEreg.v 
+// ID/EX流水线寄存器模块
+// 功能：存储ID阶段的输出数据并传递给EXE阶段
+module PipeDEreg(
+    input clk,           // 时钟信号
+    input rstn,          // 异步复位信号（低电平有效）
+    input wena,          // 写使能信号
+    input [31:0] Dpc4,   // PC+4值（来自ID阶段）
+    input [31:0] Da,     // 寄存器A的值
+    input [31:0] Db,     // 寄存器B的值
+    input [31:0] Dimm,   // 立即数
+    input [31:0] Dcp0,   // CP0相关数据
+    input [31:0] Dhi,    // HI寄存器值
+    input [31:0] Dlo,    // LO寄存器值
+    input [4:0] Drn,     // 目标寄存器编号
+    input Dsign,         // 符号扩展标志
+    input Ddiv,          // 除法操作标志
+    input [3:0] Daluc,   // ALU操作码
+    input Dw_rf,         // 写寄存器文件标志
+    input Dw_hi,         // 写HI标志
+    input Dw_lo,         // 写LO标志
+    input Dw_dm,         // 写数据存储器标志
+    input DisGoto,       // 跳转指令标志
+    input Dasource,      // A源选择标志
+    input Dbsource,      // B源选择标志
+    input [1:0] Dhisource,     // HI源选择
+    input [1:0] Dlosource,     // LO源选择
+    input [2:0] Drfsource,     // 寄存器文件源选择
+    input [1:0] DSC,           // 存储器命令信号
+    input [2:0] DLC,           // 加载命令信号
+    output reg[31:0] Epc4,     // PC+4值（传给EXE阶段）
+    output reg [31:0] Ea,      // 寄存器A的值（传给EXE阶段）
+    output reg [31:0] Eb,      // 寄存器B的值（传给EXE阶段）
+    output reg [31:0] Eimm,    // 立即数（传给EXE阶段）
+    output reg [31:0] Ecp0,    // CP0相关数据（传给EXE阶段）
+    output reg [31:0] Ehi,     // HI寄存器值（传给EXE阶段）
+    output reg [31:0] Elo,     // LO寄存器值（传给EXE阶段）
+    output reg [4:0] Ern,      // 目标寄存器编号（传给EXE阶段）
+    output reg Esign,          // 符号扩展标志（传给EXE阶段）
+    output reg Ediv,           // 除法操作标志（传给EXE阶段）
+    output reg [3:0] Ealuc,    // ALU操作码（传给EXE阶段）
+    output reg Ew_rf,          // 写寄存器文件标志（传给EXE阶段）
+    output reg Ew_hi,          // 写HI标志（传给EXE阶段）
+    output reg Ew_lo,          // 写LO标志（传给EXE阶段）
+    output reg Ew_dm,          // 写数据存储器标志（传给EXE阶段）
+    output reg EisGoto,        // 跳转指令标志（传给EXE阶段）
+    output reg Easource,       // A源选择标志（传给EXE阶段）
+    output reg Ebsource,       // B源选择标志（传给EXE阶段）
+    output reg [1:0] Ehisource,     // HI源选择（传给EXE阶段）
+    output reg [1:0] Elosource,     // LO源选择（传给EXE阶段）
+    output reg [2:0] Erfsource,     // 寄存器文件源选择（传给EXE阶段）
+    output reg [1:0] ESC,           // 存储器命令信号（传给EXE阶段）
+    output reg [2:0] ELC            // 加载命令信号（传给EXE阶段）
+);
+
+always @ (posedge clk or posedge rstn) begin
+    if (!rstn) begin
+        // 异步复位，将所有输出清零
+        Epc4 <= 0;
+        Ea <= 0;
+        Eb <= 0;
+        Eimm <= 0 ;
+        Ecp0 <= 0 ;
+        Ehi <= 0 ;
+        Elo <= 0 ;
+        Ern <= 0 ;
+        Esign <= 0 ;
+        Ediv <= 0 ;
+        Ealuc <= 0 ;
+        Ew_rf <= 0 ;
+        Ew_hi <= 0 ;
+        Ew_lo <= 0 ;
+        Ew_dm <= 0 ;
+        EisGoto <= 0 ;
+        Easource <= 0 ;
+        Ebsource <= 0 ;
+        Ehisource <= 0 ;
+        Elosource <= 0 ;
+        Erfsource <= 0 ;
+        ESC <= 0 ;
+        ELC <= 0 ;
+    end else begin
+        // 正常操作，将输入数据锁存到输出
+        Epc4 <= Dpc4 ;
+        Ea <= Da ;
+        Eb <= Db ;
+        Eimm <= Dimm ;
+        Ecp0 <= Dcp0 ;
+        Ehi <= Dhi ;
+        Elo <= Dlo ;
+        Ern <= Drn ;
+        Esign <= Dsign ;
+        Ediv <= Ddiv ;
+        Ealuc <= Daluc ;
+        Ew_rf <= Dw_rf ;
+        Ew_hi <= Dw_hi ;
+        Ew_lo <= Dw_lo ;
+        Ew_dm <= Dw_dm ;
+        EisGoto <= DisGoto ;
+        Easource <= Dasource ;
+        Ebsource <= Dbsource ;
+        Ehisource <= Dhisource ;
+        Elosource <= Dlosource ;
+        Erfsource <= Drfsource ;
+        ESC <= DSC ;              // 存储器命令信号
+        ELC <= DLC ;              // 加载命令信号
+    end
+end
+
+endmodule 
+ 
+## PipeEMreg.v 
+// EX/MEM流水线寄存器模块
+// 功能：存储EX阶段的输出数据并传递给MEM阶段
+module PipeEMreg(
+    input clk,                  // 时钟信号
+    input rstn,                 // 异步复位信号（低电平有效）
+    input wena,                 // 写使能信号
+    input [31:0] Emuler_hi,     // 乘法高32位结果（来自EX阶段）
+    input [31:0] Emuler_lo,     // 乘法低32位结果（来自EX阶段）
+    input [31:0] Er,            // 除法余数（来自EX阶段）
+    input [31:0] Eq,            // 除法商（来自EX阶段）
+    input [31:0] Ecounter,      // 计数器结果（来自EX阶段）
+    input [31:0] Ealu,          // ALU结果（来自EX阶段）
+    input [31:0] Epc4,          // PC+4值（来自EX阶段）
+    input [31:0] Ea,            // 寄存器A的值（来自EX阶段）
+    input [31:0] Eb,            // 寄存器B的值（来自EX阶段）
+    input [31:0] Ecp0,          // CP0相关数据（来自EX阶段）
+    input [31:0] Ehi,           // HI寄存器值（来自EX阶段）
+    input [31:0] Elo,           // LO寄存器值（来自EX阶段）
+    input [4:0] Ern,            // 目标寄存器编号（来自EX阶段）
+    input Esign,                // 符号扩展标志（来自EX阶段）
+    input Ew_rf,                // 写寄存器文件标志（来自EX阶段）
+    input Ew_hi,                // 写HI标志（来自EX阶段）
+    input Ew_lo,                // 写LO标志（来自EX阶段）
+    input Ew_dm,                // 写数据存储器标志（来自EX阶段）
+    input [1:0] Ehisource,      // HI源选择（来自EX阶段）
+    input [1:0] Elosource,      // LO源选择（来自EX阶段）
+    input [2:0] Erfsource,      // 寄存器文件源选择（来自EX阶段）
+    input [1:0] ESC,            // 存储器命令信号（来自EX阶段）
+    input [2:0] ELC,            // 加载命令信号（来自EX阶段）
+
+    output reg [31:0] Mmuler_hi, // 乘法高32位结果（传给MEM阶段）
+    output reg [31:0] Mmuler_lo, // 乘法低32位结果（传给MEM阶段）
+    output reg [31:0] Mr,        // 除法余数（传给MEM阶段）
+    output reg [31:0] Mq,        // 除法商（传给MEM阶段）
+    output reg [31:0] Mcounter,  // 计数器结果（传给MEM阶段）
+    output reg [31:0] Malu,      // ALU结果（传给MEM阶段）
+    output reg [31:0] Mpc4,      // PC+4值（传给MEM阶段）
+    output reg [31:0] Ma,        // 寄存器A的值（传给MEM阶段）
+    output reg [31:0] Mb,        // 寄存器B的值（传给MEM阶段）
+    output reg [31:0] Mcp0,      // CP0相关数据（传给MEM阶段）
+    output reg [31:0] Mhi,       // HI寄存器值（传给MEM阶段）
+    output reg [31:0] Mlo,       // LO寄存器值（传给MEM阶段）
+    output reg [4:0] Mrn,        // 目标寄存器编号（传给MEM阶段）
+    output reg Msign,            // 符号扩展标志（传给MEM阶段）
+    output reg Mw_rf,            // 写寄存器文件标志（传给MEM阶段）
+    output reg Mw_hi,            // 写HI标志（传给MEM阶段）
+    output reg Mw_lo,            // 写LO标志（传给MEM阶段）
+    output reg Mw_dn,            // 写数据存储器标志（传给MEM阶段）
+    output reg [1:0] Mhisource,     // HI源选择（传给MEM阶段）
+    output reg [1:0] Mlosource,     // LO源选择（传给MEM阶段）
+    output reg [2:0] Mrfsource,     // 寄存器文件源选择（传给MEM阶段）
+    output reg [1:0] MSC,            // 存储器命令信号（传给MEM阶段）
+    output reg [2:0] MLC            // 加载命令信号（传给MEM阶段）
+);
+
+always @(posedge clk) begin
+    if (!rstn) begin
+        // 异步复位，将所有输出清零
+        Mpc4 <= 0;
+        Ma <= 0;
+        Mb <= 0;
+        Mcp0 <= 0;
+        Mhi <= 0;
+        Mlo <= 0;
+        Mrn <= 0;
+        Mmuler_hi <= 0;
+        Mmuler_lo <= 0;
+        Mr <= 0;
+        Mq <= 0;
+        Mcounter <= 0;
+        Malu <= 0;
+        Msign <= 0;
+        Mw_rf <= 0;
+        Mw_hi <= 0;
+        Mw_lo <= 0;
+        Mw_dn <= 0;
+        Mhisource <= 0;
+        Mlosource <= 0;
+        Mrfsource <= 0;
+        MSC <= 0;
+        MLC <= 0;
+    end else begin
+        // 正常操作，将输入数据锁存到输出
+        Mpc4 <= Epc4;
+        Ma <= Ea;
+        Mb <= Eb;
+        Mcp0 <= Ecp0;
+        Mhi <= Ehi;
+        Mlo <= Elo;
+        Mrn <= Ern;
+        Mmuler_hi <= Emuler_hi;
+        Mmuler_lo <= Emuler_lo;
+        Mr <= Er;
+        Mq <= Eq;
+        Mcounter <= Ecounter;
+        Malu <= Ealu;
+        Msign <= Esign;
+        Mw_rf <= Ew_rf;
+        Mw_hi <= Ew_hi;
+        Mw_lo <= Ew_lo;
+        Mw_dn <= Ew_dm;
+        Mhisource <= Ehisource;
+        Mlosource <= Elosource;
+        Mrfsource <= Erfsource;
+        MSC <= ESC;              // 存储器命令信号
+        MLC <= ELC;              // 加载命令信号
+    end
+end
+
+endmodule 
+ 
+## PipeEXE.v 
+// 执行阶段模块（EXE）
+// 功能：执行算术逻辑运算、乘除法运算、地址计算等
+module PipeEXE(
+    input clk,                    // 时钟信号
+    input rstn,                   // 异步复位信号（低电平有效）
+    input [31:0] pc4,             // PC+4值
+    input [31:0] a,               // 寄存器A的值
+    input [31:0] b,               // 寄存器B的值
+    input [31:0] imm,             // 立即数
+    input [31:0] cp0,             // CP0相关数据
+    input [31:0] hi,              // HI寄存器值
+    input [31:0] lo,              // LO寄存器值
+    input [4:0] rn,               // 目标寄存器编号
+    input sign,                   // 符号扩展标志
+    input div,                    // 除法操作标志
+    input [3:0] aluc,             // ALU操作码
+    input w_rf,                   // 写寄存器文件标志
+    input w_hi,                   // 写HI标志
+    input w_lo,                   // 写LO标志
+    input w_dm,                   // 写数据存储器标志
+    input isGoto,                 // 跳转指令标志
+    input asource,                // A源选择标志
+    input bsource,                // B源选择标志
+    input [1:0] hisource,         // HI源选择
+    input [1:0] losource,         // LO源选择
+    input [2:0] rfsource,         // 寄存器文件源选择
+    input [1:0] SC,               // 存储器命令信号
+    input [2:0] LC,               // 加载命令信号
+    output [31:0] Emuler_hi,      // 乘法高32位结果
+    output [31:0] Emuler_lo,      // 乘法低32位结果
+    output [31:0] Er,             // 除法余数
+    output [31:0] Eq,             // 除法商
+    output [31:0] Ecounter,       // 计数器结果
+    output [31:0] Ealu,           // ALU结果
+    output [31:0] Epc4,           // 传给MEM阶段的PC+4值
+    output [31:0] Ea,             // 传给MEM阶段的寄存器A值
+    output [31:0] Eb,             // 传给MEM阶段的寄存器B值
+    output [31:0] Ecp0,           // 传给MEM阶段的CP0相关数据
+    output [31:0] Ehi,            // 传给MEM阶段的HI寄存器值
+    output [31:0] Elo,            // 传给MEM阶段的LO寄存器值
+    output [4:0] Ern,             // 传给MEM阶段的目标寄存器编号
+    output Ew_rf,                 // 传给MEM阶段的写寄存器文件标志
+    output Ew_hi,                 // 传给MEM阶段的写HI标志
+    output Ew_lo,                 // 传给MEM阶段的写LO标志
+    output Ew_dm,                 // 传给MEM阶段的写数据存储器标志
+    output EisGoto,               // 传给MEM阶段的跳转指令标志
+    output [1:0] Ehisource,       // 传给MEM阶段的HI源选择
+    output [1:0] Elosource,       // 传给MEM阶段的LO源选择
+    output [2:0] Erfsource,       // 传给MEM阶段的寄存器文件源选择
+    output [1:0] ESC,             // 传给MEM阶段的存储器命令信号
+    output [2:0] ELC              // 传给MEM阶段的加载命令信号
+);
+
+    // 直接传递输入到输出（流水线操作）
+    assign Ea = a;
+    assign Eb = b;
+    assign Epc4 = pc4;
+    assign Ehi = hi;
+    assign Elo = lo;
+    assign Ecp0 = cp0;
+    assign Ern = rn;
+    assign Ew_rf = w_rf;
+    assign Ew_hi = w_hi;
+    assign Ew_lo = w_lo;
+    assign Ew_dm = w_dm;
+    assign EisGoto = isGoto;
+    assign Ehisource = hisource;
+    assign Elosource = losource;
+    assign Erfsource = rfsource;
+    assign ESC = SC;               // 传递存储器命令信号到下一阶段
+    assign ELC = LC;               // 传递加载命令信号到下一阶段
+
+    (* MARK_DEBUG = "TRUE" *) wire [31:0] ain, bin, saout;  // 调试信号
+    wire zero, carry, negative, overflow;  // ALU状态信号
+
+    Counter counter (
+        .d(a),
+        .q(Ecounter)
+    );  // 计数器模块，输入a，输出Ecounter
+    MULer muler (
+        .clk(clk),
+        .rstn(rstn),
+        .sign(sign),
+        .a(a),
+        .b(b),
+        .hi(Emuler_hi),
+        .lo(Emuler_lo)
+    );  // 乘法器模块
+    DIVer diver (
+        .clk(clk),
+        .rstn(rstn),
+        .sign(sign),
+        .div_en(div),
+        .a(a),
+        .b(b),
+        .q(Eq),
+        .r(Er)
+    );  // 除法器模块
+    MUX2_1 mux_a(
+        .d0({27'b0, imm[10:6]}),
+        .d1(a),
+        .sel(asource),
+        .y(ain)
+    );  // A源多路选择器，可以选择立即数的[10:6]位或寄存器a
+    MUX2_1 mux_b(
+        .d0(imm),
+        .d1(b),
+        .sel(bsource),
+        .y(bin)
+    );  // B源多路选择器，可以选择立即数或寄存器b
+    ALU alu (
+        .aluc(aluc),
+        .a(ain),
+        .b(bin),
+        .y(saout),
+        .zero(zero),
+        .carry(carry),
+        .negative(negative),
+        .overflow(overflow)
+    );  // ALU模块执行运算
+endmodule 
+ 
+## PipeID.v 
+// 指令译码阶段模块（ID）
+// 功能：译码指令，读取寄存器文件，处理数据前递和控制信号
+module PipeID(
+    input clk,                    // 时钟信号
+    input rstn,                   // 异步复位信号（低电平有效）
+    input userbreak,
+    input [31:0] pc4,             // PC+4值
+    input [31:0] inst,            // 指令输入
+    input [31:0] Ealu,            // EX阶段的ALU结果
+    input [31:0] Malu,            // MEM阶段的ALU结果
+    input [31:0] Mdm,             // MEM阶段的数据内存结果
+    input [31:0] Ehi,             // EX阶段的HI寄存器值
+    input [31:0] Elo,             // EX阶段的LO寄存器值
+    input [31:0] Epc0,            // EX阶段的CP0值
+    input [31:0] Emuler_hi,       // EX阶段乘法高32位结果
+    input [31:0] Emuler_lo,       // EX阶段乘法低32位结果
+    input [31:0] Er,              // EX阶段除法余数
+    input [31:0] Eq,              // EX阶段除法商
+    input [31:0] Ecounter,        // EX阶段计数器结果
+    input [4:0] Ern,              // EX阶段目标寄存器编号
+    input [4:0] Mrn,              // MEM阶段目标寄存器编号
+    input Ew_rf,                  // EX阶段写寄存器文件标志
+    input Mw_rf,                  // MEM阶段写寄存器文件标志
+    input Ew_hi,                  // EX阶段写HI标志
+    input Ew_lo,                  // EX阶段写LO标志
+    input [2:0] Erfsource,        // EX阶段寄存器文件源选择
+    input [2:0] Mrfsource,        // MEM阶段寄存器文件源选择
+    input [1:0] Ehisource,        // EX阶段HI源选择
+    input [1:0] Elosource,        // EX阶段LO源选择（注意：这里可能是拼写错误，应为Elosource）
+    input [31:0] Wdata_rf,        // 写入寄存器文件的数据
+    input [4:0] Wrn,              // 写入寄存器编号
+    input Wena_rf,                // 写入寄存器文件使能
+    input Wena_hi,                // 写入HI使能
+    input Wena_lo,                // 写入LO使能
+    input EisGoto,                // EX阶段跳转指令标志
+    output [31:0] cpc,            // CP0寄存器输出
+    output [31:0] rpc,            // 寄存器PC输出
+    output [31:0] bpc,            // 分支PC输出
+    output [31:0] jpc,            // 跳转PC输出
+    output [31:0] Rsout,          // 寄存器Rs输出
+    output [31:0] Rtout,          // 寄存器Rt输出
+    output [31:0] imm,            // 立即数输出
+    output [31:0] Dpc4,           // D阶段PC+4输出
+    output [31:0] CP0out,         // CP0输出
+    output [31:0] Hiout,          // HI寄存器输出
+    output [31:0] Loout,          // LO寄存器输出
+    output [4:0] rn,              // 目标寄存器编号输出
+    output sign,                  // 符号扩展标志输出
+    output div,                   // 除法操作标志输出
+    output [3:0] aluc,            // ALU操作码输出
+    output w_hi,                  // 写HI标志输出
+    output w_lo,                  // 写LO标志输出
+    output w_rf,                  // 写寄存器文件标志输出
+    output w_dm,                  // 写数据存储器标志输出
+    output asource,               // A源选择输出
+    output bsource,               // B源选择输出
+    output [1:0] hisource,        // HI源选择输出
+    output [1:0] losource,        // LO源选择输出
+    output [2:0] rfsource,        // 寄存器文件源选择输出
+    output [1:0] pcsource,        // PC源选择输出
+    output [1:0] SC,              // 存储器命令信号输出
+    output [2:0] LC,              // 加载命令信号输出
+    output stall,                 // 流水线暂停信号输出
+    output isGoto,                // 跳转指令标志输出
+    output [31:0] reg28           // 特殊寄存器输出（可能是$gp寄存器）
+);
+
+// 调试信号定义
+(* MARK_DEBUG="true" *) wire[5:0] op, func;              // 操作码和功能码
+(* MARK_DEBUG="true" *) wire [4:0] rsc, rtc, rdc, mf;    // 寄存器源和目标编号
+(* MARK_DEBUG="true" *) wire [15:0] ext16;               // 16位扩展值
+// (* MARK_DEBUG="true" *) wire [1:0] fwda, fwdb;           // 数据前递选择信号
+(* MARK_DEBUG="true" *) wire sign_ext;                    // 符号扩展标志
+(* MARK_DEBUG="true" *) wire mfc0, mtc0, eret, teq, bre, sys, beq, bne, bgez;  // 指令类型标志
+(* MARK_DEBUG="true" *) wire isBranch;                    // 分支指令标志
+(* MARK_DEBUG="true" *) wire [31:0] aout, bout, cp0, hi, lo;  // 寄存器输出值
+(* MARK_DEBUG="true" *) wire [1:0] fwhi, fwlo;           // HI和LO前递选择信号
+(* MARK_DEBUG="true" *) wire [2:0] fwda, fwdb;           // （注：这里存在重复定义，应为不同信号）
+(* MARK_DEBUG="true" *) wire [4:5] ex_cause;             // 异常原因
+
+// 指令字段解析
+assign func = inst[5:0];         // 指令功能码（[5:0]位）
+assign op = inst[31:26];         // 指令操作码（[31:26]位）
+assign mf = inst[25:21];         // CP0寄存器字段（[25:21]位）
+assign rsc = inst[25:21];        // 源寄存器Rs（[25:21]位）
+assign rtc = inst[20:16];        // 源寄存器Rt（[20:16]位）
+assign rdc = inst[15:11];        // 目标寄存器Rd（[15:11]位）
+assign ext16 = inst[15:0];       // 16位立即数字段（[15:0]位）
+assign jpc = {pc4[31:28], inst[25:0], 2'b00};  // 跳转目标地址（J型指令）
+
+// 分支目标地址计算
+wire[31:0] ext_18;
+assign ext_18 = {14'b0, ext16, 2'b00};  // 扩展16位立即数为18位并左移2位
+assign bpc = pc4 + ext_18;       // 分支目标地址
+
+// 输出分配
+assign rpc = Rsout;              // 寄存器PC输出
+assign cpc = CP0out;             // CP0输出
+assign Dpc4 = pc4;               // D阶段PC+4输出
+assign imm = sign_ext ? {{16{ext16[15]}}, ext16} : {16'b0, ext16};  // 立即数符号扩展
+
+// 寄存器文件模块实例化
+Regfile regfile(
+    .clk(clk),
+    .rstn(rstn),
+    .wen(Wena_rf),
+    .rsc(rsc),
+    .rtc(rtc),
+    .wrn(Wrn),
+    .wdata(Wdata_rf),
+    .raout(aout),
+    .rbout(bout),
+    .reg28(reg28)
+);
+
+// A和B操作数数据前递多路选择器
+MUX8_1 alu_aout(
+    .d0(Ecounter),
+    .d1(Ehi),
+    .d2(Elo),
+    .d3(Emuler_lo),
+    .d4(Mdm),
+    .d5(Malu),
+    .d6(Ealu),
+    .d7(aout),
+    .sel(fwda),
+    .y(Rsout)
+);
+MUX8_1 alu_bout(
+    .d0(Ecounter),
+    .d1(Ehi),
+    .d2(Elo),
+    .d3(Emuler_lo),
+    .d4(Mdm),
+    .d5(Malu),
+    .d6(Ealu),
+    .d7(bout),
+    .sel(fwdb),
+    .y(Rtout)
+);
+
+// CP0协处理器模块实例化
+CP0 cp0reg(
+    .clk(clk),
+    .rstn(rstn),
+    .mfc0(mfc0),
+    .mtc0(mtc0),
+    .eret(eret),
+    .teq(teq),
+    .bre(bre),
+    .sys(sys),
+    .wcau(wcau),
+    .wsta(wsta),
+    .wepc(wepc),
+    .woth(woth),
+    .rsc(rsc),
+    .ex_cause(ex_cause),
+    .rdata(Rtout),
+    .cp0out(CP0out)
+);
+
+// HI寄存器模块实例化
+Reg hireg(
+    .clk(clk),
+    .rstn(rstn),
+    .wen(Wena_hi),
+    .wdata(Wdata_hi),
+    .rdata(hi)
+);
+MUX4_1 hiout(
+    .d0(Er),
+    .d1(Emuler_hi),
+    .d2(Ehi),
+    .d3(hi),
+    .sel(fwhi),
+    .y(Hiout)
+);
+
+// LO寄存器模块实例化
+Reg loreg(
+    .clk(clk),
+    .rstn(rstn),
+    .wen(Wena_lo),
+    .wdata(Wdata_lo),
+    .rdata(lo)
+);
+MUX4_1 loout(
+    .d0(Eq),
+    .d1(Emuler_lo),
+    .d2(Elo),
+    .d3(lo),
+    .sel(fwlo),
+    .y(Loout)
+);
+
+// 比较模块实例化（用于分支指令）
+Compare_ID compare(
+    .a(Rsout),
+    .b(Rtout),
+    .beq(beq),
+    .bne(bne),
+    .bgez(bgez),
+    .teq(teq),
+    .isBranch(isBranch)
+);
+
+// 流水线控制单元模块实例化
+PipeControlUnit CU(
+    .clk(clk),
+    .rstn(rstn),
+    .userbreak(userbreak),
+    .rsc(rsc),
+    .rtc(rtc),
+    .rdc(rdc),
+    .func(func),
+    .op(op),
+    .mf(mf),
+    .isBranch(isBranch),
+    .EisGoto(EisGoto),
+    .Ern(Ern),
+    .Mrn(Mrn),
+    .Ew_rf(Ew_rf),
+    .Mw_rf(Mw_rf),
+    .Ew_hi(Ew_hi),
+    .Ew_lo(Ew_lo),
+    .Erfsource(Erfsource),
+    .Mrfsource(Mrfsource),
+    .Ehisource(Ehisource),
+    .Elosource(Elosource),  // Fixed the typo: Elosourse -> Elosource
+    .fwhi(fwhi),
+    .fwlo(fwlo),
+    .fwda(fwda),
+    .fwdb(fwdb),
+    .rn(rn),
+    .sign(sign),
+    .div(div),
+    .mfc0(mfc0),
+    .mtc0(mtc0),
+    .sys(sys),
+    .eret(eret),
+    .bre(bre),
+    .teq(teq),
+    .beq(beq),
+    .bne(bne),
+    .bgez(bgez),
+    .aluc(aluc),
+    .wcau(wcau),
+    .wsta(wsta),
+    .wepc(wepc),
+    .wotr(wotr),
+    .w_hi(w_hi),
+    .w_lo(w_lo),
+    .w_rf(w_rf),
+    .w_dm(w_dm),
+    .ex_cause(ex_cause),
+    .asource(asource),
+    .bsource(bsource),
+    .hisource(hisource),
+    .losource(losource),
+    .rfsource(rfsource),
+    .pcsource(pcsource),
+    .SC(SC),
+    .LC(LC),
+    .stall(stall),
+    .isGoto(isGoto)
+);
+
+endmodule
+ 
+ 
+## PipeIF.v 
+// 指令获取阶段模块（IF）
+// 功能：根据程序计数器获取指令，计算下一个PC值
+module PipeIF (
+    input [31:0] pc,              // 当前程序计数器值
+    input [31:0] cpc,             // CP0控制寄存器提供的PC值
+    input [31:0] bpc,             // 分支指令计算的PC值
+    input [31:0] rpc,             // 返回指令的PC值
+    input [31:0] jpc,             // 跳转指令的PC值
+    input [2:0] pcsource,         // PC源选择信号
+    output [31:0] npc,            // 下一个程序计数器值
+    output [31:0] pc4,            // 当前PC+4的值
+    output [31:0] instruction     // 从指令存储器获取的指令
+);
+    // 计算PC+4的值
+    assign pc4 = pc + 32'h4;
+
+    // 根据pcsource信号选择下一个PC值
+    // 0: 当前PC+4
+    // 1: CP0提供的PC值
+    // 2: 返回指令的PC值
+    // 3: 分支指令计算的PC值
+    // 4: 跳转指令的PC值
+    // 5: 当前PC+4
+    MUX6_1 next_pc(
+        .A(32'h4),
+        .B(cpc),
+        .C(rpc),
+        .D(bpc),
+        .E(jpc),
+        .F(pc4),
+        .sel(pcsource),
+        .Y(npc)
+    );
+
+    // 从指令存储器中获取指令，地址为pc[11:2]（使用pc的[11:2]位作为地址）
+    IMEM_ip imem(
+        .a(pc[12:2]),
+        .spo(instruction)
+    );
+endmodule 
+ 
+## PipeIR.v 
+// 指令寄存器模块（IR）
+// 功能：锁存指令获取阶段的PC+4和指令，传递给译码阶段
+module PipeIR (
+    input clk,                    // 时钟信号
+    input rstn,                   // 异步复位信号（低电平有效）
+    input [31:0] pc4,             // PC+4值（来自IF阶段）
+    input [31:0] instruction,     // 从指令存储器获取的指令
+    input nostall,                // 不暂停信号（流水线控制）
+    output [31:0] Dpc4,           // 传递给ID阶段的PC+4值
+    output [31:0] Dinstruction    // 传递给ID阶段的指令
+);
+// 锁存PC+4值到Dpc4
+Reg dpc4(clk, rstn, nostall, pc4, Dpc4);
+
+// 锁存指令到Dinstruction
+Reg ir(clk, rstn, nostall, instruction, Dinstruction);
+
+endmodule 
+ 
+## PipeMEM.v 
+// 内存访问阶段模块（MEM）
+// 功能：执行数据存储器访问（加载/存储操作），处理数据读/写
+module PipeMEM(
+    input clk,                    // 时钟信号
+    input [31:0] muler_hi,        // 乘法高32位结果
+    input [31:0] muler_lo,        // 乘法低32位结果
+    input [31:0] r,               // 除法余数
+    input [31:0] q,               // 除法商
+    input [31:0] counter,         // 计数器结果
+    input [31:0] alu,             // ALU结果（通常作为内存地址）
+    input [31:0] pc4,             // PC+4值
+    input [31:0] a,               // 寄存器A的值
+    input [31:0] b,               // 寄存器B的值（通常作为写入数据）
+    input [31:0] cp0,             // CP0相关数据
+    input [31:0] hi,              // HI寄存器值
+    input [31:0] lo,              // LO寄存器值
+    input [4:0] rn,               // 目标寄存器编号
+    input w_rf,                   // 写寄存器文件标志
+    input w_hi,                   // 写HI标志
+    input w_lo,                   // 写LO标志
+    input w_dm,                   // 写数据存储器标志
+    input sign,                   // 符号扩展标志
+    input [1:0] hisource,         // HI源选择
+    input [1:0] losource,         // LO源选择
+    input [2:0] rfsource,         // 寄存器文件源选择
+    input [1:0] alusource,        // ALU源选择
+    input [1:0] SC,               // 存储器命令信号
+    input [2:0] LC,               // 加载命令信号
+    output [31:0] Mmuler_hi,      // 传递给WB阶段的乘法高32位结果
+    output [31:0] Mmuler_lo,      // 传递给WB阶段的乘法低32位结果
+    output [31:0] Mr,             // 传递给WB阶段的除法余数
+    output [31:0] Mq,             // 传递给WB阶段的除法商
+    output [31:0] Mcounter,       // 传递给WB阶段的计数器结果
+    output [31:0] Malu,           // 传递给WB阶段的ALU结果
+    output [31:0] Mdm,            // 从数据存储器读取的数据
+    output [31:0] Mpc4,           // 传递给WB阶段的PC+4值
+    output [31:0] Ma,             // 传递给WB阶段的寄存器A值
+    output [31:0] Mb,             // 传递给WB阶段的寄存器B值
+    output [31:0] Mcp0,           // 传递给WB阶段的CP0相关数据
+    output [31:0] Mhi,            // 传递给WB阶段的HI寄存器值
+    output [31:0] Mlo,            // 传递给WB阶段的LO寄存器值
+    output [4:0] Mrn,             // 传递给WB阶段的目标寄存器编号
+    output Mw_rf,                 // 传递给WB阶段的写寄存器文件标志
+    output Mw_hi,                 // 传递给WB阶段的写HI标志
+    output Mw_lo,                 // 传递给WB阶段的写LO标志
+    output [1:0] Mhisource,       // 传递给WB阶段的HI源选择
+    output [1:0] Mlosource,       // 传递给WB阶段的LO源选择
+    output [2:0] Mrfsource,       // 传递给WB阶段的寄存器文件源选择
+    output [1:0] MSC,             // 传递给WB阶段的存储器命令信号
+    output [2:0] MLC              // 传递给WB阶段的加载命令信号
+);
+
+// 直接传递输入信号到输出，实现流水线操作
+assign Mpc4 = pc4;
+assign Ma = a;
+assign Mb = b;
+assign Mcp0 = cp0;
+assign Mhi = hi;
+assign Mlo = lo;
+assign Mmuler_hi = muler_hi;
+assign Mmuler_lo = muler_lo;
+assign Mr = r;
+assign Mq = q;
+assign Mcounter = counter;
+assign Malu = alu;
+assign Mrn = rn;
+assign Mw_rf = w_rf;
+assign Mw_hi = w_hi;
+assign Mw_lo = w_lo;
+assign Mhisource = hisource;
+assign Mlosource = losource;
+assign Mrfsource = rfsource;
+assign MSC = SC;                  // 传递存储器命令信号到下一阶段
+assign MLC = LC;                  // 传递加载命令信号到下一阶段
+
+// 数据存储器访问
+wire [31:0] dmout;               // 从数据存储器读取的原始数据
+
+DMEM dmem(                        // 多体交叉存储器模块
+    .clk(clk),                   // 时钟信号
+    .SC(SC),                     // 存储器命令
+    .LC(LC),                     // 加载命令
+    .Data_in(b),                 // 写入数据
+    .DMEMaddr(alu),              // 存储器地址
+    .CS(1'b1),                   // 片选信号 (始终使能)
+    .DM_W(w_dm),                 // 写使能
+    .DM_R(~w_dm),                // 读使能 (非写操作时为读)
+    .Dataout(dmout)              // 存储器输出数据
+);
+
+assign Mdm = dmout;              // 直接将存储器输出作为模块输出
+
+endmodule 
+ 
+## PipeMWreg.v 
+// MEM/WB流水线寄存器模块
+// 功能：存储MEM阶段的输出数据并传递给WB（写回）阶段
+module PipeMWreg(
+    input clk,                    // 时钟信号
+    input rstn,                   // 异步复位信号（低电平有效）
+    input wena,                   // 写使能信号
+    input [31:0] Mmuler_hi,       // MEM阶段乘法高32位结果
+    input [31:0] Muler_lo,        // MEM阶段乘法低32位结果（注意：这里原代码可能有个拼写错误，应该是Mmuler_lo）
+    input [31:0] Mr,              // MEM阶段除法余数
+    input [31:0] Mq,              // MEM阶段除法商
+    input [31:0] Mcounter,        // MEM阶段计数器结果
+    input [31:0] Malu,            // MEM阶段ALU结果
+    input [31:0] Mdm,             // MEM阶段从数据存储器读取的数据
+    input [31:0] Mpc4,            // MEM阶段PC+4值
+    input [31:0] Ma,              // MEM阶段寄存器A的值
+    input [31:0] Mb,              // MEM阶段寄存器B的值
+    input [31:0] Mcp0,            // MEM阶段CP0相关数据
+    input [31:0] Mhi,             // MEM阶段HI寄存器值
+    input [31:0] Mlo,             // MEM阶段LO寄存器值
+    input [4:0] Mrn,              // MEM阶段目标寄存器编号
+    input Mw_rf,                  // MEM阶段写寄存器文件标志
+    input Mw_hi,                  // MEM阶段写HI标志
+    input Mw_lo,                  // MEM阶段写LO标志
+    input [1:0] Mhisource,        // MEM阶段HI源选择
+    input [1:0] Mlosource,        // MEM阶段LO源选择
+    input [2:0] Mrfsource,        // MEM阶段寄存器文件源选择
+    output reg [31:0] Wmuler_hi,  // 传递给WB阶段的乘法高32位结果
+    output reg [31:0] Wmuler_lo,  // 传递给WB阶段的乘法低32位结果
+    output reg [31:0] Wr,         // 传递给WB阶段的除法余数
+    output reg [31:0] Wq,         // 传递给WB阶段的除法商
+    output reg [31:0] Wcounter,   // 传递给WB阶段的计数器结果
+    output reg [31:0] Walu,       // 传递给WB阶段的ALU结果
+    output reg [31:0] Wdm,        // 传递给WB阶段的从数据存储器读取的数据
+    output reg [31:0] Wpc4,       // 传递给WB阶段的PC+4值
+    output reg [31:0] Wa,         // 传递给WB阶段的寄存器A值
+    output reg [31:0] Wb,         // 传递给WB阶段的寄存器B值
+    output reg [31:0] Wcp0,       // 传递给WB阶段的CP0相关数据
+    output reg [31:0] Whi,        // 传递给WB阶段的HI寄存器值
+    output reg [31:0] Wlo,        // 传递给WB阶段的LO寄存器值
+    output reg [4:0] Wrn,         // 传递给WB阶段的目标寄存器编号
+    output reg Ww_rf,             // 传递给WB阶段的写寄存器文件标志
+    output reg Ww_hi,             // 传递给WB阶段的写HI标志
+    output reg Ww_lo,             // 传递给WB阶段的写LO标志
+    output reg [1:0] Whisource,   // 传递给WB阶段的HI源选择
+    output reg [1:0] Wlosource,   // 传递给WB阶段的LO源选择
+    output reg [2:0] Wrfsource    // 传递给WB阶段的寄存器文件源选择
+);
+
+always @(posedge clk) begin
+    if (!rstn) begin
+        // 异步复位，将所有输出寄存器清零
+        Wpc4 <= 0;
+        Wa <= 0;
+        Wb <= 0;
+        Wcp0 <= 0;
+        Whi <= 0;
+        Wlo <= 0;
+        Wrn <= 0;
+        Wmuler_hi <= 0;
+        Wmuler_lo <= 0;
+        Wr <= 0;
+        Wq <= 0;
+        Wcounter <= 0;
+        Walu <= 0;
+        Wdm <= 0;
+        Ww_rf <= 0;
+        Ww_hi <= 0;
+        Ww_lo <= 0;
+        Whisource <= 0;
+        Wlosource <= 0;
+        Wrfsource <= 0;
+    end else begin
+        // 正常操作，将输入数据锁存到输出寄存器
+        Wpc4 <= Mpc4;
+        Wa <= Ma;
+        Wb <= Mb;
+        Wcp0 <= Mcp0;
+        Whi <= Mhi;
+        Wlo <= Mlo;
+        Wrn <= Mrn;
+        Wmuler_hi <= Mmuler_hi;
+        Wmuler_lo <= Muler_lo;  // 注意：这里修正了拼写错误，原代码中是Muler_lo
+        Wr <= Mr;
+        Wq <= Mq;
+        Wcounter <= Mcounter;
+        Walu <= Malu;
+        Wdm <= Mdm;
+        Ww_rf <= Mw_rf;
+        Ww_hi <= Mw_hi;
+        Ww_lo <= Mw_lo;
+        Whisource <= Mhisource;
+        Wlosource <= Mlosource;
+        Wrfsource <= Mrfsource;
+    end
+end
+
+endmodule 
+ 
+## PipeWB.v 
+// 写回阶段模块（WB）
+// 功能：将执行结果写回到寄存器文件或特殊寄存器
+module PipeWB(
+    input [31:0] muler_hi,        // 乘法高32位结果
+    input [31:0] muler_lo,        // 乘法低32位结果
+    input [31:0] r,               // 除法余数
+    input [31:0] q,               // 除法商
+    input [31:0] counter,         // 计数器结果
+    input [31:0] alu,             // ALU结果
+    input [31:0] dm,              // 从数据存储器读取的数据
+    input [31:0] pc4,             // PC+4值
+    input [31:0] a,               // 寄存器A的值
+    input [31:0] b,               // 寄存器B的值
+    input [4:0] rn,               // 目标寄存器编号
+    input w_rf,                   // 写寄存器文件标志
+    input w_hi,                   // 写HI标志
+    input w_lo,                   // 写LO标志
+    input [1:0] hisource,         // HI源选择
+    input [1:0] losource,         // LO源选择
+    input [2:0] rfsource,         // 寄存器文件源选择
+    output [31:0] Wdata_hi,       // 写入HI寄存器的数据
+    output [31:0] Wdata_lo,       // 写入LO寄存器的数据
+    output [31:0] Wdata_rf,       // 写入寄存器文件的数据
+    output [4:0] Wrn,             // 写入寄存器编号
+    output Ww_rf,                 // 写寄存器文件使能
+    output Ww_hi,                 // 写HI使能
+    output Ww_lo                  // 写LO使能
+);
+    // HI寄存器写入数据选择：根据hisource信号选择数据源
+    // 0: 0 (不写入)
+    // 1: 除法余数(r)
+    // 2: 乘法高32位结果(muler_hi)
+    // 3: 寄存器A的值(a)
+    MUX4_1 mux_hi(
+        .d0(32'b0),
+        .d1(r),
+        .d2(muler_hi),
+        .d3(a),
+        .sel(hisource),
+        .y(Wdata_hi)
+    );
+
+    // LO寄存器写入数据选择：根据losource信号选择数据源
+    // 0: 0 (不写入)
+    // 1: 除法余数(r)
+    // 2: 乘法低32位结果(muler_lo)
+    // 3: 寄存器B的值(b)
+    MUX4_1 mux_lo(
+        .d0(32'b0),
+        .d1(r),
+        .d2(muler_lo),
+        .d3(b),
+        .sel(losource),
+        .y(Wdata_lo)
+    );
+
+    // 寄存器文件写入数据选择：根据rfsource信号选择数据源
+    // 0: 0 (不写入)
+    // 1: CP0数据(cp0)
+    // 2: 乘法低32位结果(muler_lo)
+    // 3: 计数器结果(counter)
+    // 4: HI寄存器值(hi)
+    // 5: LO寄存器值(lo)
+    // 6: 从数据存储器读取的数据(dm)
+    // 7: ALU结果(alu)
+    MUX8_1 mux_rf(
+        .d0(32'b0),
+        .d1(cp0),
+        .d2(muler_lo),
+        .d3(counter),
+        .d4(hi),
+        .d5(lo),
+        .d6(dm),
+        .d7(alu),
+        .sel(rfsource),
+        .y(Wdata_rf)
+    );
+
+    // 直接传递目标寄存器编号和写使能信号
+    assign Wrn = rn;
+    assign Ww_rf = w_rf;
+    assign Ww_hi = w_hi;
+    assign Ww_lo = w_lo;
+endmodule 
+ 
+## PiplineCPU.v 
+module PipelineCPU(
+    input clk,          // 时钟信号
+    input rstn,         // 异步复位信号（低电平有效）
+    input userbreak
+);
+
+    // ================== 内部信号定义 ==================
+
+    // IF阶段信号
+    wire [31:0] pc;                 // 当前PC值
+    wire [31:0] npc;                // 下一个PC值
+    wire [31:0] pc4_if;             // IF阶段PC+4
+    wire [31:0] instruction;        // 从指令存储器获取的指令
+    wire [2:0] pcsource_id;         // ID阶段产生的PC源选择信号
+    wire [31:0] cpc_id, rpc_id, bpc_id, jpc_id; // 各种PC源值
+
+    // IF/ID流水线寄存器信号
+    wire [31:0] Dpc4;               // ID阶段PC+4
+    wire [31:0] Dinstruction;       // ID阶段指令
+    wire nostall;                   // 流水线暂停控制信号
+
+    // ID阶段信号
+    wire [31:0] Rsout_id, Rtout_id; // 寄存器输出
+    wire [31:0] imm_id;             // 立即数
+    wire [31:0] Hiout_id, Loout_id; // HI/LO寄存器输出
+    wire [31:0] CP0out_id;          // CP0输出
+    wire [4:0] rn_id;               // 目标寄存器编号
+    wire sign_id, div_id;           // 符号扩展和除法标志
+    wire [3:0] aluc_id;             // ALU操作码
+    wire w_hi_id, w_lo_id, w_rf_id, w_dm_id; // 写使能标志
+    wire asource_id, bsource_id;    // 操作数源选择
+    wire [1:0] hisource_id, losource_id; // HI/LO源选择
+    wire [2:0] rfsource_id;         // 寄存器文件源选择
+    wire [1:0] SC_id, LC_id;        // 存储器命令信号
+    wire stall_id;                  // 流水线暂停信号
+    wire isGoto_id;                 // 跳转指令标志
+    wire [31:0] reg28_id;           // 特殊寄存器输出
+    wire halt;
+    // ID/EX流水线寄存器信号
+    wire [31:0] Epc4, Ea, Eb, Eimm, Ecp0, Ehi, Elo;
+    wire [4:0] Ern;
+    wire Esign, Ediv;
+    wire [3:0] Ealuc;
+    wire Ew_rf, Ew_hi, Ew_lo, Ew_dm, EisGoto;
+    wire Easource, Ebsource;
+    wire [1:0] Ehisource, Elosource;
+    wire [2:0] Erfsource;
+    wire [1:0] ESC, ELC;
+
+    // EX阶段信号
+    wire [31:0] Emuler_hi, Emuler_lo, Er, Eq, Ecounter, Ealu;
+    wire Ew_dm_ex; // EX阶段写数据存储器标志
+
+    // EX/MEM流水线寄存器信号
+    wire [31:0] Mmuler_hi, Mmuler_lo, Mr, Mq, Mcounter, Malu;
+    wire [31:0] Mpc4, Ma, Mb, Mcp0, Mhi, Mlo;
+    wire [4:0] Mrn;
+    wire Msign, Mw_rf, Mw_hi, Mw_lo, Mw_dm;
+    wire [1:0] Mhisource, Mlosource;
+    wire [2:0] Mrfsource;
+    wire [1:0] MSC, MLC;
+
+    // MEM阶段信号
+    wire [31:0] Mdm;                // 从数据存储器读取的数据
+    wire [31:0] Mdm_out;           // MEM阶段输出到WB的数据
+    wire [31:0] Mmuler_hi_mem, Mmuler_lo_mem, Mr_mem, Mq_mem, Mcounter_mem, Malu_mem;
+    wire [31:0] Mpc4_mem, Ma_mem, Mb_mem, Mcp0_mem, Mhi_mem, Mlo_mem;
+    wire [4:0] Mrn_mem;
+    wire Mw_rf_mem, Mw_hi_mem, Mw_lo_mem;
+    wire [1:0] Mhisource_mem, Mlosource_mem;
+    wire [2:0] Mrfsource_mem;
+
+    // MEM/WB流水线寄存器信号
+    wire [31:0] Wmuler_hi, Wmuler_lo, Wr, Wq, Wcounter, Walu, Wdm;
+    wire [31:0] Wpc4, Wa, Wb, Wcp0, Whi, Wlo;
+    wire [4:0] Wrn;
+    wire Ww_rf, Ww_hi, Ww_lo;
+    wire [1:0] Whisource, Wlosource;
+    wire [2:0] Wrfsource;
+
+    // WB阶段信号
+    wire [31:0] Wdata_hi, Wdata_lo, Wdata_rf;
+    wire [4:0] Wrn_wb;
+    wire Ww_rf_wb, Ww_hi_wb, Ww_lo_wb;
+
+    // 写回数据到寄存器文件
+    wire [31:0] Wdata_rf_to_regfile;
+    wire [4:0] Wrn_to_regfile;
+    wire Wena_rf, Wena_hi, Wena_lo;
+
+    // 数据前递相关信号
+    wire [1:0] fwhi_id, fwlo_id;
+    wire [2:0] fwda_id, fwdb_id;
+    
+
+    // ================== 模块实例化 ==================
+
+    // 1. PC寄存器
+    PcReg pc_reg(
+        .clk(clk),
+        .rstn(rstn),
+        .wena(1'b1),        // 假设始终允许写
+        .data_in(npc),
+        .halt(halt),
+        .data_out(pc)
+    );
+
+    // 2. IF阶段
+
+    PipeIF pipe_if(
+        .pc(pc),
+        .cpc(cpc_id),
+        .bpc(bpc_id),
+        .rpc(rpc_id),
+        .jpc(jpc_id),
+        .pcsource(pcsource_id),
+        .npc(npc),
+        .pc4(pc4_if),
+        .instruction(instruction)
+    );
+
+    // 3. IF/ID流水线寄存器
+    assign nostall = ~stall_id; // 暂停控制取反
+    PipeIR pipe_ir(
+        .clk(clk),
+        .rstn(rstn),
+        .pc4(pc4_if),
+        .instruction(instruction),
+        .nostall(nostall),
+        .Dpc4(Dpc4),
+        .Dinstruction(Dinstruction)
+    );
+
+    // 4. ID阶段
+    PipeID pipe_id(
+        .clk(clk),
+        .rstn(rstn),
+        .userbreak(userbreak),
+        .pc4(Dpc4),
+        .inst(Dinstruction),
+        .Ealu(Ealu),
+        .Malu(Malu_mem),
+        .Mdm(Mdm),
+        .Ehi(Ehi),
+        .Elo(Elo),
+        .Epc0(Ecp0),
+        .Emuler_hi(Emuler_hi),
+        .Emuler_lo(Emuler_lo),
+        .Er(Er),
+        .Eq(Eq),
+        .Ecounter(Ecounter),
+        .Ern(Ern),
+        .Mrn(Mrn_mem),
+        .Ew_rf(Ew_rf),
+        .Mw_rf(Mw_rf_mem),
+        .Ew_hi(Ew_hi),
+        .Ew_lo(Ew_lo),
+        .Erfsource(Erfsource),
+        .Mrfsource(Mrfsource_mem),
+        .Ehisource(Ehisource),
+        .Elosource(Elosource),
+        .Wdata_rf(Wdata_rf_to_regfile),
+        .Wrn(Wrn_to_regfile),
+        .Wena_rf(Wena_rf),
+        .Wena_hi(Wena_hi),
+        .Wena_lo(Wena_lo),
+        .EisGoto(EisGoto),
+        .cpc(cpc_id),
+        .rpc(rpc_id),
+        .bpc(bpc_id),
+        .jpc(jpc_id),
+        .Rsout(Rsout_id),
+        .Rtout(Rtout_id),
+        .imm(imm_id),
+        .Dpc4(Dpc4),        // 传递给ID阶段内部使用
+        .CP0out(CP0out_id),
+        .Hiout(Hiout_id),
+        .Loout(Loout_id),
+        .rn(rn_id),
+        .sign(sign_id),
+        .div(div_id),
+        .aluc(aluc_id),
+        .w_hi(w_hi_id),
+        .w_lo(w_lo_id),
+        .w_rf(w_rf_id),
+        .w_dm(w_dm_id),
+        .asource(asource_id),
+        .bsource(bsource_id),
+        .hisource(hisource_id),
+        .losource(losource_id),
+        .rfsource(rfsource_id),
+        .pcsource(pcsource_id),
+        .SC(SC_id),
+        .LC(LC_id),
+        .stall(stall_id),
+        .isGoto(isGoto_id),
+        .reg28(reg28_id),
+        .halt(halt)
+    );
+
+    // 5. ID/EX流水线寄存器
+    PipeDEreg pipe_de(
+        .clk(clk),
+        .rstn(rstn),
+        .wena(nostall),     // 与IF/ID寄存器同步
+        .Dpc4(Dpc4),
+        .Da(Rsout_id),
+        .Db(Rtout_id),
+        .Dimm(imm_id),
+        .Dcp0(CP0out_id),
+        .Dhi(Hiout_id),
+        .Dlo(Loout_id),
+        .Drn(rn_id),
+        .Dsign(sign_id),
+        .Ddiv(div_id),
+        .Daluc(aluc_id),
+        .Dw_rf(w_rf_id),
+        .Dw_hi(w_hi_id),
+        .Dw_lo(w_lo_id),
+        .Dw_dm(w_dm_id),
+        .DisGoto(isGoto_id),
+        .Dasource(asource_id),
+        .Dbsource(bsource_id),
+        .Dhisource(hisource_id),
+        .Dlosource(losource_id),
+        .Drfsource(rfsource_id),
+        .DSC(SC_id),
+        .DLC(LC_id),
+        .Epc4(Epc4),
+        .Ea(Ea),
+        .Eb(Eb),
+        .Eimm(Eimm),
+        .Ecp0(Ecp0),
+        .Ehi(Ehi),
+        .Elo(Elo),
+        .Ern(Ern),
+        .Esign(Esign),
+        .Ediv(Ediv),
+        .Ealuc(Ealuc),
+        .Ew_rf(Ew_rf),
+        .Ew_hi(Ew_hi),
+        .Ew_lo(Ew_lo),
+        .Ew_dm(Ew_dm),
+        .EisGoto(EisGoto),
+        .Easource(Easource),
+        .Ebsource(Ebsource),
+        .Ehisource(Ehisource),
+        .Elosource(Elosource),
+        .Erfsource(Erfsource),
+        .ESC(ESC),
+        .ELC(ELC)
+    );
+
+    // 6. EX阶段
+    PipeEXE pipe_exe(
+        .clk(clk),
+        .rstn(rstn),
+        .pc4(Epc4),
+        .a(Ea),
+        .b(Eb),
+        .imm(Eimm),
+        .cp0(Ecp0),
+        .hi(Ehi),
+        .lo(Elo),
+        .rn(Ern),
+        .sign(Esign),
+        .div(Ediv),
+        .aluc(Ealuc),
+        .w_rf(Ew_rf),
+        .w_hi(Ew_hi),
+        .w_lo(Ew_lo),
+        .w_dm(Ew_dm),
+        .isGoto(EisGoto),
+        .asource(Easource),
+        .bsource(Ebsource),
+        .hisource(Ehisource),
+        .losource(Elosource),
+        .rfsource(Erfsource),
+        .alusource(),       // 未使用
+        .SC(ESC),
+        .LC(ELC),
+        .Emuler_hi(Emuler_hi),
+        .Emuler_lo(Emuler_lo),
+        .Er(Er),
+        .Eq(Eq),
+        .Ecounter(Ecounter),
+        .Ealu(Ealu),
+        .Epc4(Epc4),
+        .Ea(Ea),
+        .Eb(Eb),
+        .Ecp0(Ecp0),
+        .Ehi(Ehi),
+        .Elo(Elo),
+        .Ern(Ern),
+        .Ew_rf(Ew_rf),
+        .Ew_hi(Ew_hi),
+        .Ew_lo(Ew_lo),
+        .Ew_dm(Ew_dm_ex),
+        .EisGoto(EisGoto),
+        .Ehisource(Ehisource),
+        .Elosource(Elosource),
+        .Erfsource(Erfsource),
+        .ESC(ESC),
+        .ELC(ELC)
+    );
+
+    // 7. EX/MEM流水线寄存器
+    PipeEMreg pipe_em(
+        .clk(clk),
+        .rstn(rstn),
+        .wena(1'b1),
+        .Emuler_hi(Emuler_hi),
+        .Emuler_lo(Emuler_lo),
+        .Er(Er),
+        .Eq(Eq),
+        .Ecounter(Ecounter),
+        .Ealu(Ealu),
+        .Epc4(Epc4),
+        .Ea(Ea),
+        .Eb(Eb),
+        .Ecp0(Ecp0),
+        .Ehi(Ehi),
+        .Elo(Elo),
+        .Ern(Ern),
+        .Esign(Esign),
+        .Ew_rf(Ew_rf),
+        .Ew_hi(Ew_hi),
+        .Ew_lo(Ew_lo),
+        .Ew_dm(Ew_dm_ex),
+        .Ehisource(Ehisource),
+        .Elosource(Elosource),
+        .Erfsource(Erfsource),
+        .ESC(ESC),
+        .ELC(ELC),
+        .Mmuler_hi(Mmuler_hi),
+        .Mmuler_lo(Mmuler_lo),
+        .Mr(Mr),
+        .Mq(Mq),
+        .Mcounter(Mcounter),
+        .Malu(Malu),
+        .Mpc4(Mpc4),
+        .Ma(Ma),
+        .Mb(Mb),
+        .Mcp0(Mcp0),
+        .Mhi(Mhi),
+        .Mlo(Mlo),
+        .Mrn(Mrn),
+        .Msign(Msign),
+        .Mw_rf(Mw_rf),
+        .Mw_hi(Mw_hi),
+        .Mw_lo(Mw_lo),
+        .Mw_dn(Mw_dm),
+        .Mhisource(Mhisource),
+        .Mlosource(Mlosource),
+        .Mrfsource(Mrfsource),
+        .MSC(MSC),
+        .MLC(MLC)
+    );
+
+    // 8. MEM阶段
+    PipeMEM pipe_mem(
+        .clk(clk),
+        .muler_hi(Mmuler_hi),
+        .muler_lo(Mmuler_lo),
+        .r(Mr),
+        .q(Mq),
+        .counter(Mcounter),
+        .alu(Malu),
+        .pc4(Mpc4),
+        .a(Ma),
+        .b(Mb),
+        .cp0(Mcp0),
+        .hi(Mhi),
+        .lo(Mlo),
+        .rn(Mrn),
+        .w_rf(Mw_rf),
+        .w_hi(Mw_hi),
+        .w_lo(Mw_lo),
+        .w_dm(Mw_dm),
+        .sign(Msign),
+        .hisource(Mhisource),
+        .losource(Mlosource),
+        .rfsource(Mrfsource),
+        .alusource(),       // 未使用
+        .SC(MSC),
+        .LC(MLC),
+        .Mmuler_hi(Mmuler_hi_mem),
+        .Mmuler_lo(Mmuler_lo_mem),
+        .Mr(Mr_mem),
+        .Mq(Mq_mem),
+        .Mcounter(Mcounter_mem),
+        .Malu(Malu_mem),
+        .Mdm(Mdm),
+        .Mpc4(Mpc4_mem),
+        .Ma(Ma_mem),
+        .Mb(Mb_mem),
+        .Mcp0(Mcp0_mem),
+        .Mhi(Mhi_mem),
+        .Mlo(Mlo_mem),
+        .Mrn(Mrn_mem),
+        .Mw_rf(Mw_rf_mem),
+        .Mw_hi(Mw_hi_mem),
+        .Mw_lo(Mw_lo_mem),
+        .Mhisource(Mhisource_mem),
+        .Mlosource(Mlosource_mem),
+        .Mrfsource(Mrfsource_mem),
+        .MSC(),             // 未使用
+        .MLC()              // 未使用
+    );
+
+    // 9. MEM/WB流水线寄存器
+    PipeMWreg pipe_mw(
+        .clk(clk),
+        .rstn(rstn),
+        .wena(1'b1),
+        .Mmuler_hi(Mmuler_hi_mem),
+        .Muler_lo(Mmuler_lo_mem),
+        .Mr(Mr_mem),
+        .Mq(Mq_mem),
+        .Mcounter(Mcounter_mem),
+        .Malu(Malu_mem),
+        .Mdm(Mdm),
+        .Mpc4(Mpc4_mem),
+        .Ma(Ma_mem),
+        .Mb(Mb_mem),
+        .Mcp0(Mcp0_mem),
+        .Mhi(Mhi_mem),
+        .Mlo(Mlo_mem),
+        .Mrn(Mrn_mem),
+        .Mw_rf(Mw_rf_mem),
+        .Mw_hi(Mw_hi_mem),
+        .Mw_lo(Mw_lo_mem),
+        .Mhisource(Mhisource_mem),
+        .Mlosource(Mlosource_mem),
+        .Mrfsource(Mrfsource_mem),
+        .Wmuler_hi(Wmuler_hi),
+        .Wmuler_lo(Wmuler_lo),
+        .Wr(Wr),
+        .Wq(Wq),
+        .Wcounter(Wcounter),
+        .Walu(Walu),
+        .Wdm(Wdm),
+        .Wpc4(Wpc4),
+        .Wa(Wa),
+        .Wb(Wb),
+        .Wcp0(Wcp0),
+        .Whi(Whi),
+        .Wlo(Wlo),
+        .Wrn(Wrn),
+        .Ww_rf(Ww_rf),
+        .Ww_hi(Ww_hi),
+        .Ww_lo(Ww_lo),
+        .Whisource(Whisource),
+        .Wlosource(Wlosource),
+        .Wrfsource(Wrfsource)
+    );
+
+    // 10. WB阶段
+    PipeWB pipe_wb(
+        .muler_hi(Wmuler_hi),
+        .muler_lo(Wmuler_lo),
+        .r(Wr),
+        .q(Wq),
+        .counter(Wcounter),
+        .alu(Walu),
+        .dm(Wdm),
+        .pc4(Wpc4),
+        .a(Wa),
+        .b(Wb),
+        .rn(Wrn),
+        .w_rf(Ww_rf),
+        .w_hi(Ww_hi),
+        .w_lo(Ww_lo),
+        .hisource(Whisource),
+        .losource(Wlosource),
+        .rfsource(Wrfsource),
+        .Wdata_hi(Wdata_hi),
+        .Wdata_lo(Wdata_lo),
+        .Wdata_rf(Wdata_rf),
+        .Wrn(Wrn_wb),
+        .Ww_rf(Ww_rf_wb),
+        .Ww_hi(Ww_hi_wb),
+        .Ww_lo(Ww_lo_wb)
+    );
+
+    // 写回使能信号
+    assign Wena_rf = Ww_rf_wb;
+    assign Wena_hi = Ww_hi_wb;
+    assign Wena_lo = Ww_lo_wb;
+    assign Wrn_to_regfile = Wrn_wb;
+    assign Wdata_rf_to_regfile = Wdata_rf;
+
+endmodule 
+ 
+## Reg.v 
+// 通用32位寄存器模块
+// 功能：在时钟信号控制下存储和输出数据
+module Reg(
+    input clk,                    // 时钟信号
+    input rstn,                   // 异步复位信号（低电平有效）
+    input wena,                   // 写使能信号
+    input [31:0] data_in,         // 输入数据（32位）
+    output reg [31:0] data_out    // 输出数据（32位）
+);
+
+always @(posedge clk or posedge rstn) begin
+    if (!rstn) begin
+        // 复位时将输出清零
+        data_out <= 32'h0;
+    end else begin
+        // 在时钟上升沿将输入数据锁存到输出
+        data_out <= data_in;
+    end
+end
+endmodule 
+ 
+## Regfile.v 
+`timescale 1ns / 1ps
+// 寄存器文件模块
+// 功能：提供32个32位寄存器，支持同时读两个寄存器和写一个寄存器
+module Regfile(
+    input clk,                    // 时钟信号
+    input rstn,                   // 复位信号（低电平有效，同步复位）
+    input RF_W,                   // 写使能信号
+    input [4:0] rsc,              // 第一个源寄存器地址 (rs)
+    input [4:0] rtc,              // 第二个源寄存器地址 (rt)
+    input [4:0] Wrn,              // 写寄存器编号 (rd)
+    input [31:0] Wdata_rf,        // 写入寄存器的数据
+    output [31:0] aout,           // 第一个操作数输出 (rs)
+    output [31:0] bout,           // 第二个操作数输出 (rt)
+    output [31:0] reg28           // 特殊寄存器28输出
+);
+
+    reg [31:0] array_reg[0:31];
+
+    // 复位时初始化寄存器
+    integer i;
+    always @(posedge clk or posedge rstn) begin
+        if (!rstn) begin  // 遵循其他模块的约定 - 同步低电平有效复位
+            for (i = 0; i < 32; i = i + 1) begin
+                if (i == 28) begin
+                    // 初始化寄存器28到特殊值（例如栈指针）
+                    array_reg[i] <= 32'h7fffefff;
+                end
+                else begin
+                    array_reg[i] <= 32'h0;
+                end
+            end
+        end
+        else if (RF_W && Wrn != 5'b0) begin  // 防止写入寄存器0（零寄存器）
+            array_reg[Wrn] <= Wdata_rf;
+        end
+    end
+
+    // 输出分配
+    assign aout = array_reg[rsc];       // rs操作数输出
+    assign bout = array_reg[rtc];       // rt操作数输出
+    assign reg28 = array_reg[28];       // 特殊寄存器28输出
+
+endmodule

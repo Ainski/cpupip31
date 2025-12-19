@@ -1,5 +1,5 @@
 `timescale 1ns / 1ps
-module alu( 
+module ALU( 
 input [31:0] a,   //32 位输入，操作数1 
 input [31:0] b,   //32 位输入，操作数2 
 input [3:0] aluc, //4位输入，控制 alu 的操作 
