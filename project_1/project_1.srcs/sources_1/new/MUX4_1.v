@@ -1,3 +1,4 @@
+`timescale 1ns / 1ps
 // 4-to-1 Multiplexer
 module MUX4_1 (
     input [31:0] d0,d1,d2,d3,  // 32-bit inputs

@@ -1,3 +1,4 @@
+`timescale 1ns / 1ps
 module PipelineCPU(
     input clk,          // 时钟信号
     input rstn,         // 异步复位信号（低电平有效）

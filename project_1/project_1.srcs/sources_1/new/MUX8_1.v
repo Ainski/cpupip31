@@ -1,3 +1,4 @@
+`timescale 1ns / 1ps
 // 8-to-1 Multiplexer
 module MUX8_1 (
     input [31:0] d0,d1,d2,d3,d4,d5,d6,d7,  // 32-bit inputs

@@ -1,3 +1,4 @@
+`timescale 1ns / 1ps
 // 指令寄存器模块（IR）
 // 功能：锁存指令获取阶段的PC+4和指令，传递给译码阶段
 module PipeIR (

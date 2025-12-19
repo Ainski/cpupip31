@@ -1,3 +1,4 @@
+`timescale 1ns / 1ps
 // 指令译码阶段模块（ID）
 // 功能：译码指令，读取寄存器文件，处理数据前递和控制信号
 module PipeID(

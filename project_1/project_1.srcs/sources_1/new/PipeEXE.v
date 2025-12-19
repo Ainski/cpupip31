@@ -1,3 +1,4 @@
+`timescale 1ns / 1ps
 // 执行阶段模块（EXE）
 // 功能：执行算术逻辑运算、乘除法运算、地址计算等
 module PipeEXE(

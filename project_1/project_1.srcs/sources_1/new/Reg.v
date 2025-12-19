@@ -1,3 +1,4 @@
+`timescale 1ns / 1ps
 // 通用32位寄存器模块
 // 功能：在时钟信号控制下存储和输出数据
 module Reg(

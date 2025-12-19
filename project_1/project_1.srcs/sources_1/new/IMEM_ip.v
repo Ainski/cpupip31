@@ -1,8 +1,7 @@
+`timescale 1ns / 1ps
 // IMEM_ip - Instruction Memory IP Module
 // Drop-in replacement for Xilinx Block RAM IP or similar memory IP
 // Designed to conform to interface used in PipeIF.v module
-
-`timescale 1ns / 1ps
 
 `include "def.v"
 

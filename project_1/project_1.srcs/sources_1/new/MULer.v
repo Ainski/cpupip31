@@ -1,7 +1,6 @@
+`timescale 1ns / 1ps
 // MULer - Multiplier module for CPU pipeline
 // Extracted from ALUM.v - combinational implementation
-
-`timescale 1ps / 1ps
 
 module MULer (
     input sign,              // Sign flag for signed/unsigned multiply

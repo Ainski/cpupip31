@@ -1,3 +1,4 @@
+`timescale 1ns / 1ps
 // ID/EX流水线寄存器模块
 // 功能：存储ID阶段的输出数据并传递给EXE阶段
 module PipeDEreg(

@@ -1,3 +1,4 @@
+`timescale 1ns / 1ps
 // 指令获取阶段模块（IF）
 // 功能：根据程序计数器获取指令，计算下一个PC值
 module PipeIF (

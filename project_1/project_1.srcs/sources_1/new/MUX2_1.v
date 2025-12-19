@@ -1,3 +1,4 @@
+`timescale 1ns / 1ps
 // 2-to-1 Multiplexer
 module MUX2_1 (
     input [31:0] d0, d1,  // 32-bit inputs

@@ -1,3 +1,4 @@
+`timescale 1ns / 1ps
 // 6-to-1 Multiplexer
 module MUX6_1 (
     input [31:0] d0,d1,d2,d3,d4,d5,  // 32-bit inputs

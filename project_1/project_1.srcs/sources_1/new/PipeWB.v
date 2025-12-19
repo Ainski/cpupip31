@@ -1,3 +1,4 @@
+`timescale 1ns / 1ps
 // 写回阶段模块（WB）
 // 功能：将执行结果写回到寄存器文件或特殊寄存器
 module PipeWB(

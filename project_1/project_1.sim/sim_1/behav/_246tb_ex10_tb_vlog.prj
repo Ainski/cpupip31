@@ -1,0 +1,36 @@
+# compile verilog/system verilog design source files
+verilog dist_mem_gen_v8_0_10  "../../../project_1.ip_user_files/ipstatic/dist_mem_gen_v8_0_10/simulation/dist_mem_gen_v8_0.v"
+verilog xil_defaultlib  "../../../project_1.srcs/sources_1/ip/dmem1/sim/dmem1.v"
+verilog xil_defaultlib  "../../../project_1.srcs/sources_1/new/PipeControlUnit.v"
+verilog xil_defaultlib  "../../../project_1.srcs/sources_1/new/ALU.v"
+verilog xil_defaultlib  "../../../project_1.srcs/sources_1/new/Reg.v"
+verilog xil_defaultlib  "../../../project_1.srcs/sources_1/new/CP0.v"
+verilog xil_defaultlib  "../../../project_1.srcs/sources_1/new/DIVer.v"
+verilog xil_defaultlib  "../../../project_1.srcs/sources_1/new/MUX2_1.v"
+verilog xil_defaultlib  "../../../project_1.srcs/sources_1/new/MULer.v"
+verilog xil_defaultlib  "../../../project_1.srcs/sources_1/new/MUX6_1.v"
+verilog xil_defaultlib  "../../../project_1.srcs/sources_1/new/DMEM.v"
+verilog xil_defaultlib  "../../../project_1.srcs/sources_1/new/Regfile.v"
+verilog xil_defaultlib  "../../../project_1.srcs/sources_1/new/Counter.v"
+verilog xil_defaultlib  "../../../project_1.srcs/sources_1/new/MUX8_1.v"
+verilog xil_defaultlib  "../../../project_1.srcs/sources_1/new/MUX4_1.v"
+verilog xil_defaultlib  "../../../project_1.srcs/sources_1/new/IMEM_ip.v"
+verilog xil_defaultlib  "../../../project_1.srcs/sources_1/new/Compare_ID.v"
+verilog xil_defaultlib  "../../../project_1.srcs/sources_1/new/PcReg.v"
+verilog xil_defaultlib  "../../../project_1.srcs/sources_1/new/PipeEMreg.v"
+verilog xil_defaultlib  "../../../project_1.srcs/sources_1/new/PipeMWreg.v"
+verilog xil_defaultlib  "../../../project_1.srcs/sources_1/new/PipeIR.v"
+verilog xil_defaultlib  "../../../project_1.srcs/sources_1/new/PipeDEreg.v"
+verilog xil_defaultlib  "../../../project_1.srcs/sources_1/new/PipeID.v"
+verilog xil_defaultlib  "../../../project_1.srcs/sources_1/new/PipeMEM.v"
+verilog xil_defaultlib  "../../../project_1.srcs/sources_1/new/PipeIF.v"
+verilog xil_defaultlib  "../../../project_1.srcs/sources_1/new/PipeWB.v"
+verilog xil_defaultlib  "../../../project_1.srcs/sources_1/new/PipeEXE.v"
+verilog xil_defaultlib  "../../../project_1.srcs/sources_1/new/PiplineCPU.v"
+verilog xil_defaultlib  "../../../project_1.srcs/sim_1/new/_246tb_ex10_tb.v"
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

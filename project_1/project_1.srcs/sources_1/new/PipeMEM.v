@@ -1,3 +1,4 @@
+`timescale 1ns / 1ps
 // 内存访问阶段模块（MEM）
 // 功能：执行数据存储器访问（加载/存储操作），处理数据读/写
 module PipeMEM(

@@ -1,3 +1,4 @@
+`timescale 1ns / 1ps
 // EX/MEM流水线寄存器模块
 // 功能：存储EX阶段的输出数据并传递给MEM阶段
 module PipeEMreg(

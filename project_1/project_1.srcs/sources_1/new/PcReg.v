@@ -1,3 +1,4 @@
+`timescale 1ns / 1ps
 // PC寄存器模块
 // 功能：存储当前指令地址并根据时钟信号更新
 module PcReg(

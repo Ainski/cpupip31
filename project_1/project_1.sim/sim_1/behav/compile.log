@@ -1,0 +1,61 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/Homeworks/cpupip31/project_1/project_1.ip_user_files/ipstatic/dist_mem_gen_v8_0_10/simulation/dist_mem_gen_v8_0.v" into library dist_mem_gen_v8_0_10
+INFO: [VRFC 10-311] analyzing module dist_mem_gen_v8_0_10
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/Homeworks/cpupip31/project_1/project_1.srcs/sources_1/ip/dmem1/sim/dmem1.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module dmem1
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/Homeworks/cpupip31/project_1/project_1.srcs/sources_1/new/PipeControlUnit.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module PipeControlUnit
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/Homeworks/cpupip31/project_1/project_1.srcs/sources_1/new/ALU.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ALU
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/Homeworks/cpupip31/project_1/project_1.srcs/sources_1/new/Reg.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Reg
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/Homeworks/cpupip31/project_1/project_1.srcs/sources_1/new/CP0.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module CP0
+INFO: [VRFC 10-2458] undeclared symbol real_exc, assumed default net type wire [E:/Homeworks/cpupip31/project_1/project_1.srcs/sources_1/new/CP0.v:50]
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/Homeworks/cpupip31/project_1/project_1.srcs/sources_1/new/DIVer.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module DIVer
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/Homeworks/cpupip31/project_1/project_1.srcs/sources_1/new/MUX2_1.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module MUX2_1
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/Homeworks/cpupip31/project_1/project_1.srcs/sources_1/new/MULer.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module MULer
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/Homeworks/cpupip31/project_1/project_1.srcs/sources_1/new/MUX6_1.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module MUX6_1
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/Homeworks/cpupip31/project_1/project_1.srcs/sources_1/new/DMEM.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module DMEM
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/Homeworks/cpupip31/project_1/project_1.srcs/sources_1/new/Regfile.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Regfile
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/Homeworks/cpupip31/project_1/project_1.srcs/sources_1/new/Counter.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Counter
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/Homeworks/cpupip31/project_1/project_1.srcs/sources_1/new/MUX8_1.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module MUX8_1
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/Homeworks/cpupip31/project_1/project_1.srcs/sources_1/new/MUX4_1.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module MUX4_1
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/Homeworks/cpupip31/project_1/project_1.srcs/sources_1/new/IMEM_ip.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module IMEM_ip
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/Homeworks/cpupip31/project_1/project_1.srcs/sources_1/new/Compare_ID.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Compare_ID
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/Homeworks/cpupip31/project_1/project_1.srcs/sources_1/new/PcReg.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module PcReg
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/Homeworks/cpupip31/project_1/project_1.srcs/sources_1/new/PipeEMreg.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module PipeEMreg
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/Homeworks/cpupip31/project_1/project_1.srcs/sources_1/new/PipeMWreg.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module PipeMWreg
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/Homeworks/cpupip31/project_1/project_1.srcs/sources_1/new/PipeIR.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module PipeIR
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/Homeworks/cpupip31/project_1/project_1.srcs/sources_1/new/PipeDEreg.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module PipeDEreg
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/Homeworks/cpupip31/project_1/project_1.srcs/sources_1/new/PipeID.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module PipeID
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/Homeworks/cpupip31/project_1/project_1.srcs/sources_1/new/PipeMEM.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module PipeMEM
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/Homeworks/cpupip31/project_1/project_1.srcs/sources_1/new/PipeIF.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module PipeIF
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/Homeworks/cpupip31/project_1/project_1.srcs/sources_1/new/PipeWB.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module PipeWB
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/Homeworks/cpupip31/project_1/project_1.srcs/sources_1/new/PipeEXE.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module PipeEXE
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/Homeworks/cpupip31/project_1/project_1.srcs/sources_1/new/PiplineCPU.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module PipelineCPU
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/Homeworks/cpupip31/project_1/project_1.srcs/sim_1/new/_246tb_ex10_tb.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module _246tb_ex10_tb
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/Homeworks/cpupip31/project_1/project_1.sim/sim_1/behav/glbl.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module glbl

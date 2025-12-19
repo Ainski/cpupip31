@@ -1,3 +1,4 @@
+`timescale 1ns / 1ps
 // MEM/WB流水线寄存器模块
 // 功能：存储MEM阶段的输出数据并传递给WB（写回）阶段
 module PipeMWreg(

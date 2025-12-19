@@ -1,3 +1,4 @@
+`timescale 1ns / 1ps
 // Compare_ID 模块
 // 功能：比较两个输入值，根据不同的分支指令类型判断是否发生分支转移
 module Compare_ID(

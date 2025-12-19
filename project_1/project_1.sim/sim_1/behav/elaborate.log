@@ -1,0 +1,40 @@
+Vivado Simulator 2016.2
+Copyright 1986-1999, 2001-2016 Xilinx, Inc. All Rights Reserved.
+Running: D:/Vivado/2016.2/bin/unwrapped/win64.o/xelab.exe -wto 96b212789af04ef4a9a566451172dcc2 --debug typical --relax --mt 2 -L dist_mem_gen_v8_0_10 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot _246tb_ex10_tb_behav xil_defaultlib._246tb_ex10_tb xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.PcReg
+Compiling module xil_defaultlib.MUX6_1
+Compiling module xil_defaultlib.IMEM_ip
+Compiling module xil_defaultlib.PipeIF
+Compiling module xil_defaultlib.Reg
+Compiling module xil_defaultlib.PipeIR
+Compiling module xil_defaultlib.Regfile
+Compiling module xil_defaultlib.MUX8_1
+Compiling module xil_defaultlib.CP0
+Compiling module xil_defaultlib.MUX4_1
+Compiling module xil_defaultlib.Compare_ID
+Compiling module xil_defaultlib.PipeControlUnit
+Compiling module xil_defaultlib.PipeID
+Compiling module xil_defaultlib.PipeDEreg
+Compiling module xil_defaultlib.Counter
+Compiling module xil_defaultlib.MULer
+Compiling module xil_defaultlib.DIVer
+Compiling module xil_defaultlib.MUX2_1
+Compiling module xil_defaultlib.ALU
+Compiling module xil_defaultlib.PipeEXE
+Compiling module xil_defaultlib.PipeEMreg
+Compiling module dist_mem_gen_v8_0_10.dist_mem_gen_v8_0_10(C_FAMILY="a...
+Compiling module xil_defaultlib.dmem1
+Compiling module xil_defaultlib.DMEM
+Compiling module xil_defaultlib.PipeMEM
+Compiling module xil_defaultlib.PipeMWreg
+Compiling module xil_defaultlib.PipeWB
+Compiling module xil_defaultlib.PipelineCPU
+Compiling module xil_defaultlib._246tb_ex10_tb
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot _246tb_ex10_tb_behav
