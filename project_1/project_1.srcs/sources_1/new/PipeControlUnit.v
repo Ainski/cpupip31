@@ -9,6 +9,7 @@ module PipeControlUnit(
     // 输入端口
     input clk,                    // 时钟信号
     input rstn,                   // 复位信号（低电平有效）
+    input [31:0] instr,
     input userbreak,             // 用户中断信号（1：暂停，0：继续）
     input [4:0] rsc,              // 源寄存器Rs编号 [25:21]
     input [4:0] rtc,              // 源寄存器Rt编号 [20:16]
@@ -61,9 +62,9 @@ module PipeControlUnit(
     output reg [2:0] LC,          // 加载命令信号 [2:0]
     output reg stall,             // 流水线暂停信号 [0]
     output reg isGoto,            // 跳转指令标志 [0]
-    output reg halt               // CPU停止信号 [0]
+    output halt               // CPU停止信号 [0]
 );
-
+    reg halt_r;
     // ============================================================
     // Tomasulo算法相关参数
     // ============================================================
@@ -126,6 +127,7 @@ module PipeControlUnit(
     reg cdb_found_flag;
     integer busy_count_temp;
     integer rs_status_temp, rt_status_temp;
+    assign halt = halt_state||isHalt;
     
     // ============================================================
     // Tomasulo算法辅助函数
@@ -285,7 +287,7 @@ module PipeControlUnit(
             rfsource_reg = `DEFAULT_RF_SRC;
             cause = 5'b00000;       // 无异常原因
             exception = 1'b0;       // 无异常
-            halt = 1'b1;  // 输出HALT信号
+            halt_r = 1'b1;  // 输出HALT信号
             isHalt = 1'b0;
             
             // 不处理指令类型判断
@@ -345,7 +347,7 @@ module PipeControlUnit(
             rfsource_reg = `DEFAULT_RF_SRC;
             cause = 5'b00000;
             exception = 1'b0;
-            halt = 1'b0;  // 用户中断暂停时不输出HALT信号
+            halt_r = 1'b0;  // 用户中断暂停时不输出HALT信号
             isHalt = 1'b0;
             
             // 不处理指令类型判断
@@ -406,13 +408,13 @@ module PipeControlUnit(
             rfsource_reg = `DEFAULT_RF_SRC;
             cause = 5'b00000;       // 默认无异常原因
             exception = 1'b0;       // 默认无异常
-            halt = 1'b0;  // 正常执行时HALT为0
+            halt_r = 1'b0;  // 正常执行时HALT为0
             
             // ------------------------------------------------
             // 2. 指令类型判断（包括HALT指令）
             // ------------------------------------------------
             // 检测HALT指令：操作码为6'b111111（全1）
-            isHalt = (op == 6'b111111);
+            isHalt = (instr==`INSTR_HALT);
             
             isRType = (op == `OP_R_TYPE) && !isHalt;
             isIType = (op != `OP_R_TYPE) && (op != `OP_J) && (op != `OP_JAL) && 

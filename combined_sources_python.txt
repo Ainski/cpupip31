@@ -227,49 +227,49 @@ module CP0(
     );
     always @ (posedge clk ) begin
         if(! rstn) begin
-            ereg[0]=0;
-            ereg[1]=0;
-            ereg[2]=0;
-            ereg[3]=0;
-            ereg[4]=0;
-            ereg[5]=0;
-            ereg[6]=0;
-            ereg[7]=0;
-            ereg[8]=0;
-            ereg[9]=0;
-            ereg[10]=0;
-            ereg[11]=0;
-            ereg[12]=0;
-            ereg[13]=0;
-            ereg[14]=0;
-            ereg[15]=0;
-            ereg[16]=0;
-            ereg[17]=0;
-            ereg[18]=0;
-            ereg[19]=0;
-            ereg[20]=0;
-            ereg[21]=0;
-            ereg[22]=0;
-            ereg[23]=0;
-            ereg[24]=0;
-            ereg[25]=0;
-            ereg[26]=0;
-            ereg[27]=0;
-            ereg[28]=0;
-            ereg[29]=0;
-            ereg[30]=0;
-            ereg[31]=0;
+            ereg[0] <=0;
+            ereg[1] <=0;
+            ereg[2] <=0;
+            ereg[3] <=0;
+            ereg[4] <=0;
+            ereg[5] <=0;
+            ereg[6] <=0;
+            ereg[7] <=0;
+            ereg[8] <=0;
+            ereg[9] <=0;
+            ereg[10] <=0;
+            ereg[11] <=0;
+            ereg[12] <=0;
+            ereg[13] <=0;
+            ereg[14] <=0;
+            ereg[15] <=0;
+            ereg[16] <=0;
+            ereg[17] <=0;
+            ereg[18] <=0;
+            ereg[19] <=0;
+            ereg[20] <=0;
+            ereg[21] <=0;
+            ereg[22] <=0;
+            ereg[23] <=0;
+            ereg[24] <=0;
+            ereg[25] <=0;
+            ereg[26] <=0;
+            ereg[27] <=0;
+            ereg[28] <=0;
+            ereg[29] <=0;
+            ereg[30] <=0;
+            ereg[31] <=0;
         end else begin
             if( mtc0) begin
-                ereg[rdc] = wdata;
+                ereg[rdc]  <= wdata;
             end
             else if(real_exc) begin
-                ereg[13] = {25'b0,cause,2'b0};
-                ereg[12] = ereg[12]<<5;
-                ereg[14] = npc;
+                ereg[13]  <= {25'b0,cause,2'b0};
+                ereg[12]  <= ereg[12]<<5;
+                ereg[14]  <= npc;
             end
             else if (eret) begin
-                ereg[12] = ereg[12]>>5;
+                ereg[12]  <= ereg[12]>>5;
             end 
         end
     end
@@ -279,6 +279,7 @@ endmodule
 ---
 
 ## Compare_ID.v
+`timescale 1ns / 1ps
 // Compare_ID 模块
 // 功能：比较两个输入值，根据不同的分支指令类型判断是否发生分支转移
 module Compare_ID(
@@ -493,11 +494,10 @@ endmodule
 ---
 
 ## IMEM_ip.v
+`timescale 1ns / 1ps
 // IMEM_ip - Instruction Memory IP Module
 // Drop-in replacement for Xilinx Block RAM IP or similar memory IP
 // Designed to conform to interface used in PipeIF.v module
-
-`timescale 1ns / 1ps
 
 `include "def.v"
 
@@ -576,10 +576,9 @@ endmodule
 ---
 
 ## MULer.v
+`timescale 1ns / 1ps
 // MULer - Multiplier module for CPU pipeline
 // Extracted from ALUM.v - combinational implementation
-
-`timescale 1ps / 1ps
 
 module MULer (
     input sign,              // Sign flag for signed/unsigned multiply
@@ -690,6 +689,7 @@ endmodule
 ---
 
 ## MUX2_1.v
+`timescale 1ns / 1ps
 // 2-to-1 Multiplexer
 module MUX2_1 (
     input [31:0] d0, d1,  // 32-bit inputs
@@ -709,6 +709,7 @@ endmodule
 ---
 
 ## MUX4_1.v
+`timescale 1ns / 1ps
 // 4-to-1 Multiplexer
 module MUX4_1 (
     input [31:0] d0,d1,d2,d3,  // 32-bit inputs
@@ -731,6 +732,7 @@ endmodule
 ---
 
 ## MUX6_1.v
+`timescale 1ns / 1ps
 // 6-to-1 Multiplexer
 module MUX6_1 (
     input [31:0] d0,d1,d2,d3,d4,d5,  // 32-bit inputs
@@ -755,6 +757,7 @@ endmodule
 ---
 
 ## MUX8_1.v
+`timescale 1ns / 1ps
 // 8-to-1 Multiplexer
 module MUX8_1 (
     input [31:0] d0,d1,d2,d3,d4,d5,d6,d7,  // 32-bit inputs
@@ -780,6 +783,7 @@ endmodule
 ---
 
 ## PcReg.v
+`timescale 1ns / 1ps
 // PC寄存器模块
 // 功能：存储当前指令地址并根据时钟信号更新
 module PcReg(
@@ -796,7 +800,7 @@ always @(posedge clk or posedge rstn) begin
         // 复位时PC初始化为起始地址0x00400000
         data_out <= 32'h00400000;
         halting <= 0;
-    end else if (halt) begin
+    end else if (halt||halting) begin
         // 遇到halt指令时进入停止状态
         data_out <= data_out;
         halting <= halting;
@@ -822,6 +826,7 @@ module PipeControlUnit(
     // 输入端口
     input clk,                    // 时钟信号
     input rstn,                   // 复位信号（低电平有效）
+    input [31:0] instr,
     input userbreak,             // 用户中断信号（1：暂停，0：继续）
     input [4:0] rsc,              // 源寄存器Rs编号 [25:21]
     input [4:0] rtc,              // 源寄存器Rt编号 [20:16]
@@ -857,7 +862,7 @@ module PipeControlUnit(
     output reg beq,               // 相等分支标志 [0]
     output reg bne,               // 不等分支标志 [0]
     output reg bgez,              // 大于等于零分支标志 [0]
-    output [3:0] aluc,            // ALU操作码 [3:0]
+    output reg [3:0] aluc,        // ALU操作码 [3:0]
     output reg w_hi,              // 写HI寄存器标志 [0]
     output reg w_lo,              // 写LO寄存器标志 [0]
     output reg w_rf,              // 写寄存器堆标志 [0]
@@ -868,8 +873,8 @@ module PipeControlUnit(
     output reg bsource,           // B源选择标志 [0]
     output reg [1:0] hisource,    // HI寄存器源选择 [1:0]
     output reg [1:0] losource,    // LO寄存器源选择 [1:0]
-    output [2:0] rfsource,        // 寄存器堆源选择 [2:0]
-    output reg [2:0] pcsource,    // PC源选择 [1:0]
+    output reg [2:0] rfsource,    // 寄存器堆源选择 [2:0]
+    output reg [2:0] pcsource,    // PC源选择 [2:0]
     output reg [1:0] SC,          // 存储器命令信号 [1:0]
     output reg [2:0] LC,          // 加载命令信号 [2:0]
     output reg stall,             // 流水线暂停信号 [0]
@@ -878,257 +883,35 @@ module PipeControlUnit(
 );
 
     // ============================================================
-    // Tomasulo算法相关参数
+    // 内部信号定义
     // ============================================================
-    parameter NUM_RESERVATION_STATIONS = 6;  // 保留站数量
-    parameter NUM_FUNCTION_UNITS = 4;        // 功能单元数量
-    parameter NUM_CDB_BUSES = 2;             // 公共数据总线数量
-    
-    // ============================================================
-    // 内部寄存器定义
-    // ============================================================
-    
-    // 保留站状态定义
-    reg [31:0] reservation_stations [0:NUM_RESERVATION_STATIONS-1];
-    reg [2:0] station_type [0:NUM_RESERVATION_STATIONS-1];   // 保留站类型
-    reg [4:0] station_dest [0:NUM_RESERVATION_STATIONS-1];   // 目标寄存器
-    reg [3:0] station_opcode [0:NUM_RESERVATION_STATIONS-1]; // 操作码
-    reg station_busy [0:NUM_RESERVATION_STATIONS-1];         // 忙碌标志
-    
-    // 寄存器状态表 - 跟踪每个寄存器的生产者
-    reg [2:0] reg_status [0:31];  // 每个寄存器的状态: 0:空闲, >0:保留站编号
-    
-    // HI/LO寄存器状态
-    reg [2:0] hi_status;          // HI寄存器状态
-    reg [2:0] lo_status;          // LO寄存器状态
-    
-    // 公共数据总线(CDB)信号
-    reg [31:0] cdb_value [0:NUM_CDB_BUSES-1];
-    reg [4:0] cdb_reg [0:NUM_CDB_BUSES-1];
-    reg [2:0] cdb_rs_id [0:NUM_CDB_BUSES-1];  // 来源保留站ID
-    reg cdb_valid [0:NUM_CDB_BUSES-1];
-    
-    // 功能单元状态
-    reg [2:0] fu_busy [0:NUM_FUNCTION_UNITS-1];
-    reg [4:0] fu_dest [0:NUM_FUNCTION_UNITS-1];
-    reg [2:0] fu_rs_id [0:NUM_FUNCTION_UNITS-1];  // 关联的保留站ID
-    
-    // 内部控制信号
-    reg [3:0] aluc_reg;
-    reg [2:0] rfsource_reg;
-    
-    // 指令译码辅助信号
-    reg isRType, isIType, isJType, isLoad, isStore, isBranchType;
-    reg isMultDiv, isMFHI, isMFLO, isMTHI, isMTLO;
-    reg isJump, isJR, isJAL, isJALR, isSpecialInstr;
-    reg isShift, isShiftV, isALUOp, isMemOp;
-    reg isHalt;  // HALT指令标志
-    reg isSyscall, isBreak;  // 系统调用和断点指令标志
-    
-    // HALT状态寄存器
-    reg halt_state;  // HALT状态，一旦置位，CPU停止
-    
-    // 用户中断状态寄存器
-    reg userbreak_paused;  // 用户中断暂停状态
-    reg userbreak_prev;    // 上一个时钟周期的userbreak值，用于检测边沿
-    
-    // 循环变量和临时变量声明
-    integer i, j, k, l;
-    integer rs_id_int;
-    reg [2:0] rs_type_reg;
-    reg cdb_found_flag;
-    integer busy_count_temp;
-    integer rs_status_temp, rt_status_temp;
+    reg [5:0] opcode;
+    reg [5:0] funct;
+    reg [4:0] rs_field;
+    reg [4:0] rt_field;
+    reg [4:0] rd_field;
     
     // ============================================================
-    // Tomasulo算法辅助函数
-    // ============================================================
-    
-    // 分配保留站
-    function integer allocate_reservation_station;
-        input [2:0] type_req;
-        integer i_local;
-        reg found_flag;
-        begin
-            allocate_reservation_station = -1;  // 默认返回无效
-            found_flag = 0;
-            
-            for (i_local = 0; i_local < NUM_RESERVATION_STATIONS; i_local = i_local + 1) begin
-                if (!station_busy[i_local] && station_type[i_local] == `RS_TYPE_IDLE) begin
-                    allocate_reservation_station = i_local;
-                    found_flag = 1;
-                end
-                // 如果已经找到，就不再继续循环
-                if (found_flag) begin
-                    i_local = NUM_RESERVATION_STATIONS; // 设置循环终止条件
-                end
-            end
-        end
-    endfunction
-    
-    // 检查冒险
-    function reg check_hazards;
-        input [4:0] rs; 
-        input [4:0] rt; 
-        input [4:0] rd; 
-        input [5:0] opcode; 
-        input [5:0] funcode;
-        reg hazard;
-        integer rs_status, rt_status;
-        integer busy_count;
-        integer i_local;
-        begin
-            hazard = `STALL_DISABLE;
-            
-            // 1. 检查RAW冒险（读后写）
-            if (rs != 5'b0) begin
-                rs_status = reg_status[rs];
-                if (rs_status != 3'b0 && station_busy[rs_status-1]) begin
-                    // 如果源寄存器被占用且保留站忙碌，需要等待
-                    hazard = `STALL_ENABLE;
-                end
-            end
-            
-            if (rt != 5'b0) begin
-                rt_status = reg_status[rt];
-                if (rt_status != 3'b0 && station_busy[rt_status-1]) begin
-                    hazard = `STALL_ENABLE;
-                end
-            end
-            
-            // 2. 检查结构冒险（保留站满）
-            busy_count = 0;
-            for (i_local = 0; i_local < NUM_RESERVATION_STATIONS; i_local = i_local + 1) begin
-                if (station_busy[i_local]) busy_count = busy_count + 1;
-            end
-            if (busy_count >= NUM_RESERVATION_STATIONS) begin
-                hazard = `STALL_ENABLE;
-            end
-            
-            // 3. 检查功能单元忙（乘除指令）
-            if (is_mult_div_operation(opcode, funcode)) begin
-                busy_count = 0;
-                for (i_local = 0; i_local < NUM_FUNCTION_UNITS; i_local = i_local + 1) begin
-                    if (fu_busy[i_local] != `FU_IDLE) busy_count = busy_count + 1;
-                end
-                if (busy_count >= NUM_FUNCTION_UNITS) begin
-                    hazard = `STALL_ENABLE;
-                end
-            end
-            
-            // 4. 检查WAW冒险（写后写）- 对于Tomasulo算法通常不是问题
-            // 因为保留站可以处理乱序完成
-            
-            check_hazards = hazard;
-        end
-    endfunction
-    
-    // 判断是否为乘除操作
-    function reg is_mult_div_operation;
-        input [5:0] opcode;
-        input [5:0] funcode;
-        reg result;
-        begin
-            result = 1'b0;
-            if (opcode == `OP_R_TYPE) begin
-                case (funcode)
-                    `FUNC_MULT, `FUNC_MULTU, `FUNC_DIV, `FUNC_DIVU: 
-                        result = 1'b1;
-                    default: 
-                        result = 1'b0;
-                endcase
-            end
-            is_mult_div_operation = result;
-        end
-    endfunction
-    
-    // 检查CDB是否有数据可用
-    function reg check_cdb_ready;
-        input [4:0] reg_num;
-        integer i_local;
-        reg found;
-        begin
-            found = 1'b0;
-            
-            for (i_local = 0; i_local < NUM_CDB_BUSES; i_local = i_local + 1) begin
-                if (cdb_valid[i_local] && cdb_reg[i_local] == reg_num) begin
-                    found = 1'b1;
-                    // 设置循环终止条件
-                    i_local = NUM_CDB_BUSES;
-                end
-            end
-            
-            check_cdb_ready = found;
-        end
-    endfunction
-    
-    // ============================================================
-    // 控制信号生成主逻辑
+    // 指令解码
     // ============================================================
     always @(*) begin
-        // 如果CPU处于HALT状态，所有控制信号置为无效
-        if (halt_state) begin
-            sign = 1'b0;
-            div = 1'b0;
-            mfc0 = 1'b0;
-            mtc0 = 1'b0;
-            eret = 1'b0;
-            teq = 1'b0;
-            beq = 1'b0;
-            bne = 1'b0;
-            bgez = 1'b0;
-            w_hi = 1'b0;
-            w_lo = 1'b0;
-            w_rf = 1'b0;
-            w_dm = 1'b0;
-            asource = `OP_SRC_REG;
-            bsource = `OP_SRC_REG;
-            hisource = `HILO_SRC_NONE;
-            losource = `HILO_SRC_NONE;
+        if (!rstn) begin
+            // 复位时初始化所有控制信号
+            {fwhi, fwlo, fwda, fwdb, rn, sign, div, mfc0, mtc0, eret, teq, beq, bne, bgez} = 0;
+            {aluc, w_hi, w_lo, w_rf, w_dm, cause, exception, asource, bsource} = 0;
+            {hisource, losource, rfsource, pcsource, SC, LC, stall, isGoto, halt} = 0;
             pcsource = `PC_SRC_SEQ_PLUS4;
-            SC = `MEM_STORE_WORD;
-            LC = `MEM_LOAD_WORD;
-            stall = `STALL_ENABLE;  // HALT时暂停流水线
-            isGoto = `GOTO_DISABLE;
-            fwhi = `FWD_HILO_NONE;
-            fwlo = `FWD_HILO_NONE;
-            fwda = `FWD_SRC_NONE;
-            fwdb = `FWD_SRC_NONE;
-            aluc_reg = `DEFAULT_ALUC;
-            rfsource_reg = `DEFAULT_RF_SRC;
-            cause = 5'b00000;       // 无异常原因
-            exception = 1'b0;       // 无异常
-            halt = 1'b1;  // 输出HALT信号
-            isHalt = 1'b0;
+        end else begin
+            // 提取指令字段
+            opcode = op;
+            funct = func;
+            rs_field = rsc;
+            rt_field = rtc;
+            rd_field = rdc;
             
-            // 不处理指令类型判断
-            isRType = 1'b0;
-            isIType = 1'b0;
-            isJType = 1'b0;
-            isLoad = 1'b0;
-            isStore = 1'b0;
-            isBranchType = 1'b0;
-            isMultDiv = 1'b0;
-            isMFHI = 1'b0;
-            isMFLO = 1'b0;
-            isMTHI = 1'b0;
-            isMTLO = 1'b0;
-            isJR = 1'b0;
-            isJALR = 1'b0;
-            isJAL = 1'b0;
-            isJump = 1'b0;
-            isShift = 1'b0;
-            isShiftV = 1'b0;
-            isALUOp = 1'b0;
-            isMemOp = 1'b0;
-            isSyscall = 1'b0;
-            isBreak = 1'b0;
-            rn = 5'b0;
-        end
-        // 如果CPU处于用户中断暂停状态
-        else if (userbreak_paused) begin
-            // 用户中断暂停时，暂停流水线但保持所有状态
-            sign = 1'b0;
+            // 默认值
+            {fwhi, fwlo, fwda, fwdb} = 0;
+            sign = 1'b1; // 默认符号扩展
             div = 1'b0;
             mfc0 = 1'b0;
             mtc0 = 1'b0;
@@ -1137,503 +920,491 @@ module PipeControlUnit(
             beq = 1'b0;
             bne = 1'b0;
             bgez = 1'b0;
+            aluc = `DEFAULT_ALUC;
             w_hi = 1'b0;
             w_lo = 1'b0;
             w_rf = 1'b0;
             w_dm = 1'b0;
-            asource = `OP_SRC_REG;
-            bsource = `OP_SRC_REG;
-            hisource = `HILO_SRC_NONE;
-            losource = `HILO_SRC_NONE;
-            pcsource = `PC_SRC_SEQ_PLUS4;
-            SC = `MEM_STORE_WORD;
-            LC = `MEM_LOAD_WORD;
-            stall = `STALL_ENABLE;  // 暂停流水线
-            isGoto = `GOTO_DISABLE;
-            fwhi = `FWD_HILO_NONE;
-            fwlo = `FWD_HILO_NONE;
-            fwda = `FWD_SRC_NONE;
-            fwdb = `FWD_SRC_NONE;
-            aluc_reg = `DEFAULT_ALUC;
-            rfsource_reg = `DEFAULT_RF_SRC;
-            cause = 5'b00000;
+            cause = 5'b0;
             exception = 1'b0;
-            halt = 1'b0;  // 用户中断暂停时不输出HALT信号
-            isHalt = 1'b0;
-            
-            // 不处理指令类型判断
-            isRType = 1'b0;
-            isIType = 1'b0;
-            isJType = 1'b0;
-            isLoad = 1'b0;
-            isStore = 1'b0;
-            isBranchType = 1'b0;
-            isMultDiv = 1'b0;
-            isMFHI = 1'b0;
-            isMFLO = 1'b0;
-            isMTHI = 1'b0;
-            isMTLO = 1'b0;
-            isJR = 1'b0;
-            isJALR = 1'b0;
-            isJAL = 1'b0;
-            isJump = 1'b0;
-            isShift = 1'b0;
-            isShiftV = 1'b0;
-            isALUOp = 1'b0;
-            isMemOp = 1'b0;
-            isSyscall = 1'b0;
-            isBreak = 1'b0;
-            rn = 5'b0;
-        end
-        else begin
-            // ------------------------------------------------
-            // 1. 默认值设置
-            // ------------------------------------------------
-            sign = 1'b0;
-            div = 1'b0;
-            mfc0 = 1'b0;
-            mtc0 = 1'b0;
-            eret = 1'b0;
-            teq = 1'b0;
-            beq = 1'b0;
-            bne = 1'b0;
-            bgez = 1'b0;
-            w_hi = 1'b0;
-            w_lo = 1'b0;
-            w_rf = 1'b0;
-            w_dm = 1'b0;
-            asource = `OP_SRC_REG;
-            bsource = `OP_SRC_REG;
+            asource = 1'b0; // 默认来自寄存器
+            bsource = 1'b0; // 默认来自寄存器
             hisource = `HILO_SRC_NONE;
             losource = `HILO_SRC_NONE;
+            rfsource = `RF_SRC_ALU;
             pcsource = `PC_SRC_SEQ_PLUS4;
-            SC = `MEM_STORE_WORD;
-            LC = `MEM_LOAD_WORD;
+            SC = 2'b00;
+            LC = 3'b000;
             stall = `STALL_DISABLE;
             isGoto = `GOTO_DISABLE;
-            fwhi = `FWD_HILO_NONE;
-            fwlo = `FWD_HILO_NONE;
-            fwda = `FWD_SRC_NONE;
-            fwdb = `FWD_SRC_NONE;
-            aluc_reg = `DEFAULT_ALUC;
-            rfsource_reg = `DEFAULT_RF_SRC;
-            cause = 5'b00000;       // 默认无异常原因
-            exception = 1'b0;       // 默认无异常
-            halt = 1'b0;  // 正常执行时HALT为0
+            halt = 1'b0;
+            rn = 5'b0;
             
-            // ------------------------------------------------
-            // 2. 指令类型判断（包括HALT指令）
-            // ------------------------------------------------
-            // 检测HALT指令：操作码为6'b111111（全1）
-            isHalt = (op == 6'b111111);
-            
-            isRType = (op == `OP_R_TYPE) && !isHalt;
-            isIType = (op != `OP_R_TYPE) && (op != `OP_J) && (op != `OP_JAL) && 
-                      (op != `OP_BGEZ) && (op != `OP_COPROC0) && !isHalt;
-            isJType = ((op == `OP_J) || (op == `OP_JAL)) && !isHalt;
-            isBranchType = ((op == `OP_BEQ) || (op == `OP_BNE) || (op == `OP_BGEZ)) && !isHalt;
-            isLoad = ((op == `OP_LW) || (op == `OP_LH) || (op == `OP_LB) ||
-                     (op == `OP_LHU) || (op == `OP_LBU)) && !isHalt;
-            isStore = ((op == `OP_SW) || (op == `OP_SH) || (op == `OP_SB)) && !isHalt;
-            
-            // 具体指令类型判断
-            isMultDiv = isRType && ((func == `FUNC_MULT) || (func == `FUNC_MULTU) ||
-                                    (func == `FUNC_DIV) || (func == `FUNC_DIVU));
-            isMFHI = isRType && (func == `FUNC_MFHI);
-            isMFLO = isRType && (func == `FUNC_MFLO);
-            isMTHI = isRType && (func == `FUNC_MTHI);
-            isMTLO = isRType && (func == `FUNC_MTLO);
-            isJR = isRType && (func == `FUNC_JR);
-            isJALR = isRType && (func == `FUNC_JALR);
-            isJAL = (op == `OP_JAL) && !isHalt;
-            isJump = isJType;
-            isShift = isRType && ((func == `FUNC_SLL) || (func == `FUNC_SRL) || 
-                                  (func == `FUNC_SRA));
-            isShiftV = isRType && ((func == `FUNC_SLLV) || (func == `FUNC_SRLV) || 
-                                   (func == `FUNC_SRAV));
-            isALUOp = isRType || isIType;
-            isMemOp = isLoad || isStore;
-            
-            // CP0相关指令判断
-            isSyscall = isRType && (func == `FUNC_SYSCALL);
-            isBreak = isRType && (func == `FUNC_BREAK);
-            
-            // ------------------------------------------------
-            // 3. 目标寄存器选择
-            // ------------------------------------------------
-            if (isRType) begin
-                if (func == `FUNC_JR || func == `FUNC_MTHI || func == `FUNC_MTLO || 
-                    isMultDiv || isSyscall || isBreak || (func == `FUNC_TEQ)) begin
-                    rn = 5'b0;  // 这些指令不写通用寄存器
-                end else if (func == `FUNC_JALR) begin
-                    rn = 5'd31;  // JALR写$ra寄存器
-                end else begin
-                    rn = rdc;    // 标准R型指令写rd
-                end
-            end else if (isLoad) begin
-                rn = rtc;        // 加载指令写rt
-            end else if (isIType || op == `OP_JAL || op == `OP_CLZ) begin
-                rn = rtc;        // I型指令、JAL、CLZ写rt
-            end else if (op == `OP_COPROC0 && mf == `RS_MFC0) begin
-                rn = rtc;        // mfc0写rt
-            end else begin
-                rn = 5'b0;       // 其他指令不写寄存器
+            // 特殊指令检测
+            if (instr == `INSTR_HALT) begin
+                halt = 1'b1;
             end
-            
-            // ------------------------------------------------
-            // 4. ALU控制信号生成
-            // ------------------------------------------------
-            if (isRType) begin
-                case (func)
-                    `FUNC_ADD:   aluc_reg = `ALUC_ADD;
-                    `FUNC_ADDU:  aluc_reg = `ALUC_ADDU;
-                    `FUNC_SUB:   aluc_reg = `ALUC_SUB;
-                    `FUNC_SUBU:  aluc_reg = `ALUC_SUBU;
-                    `FUNC_AND:   aluc_reg = `ALUC_AND;
-                    `FUNC_OR:    aluc_reg = `ALUC_OR;
-                    `FUNC_XOR:   aluc_reg = `ALUC_XOR;
-                    `FUNC_NOR:   aluc_reg = `ALUC_NOR;
-                    `FUNC_SLT:   aluc_reg = `ALUC_SLT;
-                    `FUNC_SLTU:  aluc_reg = `ALUC_SLTU;
-                    `FUNC_SLL:   aluc_reg = `ALUC_SLL;
-                    `FUNC_SRL:   aluc_reg = `ALUC_SRL;
-                    `FUNC_SRA:   aluc_reg = `ALUC_SRA;
-                    `FUNC_SLLV:  aluc_reg = `ALUC_SLL;
-                    `FUNC_SRLV:  aluc_reg = `ALUC_SRL;
-                    `FUNC_SRAV:  aluc_reg = `ALUC_SRA;
-                    `FUNC_CLZ:   aluc_reg = `ALUC_CLZ;
-                    `FUNC_TEQ:   aluc_reg = `ALUC_SUB;  // TEQ使用减法比较
-                    default:     aluc_reg = `DEFAULT_ALUC;
-                endcase
-            end else if (isHalt) begin
-                aluc_reg = `DEFAULT_ALUC;  // HALT指令不需要ALU操作
-            end else begin
-                case (op)
-                    `OP_ADDI:   aluc_reg = `ALUC_ADD;
-                    `OP_ADDIU:  aluc_reg = `ALUC_ADDU;
-                    `OP_SLTI:   aluc_reg = `ALUC_SLT;
-                    `OP_SLTIU:  aluc_reg = `ALUC_SLTU;
-                    `OP_ANDI:   aluc_reg = `ALUC_AND;
-                    `OP_ORI:    aluc_reg = `ALUC_OR;
-                    `OP_XORI:   aluc_reg = `ALUC_XOR;
-                    `OP_LUI:    aluc_reg = `ALUC_LUI;
-                    `OP_CLZ:    aluc_reg = `ALUC_CLZ;
-                    `OP_BEQ, `OP_BNE: aluc_reg = `ALUC_SUB;
-                    `OP_BGEZ:   aluc_reg = `ALUC_BGEZ;
-                    default:    aluc_reg = `DEFAULT_ALUC;
-                endcase
+            else if (instr == `INSTR_NOP) begin
+                // NOP指令，不执行任何操作
             end
-            
-            // ------------------------------------------------
-            // 5. 寄存器堆写入源选择
-            // ------------------------------------------------
-            if (isLoad) begin
-                rfsource_reg = `RF_SRC_MEM;      // 来自内存
-            end else if (op == `OP_JAL || isJALR) begin
-                rfsource_reg = `RF_SRC_PC_PLUS4; // 来自PC+4
-            end else if (isMFHI || isMFLO) begin
-                rfsource_reg = `RF_SRC_HILO;     // 来自HI/LO
-            end else if (mfc0) begin
-                rfsource_reg = `RF_SRC_CP0;      // 来自CP0
-            end else if (isALUOp) begin
-                rfsource_reg = `RF_SRC_ALU;      // 来自ALU
-            end else begin
-                rfsource_reg = `DEFAULT_RF_SRC;
-            end
-            
-            // ------------------------------------------------
-            // 6. CP0相关信号生成（根据CP0.v接口）
-            // ------------------------------------------------
-            // mfc0和mtc0信号
-            mfc0 = (op == `OP_COPROC0) && (mf == `RS_MFC0);
-            mtc0 = (op == `OP_COPROC0) && (mf == `RS_MTC0);
-            
-            // eret指令判断：opcode为010000，rdc为01110，func为011000
-            eret = (op == `OP_COPROC0) && (rdc == 5'b01110) && (func == 6'b011000);
-            
-            // TEQ指令标志
-            teq = isRType && (func == `FUNC_TEQ);
-            
-            // 异常原因编码（5位，对应CP0的cause输入）
-            if (isSyscall) begin
-                cause = `SYSCALL;  // 需要在def.v中定义为5位系统调用异常码
-            end else if (isBreak) begin
-                cause = `BREAK;    // 需要在def.v中定义为5位断点异常码
-            end else if (teq) begin
-                cause = `TEQ;      // 需要在def.v中定义为5位Trap异常码
-            end else begin
-                cause = 5'b00000;  // 无异常
-            end
-            
-            // 异常指令标志（只要有异常指令就输入1）
-            exception = (isSyscall || isBreak || teq);
-            
-            // ------------------------------------------------
-            // 7. 分支指令控制
-            // ------------------------------------------------
-            beq = (op == `OP_BEQ);
-            bne = (op == `OP_BNE);
-            bgez = (op == `OP_BGEZ) && (rtc == `RT_BGEZ);
-            
-            // ------------------------------------------------
-            // 8. 符号扩展控制
-            // ------------------------------------------------
-            sign = (op == `OP_ADDI || op == `OP_SLTI || op == `OP_SLTIU || 
-                    op == `OP_LB || op == `OP_LH || op == `OP_LW);
-            
-            // ------------------------------------------------
-            // 9. 除法操作标志
-            // ------------------------------------------------
-            div = isRType && (func == `FUNC_DIV || func == `FUNC_DIVU);
-            
-            // ------------------------------------------------
-            // 10. 寄存器写入控制
-            // ------------------------------------------------
-            w_hi = isRType && (func == `FUNC_MULT || func == `FUNC_MULTU || 
-                              func == `FUNC_DIV || func == `FUNC_DIVU || 
-                              func == `FUNC_MTHI);
-            w_lo = isRType && (func == `FUNC_MULT || func == `FUNC_MULTU || 
-                              func == `FUNC_DIV || func == `FUNC_DIVU || 
-                              func == `FUNC_MTLO);
-            w_rf = (isRType && !isJR && !isJALR && !isMTHI && !isMTLO && !isMultDiv && 
-                   !isSyscall && !isBreak && !teq) || isIType || isLoad || 
-                   (op == `OP_JAL) || mfc0 || (op == `OP_CLZ);
-            w_dm = isStore;
-            
-            // ------------------------------------------------
-            // 11. 操作数源选择
-            // ------------------------------------------------
-            asource = isRType ? `OP_SRC_REG : `OP_SRC_IMM;  // R型:寄存器, I型:立即数
-            bsource = (isRType && isShift && !isShiftV) ? `OP_SRC_IMM : `OP_SRC_REG;
-            
-            // ------------------------------------------------
-            // 12. HI/LO寄存器源选择
-            // ------------------------------------------------
-            if (func == `FUNC_MULT || func == `FUNC_MULTU) begin
-                hisource = `HILO_SRC_MULT;
-                losource = `HILO_SRC_MULT;
-            end else if (func == `FUNC_DIV || func == `FUNC_DIVU) begin
-                hisource = `HILO_SRC_DIV;
-                losource = `HILO_SRC_DIV;
-            end else if (func == `FUNC_MTHI || func == `FUNC_MTLO) begin
-                hisource = `HILO_SRC_MOVE;
-                losource = `HILO_SRC_MOVE;
-            end else begin
-                hisource = `HILO_SRC_NONE;
-                losource = `HILO_SRC_NONE;
-            end
-            
-            // ------------------------------------------------
-            // 13. 存储器访问控制
-            // ------------------------------------------------
-            case (op)
-                `OP_SB: SC = `MEM_STORE_BYTE;
-                `OP_SH: SC = `MEM_STORE_HALF;
-                `OP_SW: SC = `MEM_STORE_WORD;
-                default: SC = `MEM_STORE_WORD;
-            endcase
-            
-            case (op)
-                `OP_LW:  LC = `MEM_LOAD_WORD;
-                `OP_LH:  LC = `MEM_LOAD_HALF_S;
-                `OP_LB:  LC = `MEM_LOAD_BYTE_S;
-                `OP_LHU: LC = `MEM_LOAD_HALF_U;
-                `OP_LBU: LC = `MEM_LOAD_BYTE_U;
-                default: LC = `MEM_LOAD_WORD;
-            endcase
-            
-            // ------------------------------------------------
-            // 14. Tomasulo算法: 冒险检测和保留站分配
-            // ------------------------------------------------
-            stall = check_hazards(rsc, rtc, rn, op, func);
-            
-            // 如果没有停顿，尝试分配保留站
-            if (!stall && !isHalt) begin
-                rs_id_int = -1;
-                
-                // 确定保留站类型
-                if (isMultDiv) begin
-                    rs_type_reg = `RS_TYPE_MULDIV;
-                end else if (isMemOp) begin
-                    rs_type_reg = `RS_TYPE_MEM;
-                end else if (isBranchType || isJump || isJR || isJALR) begin
-                    rs_type_reg = `RS_TYPE_BRANCH;
-                end else begin
-                    rs_type_reg = `RS_TYPE_ALU;
-                end
-                
-                // 分配保留站
-                rs_id_int = allocate_reservation_station(rs_type_reg);
-                if (rs_id_int == -1) begin
-                    stall = `STALL_ENABLE;  // 没有可用保留站，停顿
-                end else if (rs_id_int != -1) begin
-                    // 配置保留站
-                    station_opcode[rs_id_int] = aluc_reg;
-                    station_dest[rs_id_int] = rn;
-                end
-            end
-            
-            // ------------------------------------------------
-            // 15. 数据前递控制 (Tomasulo算法)
-            // ------------------------------------------------
-            fwda = `FWD_SRC_NONE;
-            fwdb = `FWD_SRC_NONE;
-            fwhi = `FWD_HILO_NONE;
-            fwlo = `FWD_HILO_NONE;
-            
-            // 检查源寄存器Rs的数据相关
-            if (rsc != 5'b0) begin
-                rs_status_temp = reg_status[rsc];
-                if (rs_status_temp != 3'b0 && station_busy[rs_status_temp-1]) begin
-                    // 检查CDB是否有数据可用
-                    if (check_cdb_ready(rsc)) begin
-                        fwda = `FWD_SRC_EX_ALU;  // 从CDB获取数据
-                    end else begin
-                        fwda = `FWD_SRC_NONE;    // 等待数据就绪
+            else begin
+                // 根据操作码解码指令
+                case (opcode)
+                    `OP_R_TYPE: begin
+                        // R型指令，根据功能码进一步解码
+                        case (funct)
+                            // 算术逻辑操作
+                            `FUNC_ADD: begin
+                                aluc = `ALUC_ADD;
+                                w_rf = 1'b1;
+                                rn = rd_field;
+                                sign = 1'b1;
+                            end
+                            `FUNC_ADDU: begin
+                                aluc = `ALUC_ADDU;
+                                w_rf = 1'b1;
+                                rn = rd_field;
+                                sign = 1'b0;
+                            end
+                            `FUNC_SUB: begin
+                                aluc = `ALUC_SUB;
+                                w_rf = 1'b1;
+                                rn = rd_field;
+                            end
+                            `FUNC_SUBU: begin
+                                aluc = `ALUC_SUBU;
+                                w_rf = 1'b1;
+                                rn = rd_field;
+                            end
+                            `FUNC_AND: begin
+                                aluc = `ALUC_AND;
+                                w_rf = 1'b1;
+                                rn = rd_field;
+                            end
+                            `FUNC_OR: begin
+                                aluc = `ALUC_OR;
+                                w_rf = 1'b1;
+                                rn = rd_field;
+                            end
+                            `FUNC_XOR: begin
+                                aluc = `ALUC_XOR;
+                                w_rf = 1'b1;
+                                rn = rd_field;
+                            end
+                            `FUNC_NOR: begin
+                                aluc = `ALUC_NOR;
+                                w_rf = 1'b1;
+                                rn = rd_field;
+                            end
+                            `FUNC_SLT: begin
+                                aluc = `ALUC_SLT;
+                                w_rf = 1'b1;
+                                rn = rd_field;
+                            end
+                            `FUNC_SLTU: begin
+                                aluc = `ALUC_SLTU;
+                                w_rf = 1'b1;
+                                rn = rd_field;
+                            end
+                            
+                            // 移位操作
+                            `FUNC_SLL: begin
+                                aluc = `ALUC_SLL;
+                                w_rf = 1'b1;
+                                rn = rd_field;
+                                asource = `OP_SRC_IMM; // 使用立即数作为移位量
+                            end
+                            `FUNC_SRL: begin
+                                aluc = `ALUC_SRL;
+                                w_rf = 1'b1;
+                                rn = rd_field;
+                                asource = `OP_SRC_IMM;
+                            end
+                            `FUNC_SRA: begin
+                                aluc = `ALUC_SRA;
+                                w_rf = 1'b1;
+                                rn = rd_field;
+                                asource = `OP_SRC_IMM;
+                            end
+                            `FUNC_SLLV: begin
+                                aluc = `ALUC_SLL;
+                                w_rf = 1'b1;
+                                rn = rd_field;
+                            end
+                            `FUNC_SRLV: begin
+                                aluc = `ALUC_SRL;
+                                w_rf = 1'b1;
+                                rn = rd_field;
+                            end
+                            `FUNC_SRAV: begin
+                                aluc = `ALUC_SRA;
+                                w_rf = 1'b1;
+                                rn = rd_field;
+                            end
+                            
+                            // 乘除操作
+                            `FUNC_MULT: begin
+                                hisource = `HILO_SRC_MULT;
+                                losource = `HILO_SRC_MULT;
+                                w_hi = 1'b1;
+                                w_lo = 1'b1;
+                            end
+                            `FUNC_MULTU: begin
+                                hisource = `HILO_SRC_MULT;
+                                losource = `HILO_SRC_MULT;
+                                w_hi = 1'b1;
+                                w_lo = 1'b1;
+                            end
+                            `FUNC_DIV: begin
+                                hisource = `HILO_SRC_DIV;
+                                losource = `HILO_SRC_DIV;
+                                w_hi = 1'b1;
+                                w_lo = 1'b1;
+                                div = 1'b1;
+                            end
+                            `FUNC_DIVU: begin
+                                hisource = `HILO_SRC_DIV;
+                                losource = `HILO_SRC_DIV;
+                                w_hi = 1'b1;
+                                w_lo = 1'b1;
+                                div = 1'b1;
+                            end
+                            
+                            // 特殊寄存器操作
+                            `FUNC_MFHI: begin
+                                rfsource = `RF_SRC_HILO;
+                                w_rf = 1'b1;
+                                rn = rd_field;
+                            end
+                            `FUNC_MTHI: begin
+                                hisource = `HILO_SRC_MOVE;
+                                w_hi = 1'b1;
+                            end
+                            `FUNC_MFLO: begin
+                                rfsource = `RF_SRC_HILO;
+                                w_rf = 1'b1;
+                                rn = rd_field;
+                            end
+                            `FUNC_MTLO: begin
+                                losource = `HILO_SRC_MOVE;
+                                w_lo = 1'b1;
+                            end
+                            
+                            // 跳转操作
+                            `FUNC_JR: begin
+                                pcsource = `PC_SRC_JUMP;
+                                isGoto = `GOTO_ENABLE;
+                            end
+                            `FUNC_JALR: begin
+                                pcsource = `PC_SRC_JUMP;
+                                isGoto = `GOTO_ENABLE;
+                                w_rf = 1'b1;
+                                rfsource = `RF_SRC_PC_PLUS4;
+                                rn = rd_field;
+                            end
+                            
+                            // 异常操作
+                            `FUNC_TEQ: begin
+                                exception = 1'b1;
+                                cause = `TEQ;
+                                teq = 1'b1;
+                            end
+                            `FUNC_SYSCALL: begin
+                                exception = 1'b1;
+                                cause = `SYSCALL;
+                            end
+                            `FUNC_BREAK: begin
+                                exception = 1'b1;
+                                cause = `BREAK;
+                            end
+                            `FUNC_ERET: begin
+                                eret = 1'b1;
+                                pcsource = `PC_SRC_RETURN;
+                            end
+                            
+                            default: begin
+                                // 未定义的功能码
+                            end
+                        endcase
                     end
+                    
+                    // I型指令
+                    `OP_ADDI: begin
+                        aluc = `ALUC_ADD;
+                        w_rf = 1'b1;
+                        rn = rt_field;
+                        bsource = `OP_SRC_IMM; // B操作数来自立即数
+                        sign = 1'b1;
+                    end
+                    `OP_ADDIU: begin
+                        aluc = `ALUC_ADDU;
+                        w_rf = 1'b1;
+                        rn = rt_field;
+                        bsource = `OP_SRC_IMM;
+                        sign = 1'b0;
+                    end
+                    `OP_SLTI: begin
+                        aluc = `ALUC_SLT;
+                        w_rf = 1'b1;
+                        rn = rt_field;
+                        bsource = `OP_SRC_IMM;
+                    end
+                    `OP_SLTIU: begin
+                        aluc = `ALUC_SLTU;
+                        w_rf = 1'b1;
+                        rn = rt_field;
+                        bsource = `OP_SRC_IMM;
+                    end
+                    `OP_ANDI: begin
+                        aluc = `ALUC_AND;
+                        w_rf = 1'b1;
+                        rn = rt_field;
+                        bsource = `OP_SRC_IMM;
+                        sign = 1'b0; // 零扩展
+                    end
+                    `OP_ORI: begin
+                        aluc = `ALUC_OR;
+                        w_rf = 1'b1;
+                        rn = rt_field;
+                        bsource = `OP_SRC_IMM;
+                        sign = 1'b0;
+                    end
+                    `OP_XORI: begin
+                        aluc = `ALUC_XOR;
+                        w_rf = 1'b1;
+                        rn = rt_field;
+                        bsource = `OP_SRC_IMM;
+                        sign = 1'b0;
+                    end
+                    `OP_LUI: begin
+                        aluc = `ALUC_LUI;
+                        w_rf = 1'b1;
+                        rn = rt_field;
+                        bsource = `OP_SRC_IMM;
+                    end
+                    
+                    // 分支指令
+                    `OP_BEQ: begin
+                        beq = 1'b1;
+                        pcsource = `PC_SRC_BRANCH;
+                        isGoto = `GOTO_ENABLE;
+                    end
+                    `OP_BNE: begin
+                        bne = 1'b1;
+                        pcsource = `PC_SRC_BRANCH;
+                        isGoto = `GOTO_ENABLE;
+                    end
+                    `OP_BGEZ: begin
+                        if (rt_field == `RT_BGEZ) begin
+                            bgez = 1'b1;
+                            aluc = `ALUC_BGEZ;
+                            pcsource = `PC_SRC_BRANCH;
+                            isGoto = `GOTO_ENABLE;
+                        end
+                    end
+                    
+                    // 跳转指令
+                    `OP_J: begin
+                        pcsource = `PC_SRC_JUMP;
+                        isGoto = `GOTO_ENABLE;
+                    end
+                    `OP_JAL: begin
+                        pcsource = `PC_SRC_JUMP;
+                        isGoto = `GOTO_ENABLE;
+                        w_rf = 1'b1;
+                        rfsource = `RF_SRC_PC_PLUS4;
+                        rn = 5'd31; // $ra寄存器
+                    end
+                    
+                    // 加载指令
+                    `OP_LW: begin
+                        aluc = `ALUC_ADD; // 计算地址
+                        w_rf = 1'b1;
+                        rn = rt_field;
+                        bsource = `OP_SRC_IMM;
+                        rfsource = `RF_SRC_MEM;
+                        LC = `MEM_LOAD_WORD;
+                        sign = 1'b1;
+                    end
+                    `OP_LH: begin
+                        aluc = `ALUC_ADD;
+                        w_rf = 1'b1;
+                        rn = rt_field;
+                        bsource = `OP_SRC_IMM;
+                        rfsource = `RF_SRC_MEM;
+                        LC = `MEM_LOAD_HALF_S;
+                        sign = 1'b1;
+                    end
+                    `OP_LHU: begin
+                        aluc = `ALUC_ADD;
+                        w_rf = 1'b1;
+                        rn = rt_field;
+                        bsource = `OP_SRC_IMM;
+                        rfsource = `RF_SRC_MEM;
+                        LC = `MEM_LOAD_HALF_U;
+                        sign = 1'b1;
+                    end
+                    `OP_LB: begin
+                        aluc = `ALUC_ADD;
+                        w_rf = 1'b1;
+                        rn = rt_field;
+                        bsource = `OP_SRC_IMM;
+                        rfsource = `RF_SRC_MEM;
+                        LC = `MEM_LOAD_BYTE_S;
+                        sign = 1'b1;
+                    end
+                    `OP_LBU: begin
+                        aluc = `ALUC_ADD;
+                        w_rf = 1'b1;
+                        rn = rt_field;
+                        bsource = `OP_SRC_IMM;
+                        rfsource = `RF_SRC_MEM;
+                        LC = `MEM_LOAD_BYTE_U;
+                        sign = 1'b1;
+                    end
+                    
+                    // 存储指令
+                    `OP_SW: begin
+                        aluc = `ALUC_ADD; // 计算地址
+                        w_dm = 1'b1;
+                        bsource = `OP_SRC_IMM;
+                        SC = `MEM_STORE_WORD;
+                        sign = 1'b1;
+                    end
+                    `OP_SH: begin
+                        aluc = `ALUC_ADD;
+                        w_dm = 1'b1;
+                        bsource = `OP_SRC_IMM;
+                        SC = `MEM_STORE_HALF;
+                        sign = 1'b1;
+                    end
+                    `OP_SB: begin
+                        aluc = `ALUC_ADD;
+                        w_dm = 1'b1;
+                        bsource = `OP_SRC_IMM;
+                        SC = `MEM_STORE_BYTE;
+                        sign = 1'b1;
+                    end
+                    
+                    // CP0指令
+                    `OP_COPROC0: begin
+                        if (rs_field == `RS_MFC0) begin
+                            mfc0 = 1'b1;
+                            w_rf = 1'b1;
+                            rn = rt_field;
+                            rfsource = `RF_SRC_CP0;
+                        end
+                        else if (rs_field == `RS_MTC0) begin
+                            mtc0 = 1'b1;
+                        end
+                        else if (rs_field == `RS_ERET) begin
+                            eret = 1'b1;
+                            pcsource = `PC_SRC_RETURN;
+                        end
+                    end
+                    
+                    // CLZ指令
+                    `OP_CLZ: begin
+                        aluc = `ALUC_CLZ;
+                        w_rf = 1'b1;
+                        rn = rd_field;
+                    end
+                    
+                    default: begin
+                        // 未定义的操作码
+                    end
+                endcase
+            end
+        end
+    end
+    
+    // ============================================================
+    // 数据前递逻辑
+    // ============================================================
+    always @(*) begin
+        // 默认不前递
+        fwda = `FWD_SRC_NONE;
+        fwdb = `FWD_SRC_NONE;
+        fwhi = `FWD_HILO_NONE;
+        fwlo = `FWD_HILO_NONE;
+        
+        if (!rstn) begin
+            // 复位时不清空前递信号
+        end else begin
+            // 检测数据冒险并生成前递信号
+            // 注意：这里简化处理，实际需要更复杂的数据冒险检测逻辑
+            
+            // 通用寄存器前递
+            if (Ew_rf && Ern != 0) begin
+                // EX阶段要写入寄存器堆
+                if (Ern == rsc) begin
+                    fwda = `FWD_SRC_EX_ALU;
+                end
+                if (Ern == rt_field) begin
+                    fwdb = `FWD_SRC_EX_ALU;
                 end
             end
             
-            // 检查源寄存器Rt的数据相关
-            if (rtc != 5'b0) begin
-                rt_status_temp = reg_status[rtc];
-                if (rt_status_temp != 3'b0 && station_busy[rt_status_temp-1]) begin
-                    if (check_cdb_ready(rtc)) begin
-                        fwdb = `FWD_SRC_EX_ALU;  // 从CDB获取数据
-                    end else begin
-                        fwdb = `FWD_SRC_NONE;    // 等待数据就绪
-                    end
+            if (Mw_rf && Mrn != 0) begin
+                // MEM阶段要写入寄存器堆
+                if (Mrn == rsc && !(Ew_rf && Ern == rsc)) begin
+                    fwda = `FWD_SRC_MEM;
+                end
+                if (Mrn == rt_field && !(Ew_rf && Ern == rt_field)) begin
+                    fwdb = `FWD_SRC_MEM;
                 end
             end
             
             // HI/LO寄存器前递
-            if (Ew_hi) fwhi = `FWD_HILO_EX;
-            if (Ew_lo) fwlo = `FWD_HILO_EX;
-            
-            // 对于乘除指令，前递来自EX阶段的结果
-            if (isMultDiv) begin
-                fwda = `FWD_SRC_EX_MULT;
-                fwdb = `FWD_SRC_EX_MULT;
+            if (Ew_hi) begin
+                fwhi = `FWD_HILO_EX;
             end
-            
-            // ------------------------------------------------
-            // 16. 跳转和分支控制
-            // ------------------------------------------------
-            isGoto = isJump || isJR || isJALR || isBranchType || eret;
+            if (Ew_lo) begin
+                fwlo = `FWD_HILO_EX;
+            end
+        end
+    end
+    
+    // ============================================================
+    // 流水线暂停逻辑
+    // ============================================================
+    always @(*) begin
+        stall = `STALL_DISABLE;
         
-            if (isJump || isJALR || isJR) begin
-                pcsource = `PC_SRC_JUMP;        // 跳转指令的PC值
-            end else if (isBranchType) begin
-                pcsource = `PC_SRC_BRANCH;      // 分支指令计算的PC值
-            end else if (eret) begin
-                pcsource = `PC_SRC_RETURN;      // 返回指令的PC值
-            end else if (exception) begin
-                pcsource = `PC_SRC_CP0;         // CP0提供的PC值（异常处理）
-            end else if (!rstn) begin
-                pcsource = `PC_SRC_RESET;       // 32'h4（复位时）
-            end else begin
-                pcsource = `PC_SRC_SEQ_PLUS4;   // 当前PC+4（顺序执行）
-            end
-        end
-    end
-    
-    // ============================================================
-    // HALT指令和用户中断处理逻辑
-    // ============================================================
-    always @(posedge clk or negedge rstn) begin
         if (!rstn) begin
-            halt_state <= 1'b0;         // 复位时清除HALT状态
-            userbreak_paused <= 1'b0;   // 复位时清除用户中断暂停状态
-            userbreak_prev <= 1'b0;     // 复位时清除上一个userbreak值
+            stall = `STALL_ENABLE; // 复位时暂停
         end else begin
-            // 保存上一个时钟周期的userbreak值，用于边沿检测
-            userbreak_prev <= userbreak;
-            
-            // HALT指令检测，优先级最高
-            if (isHalt && !halt_state) begin
-                halt_state <= 1'b1;
-                // HALT指令执行时，忽略userbreak状态
-                userbreak_paused <= 1'b0;
-            end
-            // 只有在未执行HALT指令的情况下，才处理userbreak
-            else if (!halt_state) begin
-                // 检测userbreak的上升沿（0->1）：进入暂停状态
-                if (!userbreak_prev && userbreak) begin
-                    userbreak_paused <= 1'b1;
-                end
-                // 检测userbreak的下降沿（1->0）：退出暂停状态
-                else if (userbreak_prev && !userbreak) begin
-                    userbreak_paused <= 1'b0;
-                end
-            end
-        end
-    end
-    
-    // ============================================================
-    // 寄存器状态更新逻辑
-    // ============================================================
-    always @(posedge clk or negedge rstn) begin
-        if (!rstn) begin
-            // 复位时初始化所有寄存器状态
-            for (i = 0; i < NUM_CDB_BUSES; i = i + 1) begin
-                cdb_valid[i] <= 1'b0;
-                cdb_reg[i] <= 5'b00000;
-                cdb_value[i] <= 32'b0;
-                cdb_rs_id[i] <= 3'b000;
-            end
-            
-            for (i = 0; i < 32; i = i + 1) begin
-                reg_status[i] <= 3'b000;
-            end
-        end
-        else if (!halt_state && !userbreak_paused) begin
-            // 当CDB有效时，更新寄存器状态（仅在非HALT且非暂停状态下）
-            for (i = 0; i < NUM_CDB_BUSES; i = i + 1) begin
-                if (cdb_valid[i]) begin
-                    if (reg_status[cdb_reg[i]] == cdb_rs_id[i] + 1) begin
-                        reg_status[cdb_reg[i]] <= 3'b0;  // 寄存器变为空闲
+            // 检测需要暂停的情况
+            // 1. Load-use冒险
+            if (Mw_rf && Mrn != 0) begin
+                // MEM阶段是加载指令
+                if (Mrfsource == `RF_SRC_MEM) begin
+                    // 当前指令使用MEM阶段加载的目标寄存器
+                    if ((opcode == `OP_R_TYPE && (Ern == rsc || Ern == rt_field)) ||
+                        (opcode != `OP_R_TYPE && (Mrn == rsc || (bsource == `OP_SRC_REG && Mrn == rt_field)))) begin
+                        stall = `STALL_ENABLE;
                     end
                 end
             end
-        end
-    end
-    
-    // ============================================================
-    // Tomasulo算法状态寄存器初始化
-    // ============================================================
-    always @(posedge clk or negedge rstn) begin
-        if (!rstn) begin
-            // 复位时初始化保留站
-            for (i = 0; i < NUM_RESERVATION_STATIONS; i = i + 1) begin
-                station_busy[i] <= 1'b0;
-                station_type[i] <= `RS_TYPE_IDLE;
-                station_dest[i] <= 5'b00000;
-                station_opcode[i] <= `DEFAULT_ALUC;
+            
+            // 2. 除法指令需要多个周期
+            if (div) begin
+                stall = `STALL_ENABLE;
             end
             
-            hi_status <= 3'b000;
-            lo_status <= 3'b000;
-            
-            // 复位时初始化功能单元
-            for (i = 0; i < NUM_FUNCTION_UNITS; i = i + 1) begin
-                fu_busy[i] <= `FU_IDLE;
-                fu_dest[i] <= 5'b00000;
-                fu_rs_id[i] <= 3'b000;
+            // 3. 用户中断
+            if (userbreak) begin
+                stall = `STALL_ENABLE;
             end
         end
     end
-    
-    // ============================================================
-    // 输出连接
-    // ============================================================
-    assign aluc = aluc_reg;
-    assign rfsource = rfsource_reg;
     
 endmodule
 
 ---
 
 ## PipeDEreg.v
+`timescale 1ns / 1ps
 // ID/EX流水线寄存器模块
 // 功能：存储ID阶段的输出数据并传递给EXE阶段
 module PipeDEreg(
@@ -1747,6 +1518,7 @@ endmodule
 ---
 
 ## PipeEMreg.v
+`timescale 1ns / 1ps
 // EX/MEM流水线寄存器模块
 // 功能：存储EX阶段的输出数据并传递给MEM阶段
 module PipeEMreg(
@@ -1861,6 +1633,7 @@ endmodule
 ---
 
 ## PipeEXE.v
+`timescale 1ns / 1ps
 // 执行阶段模块（EXE）
 // 功能：执行算术逻辑运算、乘除法运算、地址计算等
 module PipeEXE(
@@ -1983,6 +1756,7 @@ endmodule
 ---
 
 ## PipeID.v
+`timescale 1ns / 1ps
 // 指令译码阶段模块（ID）
 // 功能：译码指令，读取寄存器文件，处理数据前递和控制信号
 module PipeID(
@@ -2215,6 +1989,7 @@ Compare_ID compare(
 PipeControlUnit CU(
     .clk(clk),
     .rstn(rstn),
+    .instr(inst),
     .userbreak(userbreak),
     .rsc(rsc),
     .rtc(rtc),
@@ -2274,6 +2049,7 @@ endmodule
 ---
 
 ## PipeIF.v
+`timescale 1ns / 1ps
 // 指令获取阶段模块（IF）
 // 功能：根据程序计数器获取指令，计算下一个PC值
 module PipeIF (
@@ -2318,6 +2094,7 @@ endmodule
 ---
 
 ## PipeIR.v
+`timescale 1ns / 1ps
 // 指令寄存器模块（IR）
 // 功能：锁存指令获取阶段的PC+4和指令，传递给译码阶段
 module PipeIR (
@@ -2340,6 +2117,7 @@ endmodule
 ---
 
 ## PipeMEM.v
+`timescale 1ns / 1ps
 // 内存访问阶段模块（MEM）
 // 功能：执行数据存储器访问（加载/存储操作），处理数据读/写
 module PipeMEM(
@@ -2436,6 +2214,7 @@ endmodule
 ---
 
 ## PipeMWreg.v
+`timescale 1ns / 1ps
 // MEM/WB流水线寄存器模块
 // 功能：存储MEM阶段的输出数据并传递给WB（写回）阶段
 module PipeMWreg(
@@ -2537,6 +2316,7 @@ endmodule
 ---
 
 ## PipeWB.v
+`timescale 1ns / 1ps
 // 写回阶段模块（WB）
 // 功能：将执行结果写回到寄存器文件或特殊寄存器
 module PipeWB(
@@ -2628,6 +2408,7 @@ endmodule
 ---
 
 ## PiplineCPU.v
+`timescale 1ns / 1ps
 module PipelineCPU(
     input clk,          // 时钟信号
     input rstn,         // 异步复位信号（低电平有效）
@@ -3135,6 +2916,7 @@ endmodule
 ---
 
 ## Reg.v
+`timescale 1ns / 1ps
 // 通用32位寄存器模块
 // 功能：在时钟信号控制下存储和输出数据
 module Reg(

@@ -5,7 +5,7 @@
 # 14
 # 0
 # vsim -quiet work._246tb_ex10_tb 
-# Start time: 13:57:26 on Dec 19,2025
+# Start time: 19:58:26 on Dec 19,2025
 # //  ModelSim PE 10.4c Jul 20 2015 
 # //
 # //  Copyright 1991-2015 Mentor Graphics Corporation
@@ -20,138 +20,113 @@
 # //  FURTHERMORE, THIS INFORMATION IS PROHIBITED FROM DISCLOSURE UNDER
 # //  THE TRADE SECRETS ACT, 18 U.S.C. SECTION 1905.
 # //
-# ** Warning: (vsim-3017) ./project_1/project_1.srcs/sources_1/new/PiplineCPU.v(367): [TFMPC] - Too few port connections. Expected 47, found 46.
-#    Time: 0 ps  Iteration: 0  Instance: /_246tb_ex10_tb/cpu_inst/pipe_mem File: ./project_1/project_1.srcs/sources_1/new/PipeMEM.v
-# ** Warning: (vsim-3722) ./project_1/project_1.srcs/sources_1/new/PiplineCPU.v(367): [TFMPC] - Missing connection for port 'alusource'.
 # WARNING: This core is supplied with a behavioral model. To model cycle-accurate behavior you must run timing simulation.
 # WARNING: This core is supplied with a behavioral model. To model cycle-accurate behavior you must run timing simulation.
 # WARNING: This core is supplied with a behavioral model. To model cycle-accurate behavior you must run timing simulation.
 # WARNING: This core is supplied with a behavioral model. To model cycle-accurate behavior you must run timing simulation.
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time                15000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time                35000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time                15000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time                35000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time                15000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time                35000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time                15000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time                35000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# End time: 13:57:33 on Dec 19,2025, Elapsed time: 0:00:07
-# Errors: 0, Warnings: 2
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             20525000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             20525000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             20525000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             20525000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             41015000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             41015000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             41015000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             41015000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             61505000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             61505000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             61505000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             61505000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             81995000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             81995000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             81995000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             81995000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
+# End time: 19:58:34 on Dec 19,2025, Elapsed time: 0:00:08
+# Errors: 0, Warnings: 0
 # vsim -quiet work._246tb_ex10_tb 
-# Start time: 13:57:34 on Dec 19,2025
-# ** Warning: (vsim-3017) ./project_1/project_1.srcs/sources_1/new/PiplineCPU.v(367): [TFMPC] - Too few port connections. Expected 47, found 46.
-#    Time: 0 ps  Iteration: 0  Instance: /_246tb_ex10_tb/cpu_inst/pipe_mem File: ./project_1/project_1.srcs/sources_1/new/PipeMEM.v
-# ** Warning: (vsim-3722) ./project_1/project_1.srcs/sources_1/new/PiplineCPU.v(367): [TFMPC] - Missing connection for port 'alusource'.
+# Start time: 19:58:34 on Dec 19,2025
 # WARNING: This core is supplied with a behavioral model. To model cycle-accurate behavior you must run timing simulation.
 # WARNING: This core is supplied with a behavioral model. To model cycle-accurate behavior you must run timing simulation.
 # WARNING: This core is supplied with a behavioral model. To model cycle-accurate behavior you must run timing simulation.
 # WARNING: This core is supplied with a behavioral model. To model cycle-accurate behavior you must run timing simulation.
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time                15000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time                35000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time                15000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time                35000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time                15000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time                35000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time                15000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time                35000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# End time: 13:57:41 on Dec 19,2025, Elapsed time: 0:00:07
-# Errors: 0, Warnings: 2
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             20525000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             20525000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             20525000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             20525000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             41015000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             41015000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             41015000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             41015000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             61505000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             61505000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             61505000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             61505000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             81995000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             81995000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             81995000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             81995000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
+# End time: 19:58:40 on Dec 19,2025, Elapsed time: 0:00:06
+# Errors: 0, Warnings: 0
 # vsim -quiet work._246tb_ex10_tb 
-# Start time: 13:57:41 on Dec 19,2025
-# ** Warning: (vsim-3017) ./project_1/project_1.srcs/sources_1/new/PiplineCPU.v(367): [TFMPC] - Too few port connections. Expected 47, found 46.
-#    Time: 0 ps  Iteration: 0  Instance: /_246tb_ex10_tb/cpu_inst/pipe_mem File: ./project_1/project_1.srcs/sources_1/new/PipeMEM.v
-# ** Warning: (vsim-3722) ./project_1/project_1.srcs/sources_1/new/PiplineCPU.v(367): [TFMPC] - Missing connection for port 'alusource'.
+# Start time: 19:58:41 on Dec 19,2025
 # WARNING: This core is supplied with a behavioral model. To model cycle-accurate behavior you must run timing simulation.
 # WARNING: This core is supplied with a behavioral model. To model cycle-accurate behavior you must run timing simulation.
 # WARNING: This core is supplied with a behavioral model. To model cycle-accurate behavior you must run timing simulation.
 # WARNING: This core is supplied with a behavioral model. To model cycle-accurate behavior you must run timing simulation.
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time                15000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time                35000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time                15000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time                35000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time                15000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time                35000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time                15000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time                85000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time                85000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time                85000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time                85000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time               255000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time               255000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time               255000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time               255000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time               285000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time               285000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time               285000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time               285000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time               325000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time               325000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time               325000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time               325000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time               345000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time               345000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time               345000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time               345000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time               365000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time               365000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time               365000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time               365000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time               385000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time               385000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time               385000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time               385000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time               405000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time               405000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time               405000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time               405000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time               425000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time               425000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time               425000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time               425000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time               445000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time               445000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time               445000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time               445000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time                35000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
 # WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time               985000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
@@ -161,719 +136,261 @@
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
 # WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time               985000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             20565000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             20525000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             20565000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             20525000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             20565000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             20525000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             20565000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             20525000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             20735000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             21475000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             20735000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             21475000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             20735000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             21475000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             20735000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             21475000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             20765000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             41015000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             20765000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             41015000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             20765000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             41015000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             20765000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             41015000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             20805000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             41965000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             20805000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             41965000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             20805000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             41965000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             20805000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             41965000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             20825000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             61505000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             20825000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             61505000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             20825000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             61505000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             20825000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             61505000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             20845000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             62455000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             20845000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             62455000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             20845000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             62455000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             20845000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             62455000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             20865000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             81995000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             20865000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             81995000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             20865000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             81995000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             20865000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             81995000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             20885000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             82945000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             20885000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             82945000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             20885000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             82945000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             20885000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             82945000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             20905000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             20905000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             20905000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             20905000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             20925000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             20925000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             20925000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             20925000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             21465000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             21465000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             21465000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             21465000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# End time: 13:57:48 on Dec 19,2025, Elapsed time: 0:00:07
-# Errors: 0, Warnings: 2
+# End time: 19:58:47 on Dec 19,2025, Elapsed time: 0:00:06
+# Errors: 0, Warnings: 0
 # vsim -quiet work._246tb_ex10_tb 
-# Start time: 13:57:48 on Dec 19,2025
-# ** Warning: (vsim-3017) ./project_1/project_1.srcs/sources_1/new/PiplineCPU.v(367): [TFMPC] - Too few port connections. Expected 47, found 46.
-#    Time: 0 ps  Iteration: 0  Instance: /_246tb_ex10_tb/cpu_inst/pipe_mem File: ./project_1/project_1.srcs/sources_1/new/PipeMEM.v
-# ** Warning: (vsim-3722) ./project_1/project_1.srcs/sources_1/new/PiplineCPU.v(367): [TFMPC] - Missing connection for port 'alusource'.
+# Start time: 19:58:48 on Dec 19,2025
 # WARNING: This core is supplied with a behavioral model. To model cycle-accurate behavior you must run timing simulation.
 # WARNING: This core is supplied with a behavioral model. To model cycle-accurate behavior you must run timing simulation.
 # WARNING: This core is supplied with a behavioral model. To model cycle-accurate behavior you must run timing simulation.
 # WARNING: This core is supplied with a behavioral model. To model cycle-accurate behavior you must run timing simulation.
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time                15000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time                55000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time                15000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time                55000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time                15000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time                55000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time                15000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time                55000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# End time: 13:57:55 on Dec 19,2025, Elapsed time: 0:00:07
-# Errors: 0, Warnings: 2
+# End time: 19:58:54 on Dec 19,2025, Elapsed time: 0:00:06
+# Errors: 0, Warnings: 0
 # vsim -quiet work._246tb_ex10_tb 
-# Start time: 13:57:55 on Dec 19,2025
-# ** Warning: (vsim-3017) ./project_1/project_1.srcs/sources_1/new/PiplineCPU.v(367): [TFMPC] - Too few port connections. Expected 47, found 46.
-#    Time: 0 ps  Iteration: 0  Instance: /_246tb_ex10_tb/cpu_inst/pipe_mem File: ./project_1/project_1.srcs/sources_1/new/PipeMEM.v
-# ** Warning: (vsim-3722) ./project_1/project_1.srcs/sources_1/new/PiplineCPU.v(367): [TFMPC] - Missing connection for port 'alusource'.
+# Start time: 19:58:54 on Dec 19,2025
 # WARNING: This core is supplied with a behavioral model. To model cycle-accurate behavior you must run timing simulation.
 # WARNING: This core is supplied with a behavioral model. To model cycle-accurate behavior you must run timing simulation.
 # WARNING: This core is supplied with a behavioral model. To model cycle-accurate behavior you must run timing simulation.
 # WARNING: This core is supplied with a behavioral model. To model cycle-accurate behavior you must run timing simulation.
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time                15000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time                45000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time                15000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time                45000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time                15000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time                45000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time                15000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time                45000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# End time: 13:58:02 on Dec 19,2025, Elapsed time: 0:00:07
-# Errors: 0, Warnings: 2
+# End time: 19:59:01 on Dec 19,2025, Elapsed time: 0:00:07
+# Errors: 0, Warnings: 0
 # vsim -quiet work._246tb_ex10_tb 
-# Start time: 13:58:02 on Dec 19,2025
-# ** Warning: (vsim-3017) ./project_1/project_1.srcs/sources_1/new/PiplineCPU.v(367): [TFMPC] - Too few port connections. Expected 47, found 46.
-#    Time: 0 ps  Iteration: 0  Instance: /_246tb_ex10_tb/cpu_inst/pipe_mem File: ./project_1/project_1.srcs/sources_1/new/PipeMEM.v
-# ** Warning: (vsim-3722) ./project_1/project_1.srcs/sources_1/new/PiplineCPU.v(367): [TFMPC] - Missing connection for port 'alusource'.
+# Start time: 19:59:01 on Dec 19,2025
 # WARNING: This core is supplied with a behavioral model. To model cycle-accurate behavior you must run timing simulation.
 # WARNING: This core is supplied with a behavioral model. To model cycle-accurate behavior you must run timing simulation.
 # WARNING: This core is supplied with a behavioral model. To model cycle-accurate behavior you must run timing simulation.
 # WARNING: This core is supplied with a behavioral model. To model cycle-accurate behavior you must run timing simulation.
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time                15000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time                35000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time                15000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time                35000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time                15000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time                35000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time                15000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time                35000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time               355000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             20525000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time               355000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             20525000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time               355000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             20525000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time               355000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             20525000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time               995000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             41015000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time               995000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             41015000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time               995000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             41015000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time               995000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             41015000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# End time: 13:58:09 on Dec 19,2025, Elapsed time: 0:00:07
-# Errors: 0, Warnings: 2
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             61505000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             61505000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             61505000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             61505000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             81995000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             81995000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             81995000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             81995000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
+# End time: 19:59:08 on Dec 19,2025, Elapsed time: 0:00:07
+# Errors: 0, Warnings: 0
 # vsim -quiet work._246tb_ex10_tb 
-# Start time: 13:58:09 on Dec 19,2025
-# ** Warning: (vsim-3017) ./project_1/project_1.srcs/sources_1/new/PiplineCPU.v(367): [TFMPC] - Too few port connections. Expected 47, found 46.
-#    Time: 0 ps  Iteration: 0  Instance: /_246tb_ex10_tb/cpu_inst/pipe_mem File: ./project_1/project_1.srcs/sources_1/new/PipeMEM.v
-# ** Warning: (vsim-3722) ./project_1/project_1.srcs/sources_1/new/PiplineCPU.v(367): [TFMPC] - Missing connection for port 'alusource'.
+# Start time: 19:59:08 on Dec 19,2025
 # WARNING: This core is supplied with a behavioral model. To model cycle-accurate behavior you must run timing simulation.
 # WARNING: This core is supplied with a behavioral model. To model cycle-accurate behavior you must run timing simulation.
 # WARNING: This core is supplied with a behavioral model. To model cycle-accurate behavior you must run timing simulation.
 # WARNING: This core is supplied with a behavioral model. To model cycle-accurate behavior you must run timing simulation.
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time                15000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time                35000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time                15000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time                35000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time                15000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time                35000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time                15000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time                35000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time               175000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             20525000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time               175000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             20525000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time               175000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             20525000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time               175000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             20525000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time               195000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             41015000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time               195000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             41015000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time               195000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             41015000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time               195000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             41015000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time               215000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             61505000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time               215000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             61505000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time               215000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             61505000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time               215000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             61505000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time               235000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             81995000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time               235000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             81995000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time               235000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             81995000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time               235000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             81995000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time               255000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time               255000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time               255000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time               255000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time               275000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time               275000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time               275000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time               275000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time               295000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time               295000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time               295000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time               295000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time               315000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time               315000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time               315000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time               315000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time               335000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time               335000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time               335000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time               335000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time               355000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time               355000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time               355000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time               355000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time               375000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time               375000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time               375000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time               375000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time               395000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time               395000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time               395000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time               395000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time               415000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time               415000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time               415000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time               415000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time               435000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time               435000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time               435000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time               435000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time               455000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time               455000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time               455000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time               455000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time               475000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time               475000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time               475000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time               475000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time               495000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time               495000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time               495000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time               495000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time               515000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time               515000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time               515000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time               515000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time               535000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time               535000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time               535000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time               535000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time              1205000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time              1205000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time              1205000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time              1205000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             20655000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             20655000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             20655000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             20655000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             20675000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             20675000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             20675000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             20675000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             20695000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             20695000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             20695000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             20695000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             20715000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             20715000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             20715000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             20715000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             20735000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             20735000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             20735000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             20735000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             20755000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             20755000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             20755000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             20755000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             20775000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             20775000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             20775000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             20775000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             20795000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             20795000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             20795000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             20795000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             20815000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             20815000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             20815000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             20815000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             20835000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             20835000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             20835000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             20835000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             20855000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             20855000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             20855000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             20855000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             20875000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             20875000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             20875000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             20875000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             20895000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             20895000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             20895000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             20895000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             20915000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             20915000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             20915000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             20915000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             20935000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             20935000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             20935000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             20935000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             20955000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             20955000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             20955000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             20955000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             20975000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             20975000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             20975000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             20975000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             20995000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             20995000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             20995000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             20995000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             21015000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             21015000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             21015000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             21015000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             21665000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             21665000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             21665000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             21665000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# End time: 13:58:16 on Dec 19,2025, Elapsed time: 0:00:07
-# Errors: 0, Warnings: 2
+# End time: 19:59:15 on Dec 19,2025, Elapsed time: 0:00:07
+# Errors: 0, Warnings: 0
 # vsim -quiet work._246tb_ex10_tb 
-# Start time: 13:58:16 on Dec 19,2025
-# ** Warning: (vsim-3017) ./project_1/project_1.srcs/sources_1/new/PiplineCPU.v(367): [TFMPC] - Too few port connections. Expected 47, found 46.
-#    Time: 0 ps  Iteration: 0  Instance: /_246tb_ex10_tb/cpu_inst/pipe_mem File: ./project_1/project_1.srcs/sources_1/new/PipeMEM.v
-# ** Warning: (vsim-3722) ./project_1/project_1.srcs/sources_1/new/PiplineCPU.v(367): [TFMPC] - Missing connection for port 'alusource'.
+# Start time: 19:59:15 on Dec 19,2025
 # WARNING: This core is supplied with a behavioral model. To model cycle-accurate behavior you must run timing simulation.
 # WARNING: This core is supplied with a behavioral model. To model cycle-accurate behavior you must run timing simulation.
 # WARNING: This core is supplied with a behavioral model. To model cycle-accurate behavior you must run timing simulation.
 # WARNING: This core is supplied with a behavioral model. To model cycle-accurate behavior you must run timing simulation.
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time                15000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time                35000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time                15000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time                35000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time                15000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time                35000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time                15000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time                35000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time               115000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             20525000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time               115000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             20525000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time               115000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             20525000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time               115000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             20525000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time               135000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             41015000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time               135000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             41015000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time               135000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             41015000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time               135000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             41015000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time               155000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             61505000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time               155000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             61505000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time               155000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             61505000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time               155000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             61505000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time               175000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             81995000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time               175000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             81995000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time               175000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             81995000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time               175000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             81995000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time               195000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time               195000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time               195000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time               195000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time               215000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time               215000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time               215000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time               215000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time               235000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time               235000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time               235000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time               235000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time               295000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time               295000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time               295000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time               295000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time               315000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time               315000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time               315000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time               315000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time               345000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time               345000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time               345000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time               345000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# End time: 13:58:24 on Dec 19,2025, Elapsed time: 0:00:08
-# Errors: 0, Warnings: 2
+# End time: 19:59:23 on Dec 19,2025, Elapsed time: 0:00:08
+# Errors: 0, Warnings: 0
 # vsim -quiet work._246tb_ex10_tb 
-# Start time: 13:58:25 on Dec 19,2025
-# ** Warning: (vsim-3017) ./project_1/project_1.srcs/sources_1/new/PiplineCPU.v(367): [TFMPC] - Too few port connections. Expected 47, found 46.
-#    Time: 0 ps  Iteration: 0  Instance: /_246tb_ex10_tb/cpu_inst/pipe_mem File: ./project_1/project_1.srcs/sources_1/new/PipeMEM.v
-# ** Warning: (vsim-3722) ./project_1/project_1.srcs/sources_1/new/PiplineCPU.v(367): [TFMPC] - Missing connection for port 'alusource'.
+# Start time: 19:59:23 on Dec 19,2025
 # WARNING: This core is supplied with a behavioral model. To model cycle-accurate behavior you must run timing simulation.
 # WARNING: This core is supplied with a behavioral model. To model cycle-accurate behavior you must run timing simulation.
 # WARNING: This core is supplied with a behavioral model. To model cycle-accurate behavior you must run timing simulation.
 # WARNING: This core is supplied with a behavioral model. To model cycle-accurate behavior you must run timing simulation.
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time                15000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time                35000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time                15000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time                35000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time                15000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time                35000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time                15000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time                85000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time                85000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time                85000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time                85000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time               105000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time               105000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time               105000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time               105000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time               135000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time               135000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time               135000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time               135000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time               325000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time               325000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time               325000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time               325000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time               345000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time               345000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time               345000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time               345000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time               365000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time               365000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time               365000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time               365000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time               385000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time               385000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time               385000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time               385000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time               405000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time               405000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time               405000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time               405000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time               425000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time               425000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time               425000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time               425000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time               445000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time               445000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time               445000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time               445000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time               465000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time               465000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time               465000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time               465000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time               485000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time               485000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time               485000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time               485000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time                35000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
 # WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time               605000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
@@ -891,104 +408,117 @@
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
 # WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time               815000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# End time: 13:58:31 on Dec 19,2025, Elapsed time: 0:00:06
-# Errors: 0, Warnings: 2
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             20525000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             20525000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             20525000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             20525000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             21095000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             21095000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             21095000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             21095000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             21305000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             21305000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             21305000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             21305000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             41015000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             41015000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             41015000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             41015000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             41585000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             41585000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             41585000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             41585000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             41795000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             41795000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             41795000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             41795000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             61505000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             61505000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             61505000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             61505000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             62075000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             62075000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             62075000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             62075000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             62285000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             62285000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             62285000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             62285000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             81995000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             81995000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             81995000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             81995000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             82565000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             82565000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             82565000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             82565000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             82775000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             82775000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             82775000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             82775000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
+# End time: 19:59:29 on Dec 19,2025, Elapsed time: 0:00:06
+# Errors: 0, Warnings: 0
 # vsim -quiet work._246tb_ex10_tb 
-# Start time: 13:58:31 on Dec 19,2025
-# ** Warning: (vsim-3017) ./project_1/project_1.srcs/sources_1/new/PiplineCPU.v(367): [TFMPC] - Too few port connections. Expected 47, found 46.
-#    Time: 0 ps  Iteration: 0  Instance: /_246tb_ex10_tb/cpu_inst/pipe_mem File: ./project_1/project_1.srcs/sources_1/new/PipeMEM.v
-# ** Warning: (vsim-3722) ./project_1/project_1.srcs/sources_1/new/PiplineCPU.v(367): [TFMPC] - Missing connection for port 'alusource'.
+# Start time: 19:59:29 on Dec 19,2025
 # WARNING: This core is supplied with a behavioral model. To model cycle-accurate behavior you must run timing simulation.
 # WARNING: This core is supplied with a behavioral model. To model cycle-accurate behavior you must run timing simulation.
 # WARNING: This core is supplied with a behavioral model. To model cycle-accurate behavior you must run timing simulation.
 # WARNING: This core is supplied with a behavioral model. To model cycle-accurate behavior you must run timing simulation.
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time                15000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time                35000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time                15000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time                35000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time                15000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time                35000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time                15000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time                85000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time                85000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time                85000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time                85000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time               255000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time               255000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time               255000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time               255000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time               285000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time               285000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time               285000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time               285000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time               325000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time               325000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time               325000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time               325000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time               345000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time               345000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time               345000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time               345000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time               365000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time               365000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time               365000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time               365000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time               385000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time               385000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time               385000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time               385000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time               405000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time               405000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time               405000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time               405000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time               425000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time               425000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time               425000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time               425000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time               445000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time               445000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time               445000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time               445000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time                35000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
 # WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time               985000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
@@ -998,139 +528,109 @@
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
 # WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time               985000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             20565000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             20525000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             20565000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             20525000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             20565000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             20525000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             20565000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             20525000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             20735000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             21475000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             20735000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             21475000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             20735000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             21475000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             20735000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             21475000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             20765000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             41015000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             20765000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             41015000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             20765000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             41015000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             20765000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             41015000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             20805000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             41965000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             20805000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             41965000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             20805000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             41965000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             20805000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             41965000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             20825000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             61505000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             20825000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             61505000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             20825000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             61505000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             20825000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             61505000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             20845000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             62455000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             20845000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             62455000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             20845000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             62455000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             20845000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             62455000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             20865000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             81995000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             20865000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             81995000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             20865000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             81995000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             20865000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             81995000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             20885000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             82945000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             20885000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             82945000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             20885000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             82945000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             20885000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             82945000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             20905000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             20905000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             20905000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             20905000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             20925000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             20925000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             20925000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             20925000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             21465000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             21465000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             21465000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             21465000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# End time: 13:58:38 on Dec 19,2025, Elapsed time: 0:00:07
-# Errors: 0, Warnings: 2
+# End time: 19:59:36 on Dec 19,2025, Elapsed time: 0:00:07
+# Errors: 0, Warnings: 0
 # vsim -quiet work._246tb_ex10_tb 
-# Start time: 13:58:39 on Dec 19,2025
-# ** Warning: (vsim-3017) ./project_1/project_1.srcs/sources_1/new/PiplineCPU.v(367): [TFMPC] - Too few port connections. Expected 47, found 46.
-#    Time: 0 ps  Iteration: 0  Instance: /_246tb_ex10_tb/cpu_inst/pipe_mem File: ./project_1/project_1.srcs/sources_1/new/PipeMEM.v
-# ** Warning: (vsim-3722) ./project_1/project_1.srcs/sources_1/new/PiplineCPU.v(367): [TFMPC] - Missing connection for port 'alusource'.
+# Start time: 19:59:36 on Dec 19,2025
 # WARNING: This core is supplied with a behavioral model. To model cycle-accurate behavior you must run timing simulation.
 # WARNING: This core is supplied with a behavioral model. To model cycle-accurate behavior you must run timing simulation.
 # WARNING: This core is supplied with a behavioral model. To model cycle-accurate behavior you must run timing simulation.
 # WARNING: This core is supplied with a behavioral model. To model cycle-accurate behavior you must run timing simulation.
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time                15000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time                35000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time                15000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time                35000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time                15000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time                35000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time                15000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time                35000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time                55000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time               175000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time                55000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time               175000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time                55000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time               175000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time                55000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time               175000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# End time: 13:58:45 on Dec 19,2025, Elapsed time: 0:00:06
-# Errors: 0, Warnings: 2
+# End time: 19:59:43 on Dec 19,2025, Elapsed time: 0:00:07
+# Errors: 0, Warnings: 0
 # vsim -quiet work._246tb_ex10_tb 
-# Start time: 13:58:46 on Dec 19,2025
-# ** Warning: (vsim-3017) ./project_1/project_1.srcs/sources_1/new/PiplineCPU.v(367): [TFMPC] - Too few port connections. Expected 47, found 46.
-#    Time: 0 ps  Iteration: 0  Instance: /_246tb_ex10_tb/cpu_inst/pipe_mem File: ./project_1/project_1.srcs/sources_1/new/PipeMEM.v
-# ** Warning: (vsim-3722) ./project_1/project_1.srcs/sources_1/new/PiplineCPU.v(367): [TFMPC] - Missing connection for port 'alusource'.
+# Start time: 19:59:43 on Dec 19,2025
 # WARNING: This core is supplied with a behavioral model. To model cycle-accurate behavior you must run timing simulation.
 # WARNING: This core is supplied with a behavioral model. To model cycle-accurate behavior you must run timing simulation.
 # WARNING: This core is supplied with a behavioral model. To model cycle-accurate behavior you must run timing simulation.
 # WARNING: This core is supplied with a behavioral model. To model cycle-accurate behavior you must run timing simulation.
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time                15000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time                35000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time                15000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time                35000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time                15000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time                35000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time                15000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time                35000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
 # WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time               485000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
@@ -1140,32 +640,85 @@
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
 # WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time               485000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# End time: 13:58:52 on Dec 19,2025, Elapsed time: 0:00:06
-# Errors: 0, Warnings: 2
-# vsim -quiet work._246tb_ex10_tb 
-# Start time: 13:58:52 on Dec 19,2025
-# ** Warning: (vsim-3017) ./project_1/project_1.srcs/sources_1/new/PiplineCPU.v(367): [TFMPC] - Too few port connections. Expected 47, found 46.
-#    Time: 0 ps  Iteration: 0  Instance: /_246tb_ex10_tb/cpu_inst/pipe_mem File: ./project_1/project_1.srcs/sources_1/new/PipeMEM.v
-# ** Warning: (vsim-3722) ./project_1/project_1.srcs/sources_1/new/PiplineCPU.v(367): [TFMPC] - Missing connection for port 'alusource'.
-# WARNING: This core is supplied with a behavioral model. To model cycle-accurate behavior you must run timing simulation.
-# WARNING: This core is supplied with a behavioral model. To model cycle-accurate behavior you must run timing simulation.
-# WARNING: This core is supplied with a behavioral model. To model cycle-accurate behavior you must run timing simulation.
-# WARNING: This core is supplied with a behavioral model. To model cycle-accurate behavior you must run timing simulation.
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time                15000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             20525000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time                15000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             20525000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time                15000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             20525000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time                15000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             20525000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time                55000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             20975000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time                55000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             20975000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time                55000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             20975000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time                55000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             20975000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             41015000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             41015000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             41015000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             41015000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             41465000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             41465000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             41465000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             41465000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             61505000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             61505000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             61505000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             61505000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             61955000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             61955000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             61955000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             61955000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             81995000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             81995000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             81995000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             81995000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             82445000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             82445000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             82445000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             82445000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
+# End time: 19:59:50 on Dec 19,2025, Elapsed time: 0:00:07
+# Errors: 0, Warnings: 0
+# vsim -quiet work._246tb_ex10_tb 
+# Start time: 19:59:51 on Dec 19,2025
+# WARNING: This core is supplied with a behavioral model. To model cycle-accurate behavior you must run timing simulation.
+# WARNING: This core is supplied with a behavioral model. To model cycle-accurate behavior you must run timing simulation.
+# WARNING: This core is supplied with a behavioral model. To model cycle-accurate behavior you must run timing simulation.
+# WARNING: This core is supplied with a behavioral model. To model cycle-accurate behavior you must run timing simulation.
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time                35000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time                35000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time                35000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time                35000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
 # WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time               165000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
@@ -1175,32 +728,85 @@
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
 # WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time               165000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# End time: 13:58:59 on Dec 19,2025, Elapsed time: 0:00:07
-# Errors: 0, Warnings: 2
-# vsim -quiet work._246tb_ex10_tb 
-# Start time: 13:58:59 on Dec 19,2025
-# ** Warning: (vsim-3017) ./project_1/project_1.srcs/sources_1/new/PiplineCPU.v(367): [TFMPC] - Too few port connections. Expected 47, found 46.
-#    Time: 0 ps  Iteration: 0  Instance: /_246tb_ex10_tb/cpu_inst/pipe_mem File: ./project_1/project_1.srcs/sources_1/new/PipeMEM.v
-# ** Warning: (vsim-3722) ./project_1/project_1.srcs/sources_1/new/PiplineCPU.v(367): [TFMPC] - Missing connection for port 'alusource'.
-# WARNING: This core is supplied with a behavioral model. To model cycle-accurate behavior you must run timing simulation.
-# WARNING: This core is supplied with a behavioral model. To model cycle-accurate behavior you must run timing simulation.
-# WARNING: This core is supplied with a behavioral model. To model cycle-accurate behavior you must run timing simulation.
-# WARNING: This core is supplied with a behavioral model. To model cycle-accurate behavior you must run timing simulation.
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time                15000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             20525000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time                15000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             20525000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time                15000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             20525000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time                15000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             20525000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time                45000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             20655000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time                45000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             20655000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time                45000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             20655000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time                45000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             20655000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             41015000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             41015000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             41015000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             41015000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             41145000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             41145000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             41145000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             41145000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             61505000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             61505000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             61505000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             61505000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             61635000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             61635000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             61635000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             61635000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             81995000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             81995000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             81995000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             81995000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time             82125000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time             82125000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time             82125000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time             82125000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
+# End time: 19:59:57 on Dec 19,2025, Elapsed time: 0:00:06
+# Errors: 0, Warnings: 0
+# vsim -quiet work._246tb_ex10_tb 
+# Start time: 19:59:57 on Dec 19,2025
+# WARNING: This core is supplied with a behavioral model. To model cycle-accurate behavior you must run timing simulation.
+# WARNING: This core is supplied with a behavioral model. To model cycle-accurate behavior you must run timing simulation.
+# WARNING: This core is supplied with a behavioral model. To model cycle-accurate behavior you must run timing simulation.
+# WARNING: This core is supplied with a behavioral model. To model cycle-accurate behavior you must run timing simulation.
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time                25000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time                25000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time                25000 ns: 
+# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time                25000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
 # WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time               195000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
@@ -1210,21 +816,13 @@
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
 # WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time               195000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time               225000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time               245000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time               225000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time               245000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time               225000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time               245000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time               225000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst at time              1035000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem4_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst at time              1035000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem3_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst at time              1035000 ns: 
-# Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem2_uut.inst is        2047
-# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time              1035000 ns: 
+# WARNING in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst at time               245000 ns: 
 # Reading from out-of-range address. Max address in _246tb_ex10_tb.cpu_inst.pipe_mem.dmem.dmem1_uut.inst is        2047
 # BATCH TEST SUMMARY
 # ==================================
@@ -1233,6 +831,6 @@
 # Failed tests: 14
 # Success rate: 0.00%
 # ==================================
-# file5581f20
-# End time: 13:59:07 on Dec 19,2025, Elapsed time: 0:00:08
-# Errors: 0, Warnings: 2
+# file56226b8
+# End time: 20:00:04 on Dec 19,2025, Elapsed time: 0:00:07
+# Errors: 0, Warnings: 0

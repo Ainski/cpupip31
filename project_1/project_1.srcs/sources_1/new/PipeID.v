@@ -231,6 +231,7 @@ Compare_ID compare(
 PipeControlUnit CU(
     .clk(clk),
     .rstn(rstn),
+    .instr(inst),
     .userbreak(userbreak),
     .rsc(rsc),
     .rtc(rtc),
